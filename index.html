@@ -504,7 +504,7 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 @media(max-width:1050px){.calendar-day{min-height:105px;padding:6px}.calendar-event{font-size:9px}.projection-summary{grid-template-columns:1fr 1fr}}@media(max-width:720px){.calendar-grid{gap:4px}.calendar-day{min-height:83px;padding:5px;border-radius:9px}.calendar-date{font-size:10px}.calendar-event{font-size:8px;padding:4px}.calendar-toolbar{align-items:flex-start;flex-direction:column}.projection-summary{grid-template-columns:1fr}}
 
 </style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
 <body>
 <div class="shell">
@@ -780,7 +780,7 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 </div>
 
 
-<div class="modal-backdrop" id="authModal">
+<div class="modal-backdrop show" id="authModal">
   <div class="modal">
     <div class="auth-shell">
       <div class="auth-visual">
@@ -864,6 +864,10 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 
           <div class="support-note">Atención directa y rápida desde tu panel.</div>
           <div class="auth-mini-note">Tu marca, tu panel y tu información en un entorno profesional respaldado en la nube.</div>
+          <div class="actions end" style="justify-content:center;margin-top:12px">
+            <button class="btn small" type="button" onclick="testSupabaseConnection()">Probar conexión a Supabase</button>
+          </div>
+          <div id="connectionDiagnostic" class="auth-help" style="text-align:center"></div>
         </div>
       </div>
     </div>
@@ -872,10 +876,252 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 
 <div class="loading-screen" id="loadingScreen"><div><div class="spinner"></div><strong id="loadingText">Sincronizando información...</strong></div></div>
 
+
+<script>
+/* ================================================================
+   Supabase Lite Client · integrado en el archivo
+   Evita depender de una librería JavaScript externa para iniciar.
+   ================================================================ */
+function createSupabaseLite(baseUrl, publishableKey){
+  const sessionKey = 'fc_supabase_session_' + baseUrl.replace(/[^a-z0-9]/gi,'_');
+  const legacySessionKey = 'sb-dlnwibdjdpppsookllkx-auth-token';
+  const authListeners = new Set();
+
+  function makeError(payload, status){
+    const message =
+      payload?.msg ||
+      payload?.message ||
+      payload?.error_description ||
+      payload?.error ||
+      ('Error HTTP ' + status);
+    const error = new Error(String(message));
+    error.status = status;
+    error.code = payload?.code || payload?.error_code || '';
+    error.details = payload?.details || '';
+    return error;
+  }
+
+  async function parseResponse(response){
+    const text = await response.text();
+    let payload = null;
+    if(text){
+      try{ payload = JSON.parse(text); }
+      catch(_e){ payload = text; }
+    }
+    if(!response.ok) throw makeError(typeof payload === 'object' ? payload : {message:payload}, response.status);
+    return payload;
+  }
+
+  function getStoredSession(){
+    try{
+      const current = JSON.parse(localStorage.getItem(sessionKey) || 'null');
+      if(current?.access_token) return current;
+      const legacy = JSON.parse(localStorage.getItem(legacySessionKey) || 'null');
+      if(legacy?.access_token) return legacy;
+      if(Array.isArray(legacy) && legacy[0]?.access_token) return legacy[0];
+    }catch(_e){}
+    return null;
+  }
+
+  function storeSession(session){
+    if(session?.access_token) localStorage.setItem(sessionKey, JSON.stringify(session));
+    else localStorage.removeItem(sessionKey);
+  }
+
+  function clearSession(){
+    localStorage.removeItem(sessionKey);
+    localStorage.removeItem(legacySessionKey);
+  }
+
+  function notify(event, session){
+    authListeners.forEach(cb=>{
+      try{ cb(event, session); }catch(e){ console.error(e); }
+    });
+  }
+
+  function sessionExpired(session){
+    if(!session?.access_token) return true;
+    if(session.expires_at) return Number(session.expires_at) * 1000 < Date.now() + 15000;
+    try{
+      const payload = JSON.parse(atob(session.access_token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
+      return Number(payload.exp || 0) * 1000 < Date.now() + 15000;
+    }catch(_e){ return false; }
+  }
+
+  async function authRequest(path, body, token){
+    const headers = {'apikey':publishableKey, 'Content-Type':'application/json'};
+    if(token) headers.Authorization = 'Bearer ' + token;
+    const response = await fetch(baseUrl + '/auth/v1/' + path, {
+      method:'POST', headers, body: body ? JSON.stringify(body) : undefined
+    });
+    return await parseResponse(response);
+  }
+
+  function normalizeSession(payload){
+    if(!payload?.access_token) return null;
+    const session = {...payload};
+    if(!session.expires_at && session.expires_in){
+      session.expires_at = Math.floor(Date.now()/1000) + Number(session.expires_in);
+    }
+    return session;
+  }
+
+  async function refreshSession(){
+    const current = getStoredSession();
+    if(!current?.refresh_token) return null;
+    try{
+      const payload = await authRequest('token?grant_type=refresh_token', {refresh_token:current.refresh_token});
+      const session = normalizeSession(payload);
+      storeSession(session);
+      notify('TOKEN_REFRESHED', session);
+      return session;
+    }catch(error){
+      clearSession();
+      return null;
+    }
+  }
+
+  async function validSession(){
+    let session = getStoredSession();
+    if(session && sessionExpired(session)) session = await refreshSession();
+    return session;
+  }
+
+  function restHeaders(token, extra={}){
+    return {
+      'apikey':publishableKey,
+      'Authorization':'Bearer ' + (token || publishableKey),
+      'Content-Type':'application/json',
+      ...extra
+    };
+  }
+
+  class QueryBuilder{
+    constructor(table){
+      this.table = table;
+      this.method = 'GET';
+      this.params = new URLSearchParams();
+      this.filters = [];
+      this.orders = [];
+      this.payload = undefined;
+      this.prefer = [];
+      this.singleMode = false;
+    }
+    select(columns='*'){ this.params.set('select', columns); return this; }
+    order(column, options={}){ this.orders.push(column + '.' + (options.ascending===false?'desc':'asc')); return this; }
+    eq(column, value){ this.filters.push([column, 'eq.' + value]); return this; }
+    insert(payload){ this.method='POST'; this.payload=payload; this.prefer.push('return=minimal'); return this; }
+    update(payload){ this.method='PATCH'; this.payload=payload; this.prefer.push('return=minimal'); return this; }
+    delete(){ this.method='DELETE'; this.prefer.push('return=minimal'); return this; }
+    upsert(payload, options={}){
+      this.method='POST'; this.payload=payload;
+      this.prefer.push('resolution=merge-duplicates','return=minimal');
+      if(options.onConflict) this.params.set('on_conflict', options.onConflict);
+      return this;
+    }
+    maybeSingle(){ this.singleMode=true; return this.execute(); }
+    then(resolve, reject){ return this.execute().then(resolve, reject); }
+    async execute(){
+      try{
+        const session = await validSession();
+        if(this.method==='GET' && !this.params.has('select')) this.params.set('select','*');
+        this.filters.forEach(([key,value])=>this.params.append(key,value));
+        if(this.orders.length) this.params.set('order',this.orders.join(','));
+        const query = this.params.toString();
+        const url = baseUrl + '/rest/v1/' + encodeURIComponent(this.table) + (query?'?'+query:'');
+        const headers = restHeaders(session?.access_token);
+        if(this.prefer.length) headers.Prefer = this.prefer.join(',');
+        const response = await fetch(url,{
+          method:this.method,
+          headers,
+          body:this.payload===undefined ? undefined : JSON.stringify(this.payload)
+        });
+        const data = await parseResponse(response);
+        if(this.singleMode) return {data:Array.isArray(data)?(data[0]||null):data,error:null};
+        return {data,error:null};
+      }catch(error){
+        return {data:null,error};
+      }
+    }
+  }
+
+  const auth = {
+    async getSession(){
+      try{
+        const session = await validSession();
+        return {data:{session},error:null};
+      }catch(error){ return {data:{session:null},error}; }
+    },
+    async signInWithPassword({email,password}){
+      try{
+        const payload = await authRequest('token?grant_type=password',{email,password});
+        const session = normalizeSession(payload);
+        storeSession(session);
+        notify('SIGNED_IN', session);
+        return {data:{user:session?.user||null,session},error:null};
+      }catch(error){ return {data:{user:null,session:null},error}; }
+    },
+    async signUp({email,password}){
+      try{
+        const payload = await authRequest('signup',{email,password});
+        const session = normalizeSession(payload);
+        if(session) storeSession(session);
+        notify('SIGNED_UP', session);
+        return {data:{user:payload?.user||session?.user||null,session},error:null};
+      }catch(error){ return {data:{user:null,session:null},error}; }
+    },
+    async signOut(){
+      const session = getStoredSession();
+      try{
+        if(session?.access_token) await authRequest('logout',null,session.access_token);
+      }catch(_e){}
+      clearSession();
+      notify('SIGNED_OUT', null);
+      return {error:null};
+    },
+    onAuthStateChange(callback){
+      authListeners.add(callback);
+      return {data:{subscription:{unsubscribe:()=>authListeners.delete(callback)}}};
+    }
+  };
+
+  return {
+    auth,
+    from(table){ return new QueryBuilder(table); },
+    async rpc(functionName, payload={}){
+      try{
+        const session = await validSession();
+        const response = await fetch(baseUrl + '/rest/v1/rpc/' + encodeURIComponent(functionName),{
+          method:'POST',
+          headers:restHeaders(session?.access_token),
+          body:JSON.stringify(payload)
+        });
+        const data = await parseResponse(response);
+        return {data,error:null};
+      }catch(error){ return {data:null,error}; }
+    },
+    async health(){
+      try{
+        const response = await fetch(baseUrl + '/auth/v1/health',{headers:{apikey:publishableKey}});
+        const data = await parseResponse(response);
+        return {data,error:null};
+      }catch(error){ return {data:null,error}; }
+    }
+  };
+}
+
+function withTimeout(promise, ms=15000){
+  return Promise.race([
+    promise,
+    new Promise((_,reject)=>setTimeout(()=>reject(new Error('La conexión tardó demasiado. Revisa tu internet e inténtalo nuevamente.')),ms))
+  ]);
+}
+</script>
+
 <script>
 const SUPABASE_URL = 'https://dlnwibdjdpppsookllkx.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_pcnOhCB1_C7hrDTmWUsCgg_svJ12C-M';
-const db = supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+const db = createSupabaseLite(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 const LEGACY_STORAGE_KEY = 'fc_debt_manager_v1';
 const CACHE_PREFIX = 'fc_finance_complete_supabase_';
 
@@ -931,15 +1177,38 @@ function buildInstallmentSchedule(d,limit=240){const rows=[];let remain=Number(d
 function antExpenseTotalCurrentMonth(){const now=new Date();return state.movements.filter(x=>x.isAntExpense&&!['ingreso_extra','ganancia'].includes(x.type)).filter(x=>{const d=new Date(x.date+'T12:00:00');return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth()}).reduce((s,x)=>s+Number(x.amount||0),0)}
 function showLoading(show,text='Sincronizando información...'){document.getElementById('loadingText').textContent=text;document.getElementById('loadingScreen').classList.toggle('show',show)}
 function syncStatus(type,text){const dot=document.getElementById('syncDot');dot.className='sync-dot '+(type||'');document.getElementById('syncText').textContent=text}
-function friendlyError(error){const msg=String(error?.message||'');if(msg.toLowerCase().includes('email not confirmed'))return 'Tu correo todavía no está confirmado. En Supabase puedes desactivar la confirmación obligatoria para entrar directamente con correo y clave.';if(/financial_movements|fixed_expenses|base_main_balance|due_day|planned_obligations|preferred_payment_method|installment_amount|payment_frequency|next_payment_date|is_ant_expense|payment_method/i.test(msg))return 'Falta ejecutar el nuevo archivo SQL para activar calendario, métodos de pago y gastos hormiga.';return msg||'Ocurrió un error al sincronizar.'}
+function friendlyError(error){const msg=String(error?.message||'');if(msg.toLowerCase().includes('email not confirmed'))return 'Tu correo todavía no está confirmado. En Supabase puedes desactivar la confirmación obligatoria para entrar directamente con correo y clave.';if(/financial_movements|fixed_expenses|base_main_balance|due_day|planned_obligations|preferred_payment_method|installment_amount|payment_frequency|next_payment_date|is_ant_expense|payment_method/i.test(msg))return 'Falta ejecutar el nuevo archivo SQL para activar calendario, métodos de pago y gastos hormiga.';if(/failed to fetch|networkerror|load failed|tardó demasiado/i.test(msg))return 'No fue posible contactar Supabase. Revisa tu conexión a internet y presiona “Probar conexión a Supabase”.';return msg||'Ocurrió un error al sincronizar.'}
 function showError(error,fallback='Ocurrió un error al sincronizar.'){console.error(error);syncStatus('error','Error de conexión');alert(friendlyError(error)||fallback)}
 function requireUser(){if(!currentUser){document.getElementById('authModal').classList.add('show');return false}return true}
 
 async function initApp(){
- syncStatus('','Conectando...');
- const {data:{session}}=await db.auth.getSession();
- await handleSession(session);
- db.auth.onAuthStateChange(async(_event,session)=>{await handleSession(session)});
+ document.getElementById('authModal').classList.add('show');
+ syncStatus('','Preparando acceso...');
+ try{
+  const result=await withTimeout(db.auth.getSession(),5000);
+  if(result.error)throw result.error;
+  await handleSession(result.data.session);
+  db.auth.onAuthStateChange(async(_event,session)=>{await handleSession(session)});
+ }catch(error){
+  console.error(error);
+  currentUser=null;
+  syncStatus('error','No conectado');
+  document.getElementById('authModal').classList.add('show');
+  document.getElementById('authMessage').innerHTML='<span class="danger-text">'+escapeHtml(friendlyError(error))+'</span>';
+ }
+}
+async function testSupabaseConnection(){
+ const box=document.getElementById('connectionDiagnostic');
+ box.innerHTML='Probando conexión...';
+ try{
+  const result=await withTimeout(db.health(),8000);
+  if(result.error)throw result.error;
+  box.innerHTML='<span class="good-text">✓ Supabase responde correctamente. Ya puedes iniciar sesión.</span>';
+  syncStatus('online','Supabase disponible');
+ }catch(error){
+  box.innerHTML='<span class="danger-text">No fue posible contactar Supabase. Revisa tu conexión a internet.</span>';
+  syncStatus('error','No conectado');
+ }
 }
 async function handleSession(session){
  currentUser=session?.user||null;
@@ -960,8 +1229,8 @@ document.getElementById('authForm').addEventListener('submit',async e=>{
  e.preventDefault();const email=document.getElementById('authEmail').value.trim();const password=document.getElementById('authPassword').value;
  showLoading(true,authMode==='login'?'Iniciando sesión...':'Creando cuenta...');
  try{
-  if(authMode==='login'){const {error}=await db.auth.signInWithPassword({email,password});if(error)throw error}
-  else{const {data,error}=await db.auth.signUp({email,password});if(error)throw error;if(!data.session){setAuthMode('login');document.getElementById('authMessage').innerHTML='<span class="good-text">Cuenta creada. Revisa tu correo para confirmar o desactiva la confirmación obligatoria en Supabase.</span>'}}
+  if(authMode==='login'){const {error}=await withTimeout(db.auth.signInWithPassword({email,password}),15000);if(error)throw error}
+  else{const {data,error}=await withTimeout(db.auth.signUp({email,password}),15000);if(error)throw error;if(!data.session){setAuthMode('login');document.getElementById('authMessage').innerHTML='<span class="good-text">Cuenta creada. Revisa tu correo para confirmar o desactiva la confirmación obligatoria en Supabase.</span>'}}
  }catch(error){document.getElementById('authMessage').innerHTML='<span class="danger-text">'+escapeHtml(friendlyError(error))+'</span>'}
  finally{showLoading(false)}
 });
