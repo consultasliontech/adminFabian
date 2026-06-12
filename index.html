@@ -503,6 +503,43 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 .calendar-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.calendar-toolbar h2{margin:0}.calendar-controls{display:flex;gap:8px;flex-wrap:wrap}.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}.calendar-weekday{text-align:center;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px;padding:6px 0}.calendar-day{min-height:128px;padding:8px;border:1px solid var(--line);border-radius:12px;background:#0c121d;overflow:hidden}.calendar-day.empty-day{opacity:.35;background:rgba(12,18,29,.40)}.calendar-day.today{border-color:rgba(79,140,255,.70);box-shadow:0 0 0 2px rgba(79,140,255,.11) inset}.calendar-date{font-size:12px;font-weight:850;color:#dce7f5;margin-bottom:6px}.calendar-event{display:block;margin:5px 0 0;padding:5px 6px;border-radius:8px;font-size:10px;line-height:1.35;border-left:3px solid #4f8cff;background:rgba(79,140,255,.10);color:#dce8ff}.calendar-event.debt-event{border-left-color:#ff6b7a;background:rgba(255,107,122,.10);color:#ffd1d6}.calendar-event.fixed-event{border-left-color:#ffc857;background:rgba(255,200,87,.09);color:#ffe1a0}.calendar-event.planned-event{border-left-color:#6ce5b1;background:rgba(108,229,177,.09);color:#c8f7e0}.calendar-event.target-event{border-left-color:#b78cff;background:rgba(183,140,255,.10);color:#e2d1ff}.calendar-legend{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.calendar-legend span{font-size:11px;color:var(--muted)}.legend-dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}.legend-dot.debt{background:#ff6b7a}.legend-dot.fixed{background:#ffc857}.legend-dot.planned{background:#6ce5b1}.legend-dot.target{background:#b78cff}.projection-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}.projection-box{background:#0d1420;border:1px solid var(--line);border-radius:13px;padding:13px}.projection-box span{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}.projection-box strong{font-size:16px}.paid-row{opacity:.58}.calendar-note{font-size:12px;color:var(--muted);line-height:1.55}
 @media(max-width:1050px){.calendar-day{min-height:105px;padding:6px}.calendar-event{font-size:9px}.projection-summary{grid-template-columns:1fr 1fr}}@media(max-width:720px){.calendar-grid{gap:4px}.calendar-day{min-height:83px;padding:5px;border-radius:9px}.calendar-date{font-size:10px}.calendar-event{font-size:8px;padding:4px}.calendar-toolbar{align-items:flex-start;flex-direction:column}.projection-summary{grid-template-columns:1fr}}
 
+
+/* ===== Supabase sin correo: acceso por código privado ===== */
+.cloud-modal-backdrop{
+  display:none;position:fixed;inset:0;z-index:80;place-items:center;padding:18px;
+  background:
+    radial-gradient(circle at 18% 18%,rgba(212,175,55,.18),transparent 28%),
+    radial-gradient(circle at 82% 84%,rgba(79,140,255,.16),transparent 24%),
+    rgba(4,7,13,.86);
+  backdrop-filter:blur(14px)
+}
+.cloud-modal-backdrop.show{display:grid}
+.cloud-access-card{
+  width:min(510px,100%);padding:23px;border-radius:24px;
+  border:1px solid rgba(212,175,55,.24);
+  background:linear-gradient(145deg,rgba(28,20,11,.96),rgba(10,13,20,.96));
+  box-shadow:0 28px 80px rgba(0,0,0,.48)
+}
+.cloud-access-brand{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+.cloud-access-brand .logo{width:66px;height:66px;border-radius:19px}
+.cloud-access-card h2{margin:0 0 6px;font-size:25px}
+.cloud-access-card p{margin:0;color:#cbbd9c;font-size:13px;line-height:1.65}
+.cloud-code-input{
+  width:100%;margin-top:17px;padding:14px 15px;border-radius:13px;
+  border:1px solid rgba(212,175,55,.24);background:rgba(8,10,15,.82);
+  color:#fff2c2;outline:none;font-size:17px;font-weight:800;letter-spacing:1px;text-transform:uppercase
+}
+.cloud-code-input:focus{border-color:#d4af37;box-shadow:0 0 0 3px rgba(212,175,55,.11)}
+.cloud-access-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.cloud-access-actions button{flex:1}
+.cloud-help{margin-top:13px;padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);color:#ae9f81;font-size:11px;line-height:1.6}
+.cloud-message{min-height:19px;margin-top:10px;font-size:12px;line-height:1.5}
+.cloud-controls{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
+.cloud-controls button{width:100%}
+.sync-dot.saving{background:#ffc857;box-shadow:0 0 14px rgba(255,200,87,.45)}
+.sync-dot.offline{background:#ff6b7a;box-shadow:0 0 14px rgba(255,107,122,.45)}
+@media(max-width:620px){.cloud-controls{grid-template-columns:1fr}}
+
 </style>
 
 </head>
@@ -520,11 +557,15 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
       <button data-section="settings">⚙ Configuración</button>
     </nav>
     <div class="sync-box">
-      <div class="sync-line"><span id="syncDot" class="sync-dot"></span><strong id="syncText">Conectando...</strong></div>
-      <span id="userEmail" class="user-email">Sin sesión iniciada</span>
-      <button id="logoutBtn" class="btn small" style="margin-top:10px;width:100%;display:none" onclick="logout()">Cerrar sesión</button>
+      <div class="sync-line"><span id="cloudSyncDot" class="sync-dot saving"></span><strong id="cloudSyncText">Preparando Supabase...</strong></div>
+      <span id="cloudSyncDetail" class="user-email">Sin correo ni contraseña</span>
+      <div class="cloud-controls">
+        <button class="btn small" type="button" onclick="manualRefreshCloud()">Actualizar nube</button>
+        <button class="btn small" type="button" onclick="openCloudAccessModal()">Código privado</button>
+      </div>
+      <a class="btn small" style="display:block;margin-top:8px;width:100%;text-align:center;text-decoration:none" href="https://wa.me/50683843992?text=Hola%20Fabian,%20quiero%20ayuda%20con%20mi%20panel%20financiero" target="_blank" rel="noopener noreferrer">WhatsApp directo</a>
     </div>
-    <div class="side-note">Tus datos se sincronizan en Supabase y permanecen separados por usuario.</div>
+    <div class="side-note">Supabase mantiene el mismo panel en tu teléfono y computadora. El acceso se protege con un código privado compartido.</div>
   </aside>
 
   <main class="main">
@@ -742,7 +783,7 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
         </article>
         <article class="card">
           <h2>Respaldo de información</h2>
-          <p class="muted" style="font-size:13px;line-height:1.6">Puedes descargar un respaldo y recuperarlo después en este mismo navegador o en otra computadora.</p>
+          <p class="muted" style="font-size:13px;line-height:1.6">Puedes descargar un respaldo y recuperarlo después en este navegador, teléfono u otra computadora.</p>
           <div class="utility">
             <button class="btn" onclick="exportData()">Descargar respaldo</button>
             <label class="btn">Importar respaldo<input id="importFile" type="file" accept=".json" style="display:none"></label>
@@ -752,7 +793,7 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
       </div>
     </section>
 
-    <footer>Control personal de deudas · FCTechSystems</footer>
+    <footer>Control financiero sincronizado · FCTechSystems</footer>
   </main>
 </div>
 
@@ -780,602 +821,229 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 </div>
 
 
-<div class="modal-backdrop show" id="authModal">
-  <div class="modal">
-    <div class="auth-shell">
-      <div class="auth-visual">
-        <div>
-          <div class="auth-topline">● Bienvenido a tu panel financiero privado</div>
-          <h1 class="auth-heading">Ordena tus deudas<span>y toma control de tu dinero</span></h1>
-          <p class="auth-lead">Con <strong>FCTechSystems</strong> puedes visualizar tus deudas, planificar pagos semanales, llevar control de tus avances y mantener toda tu información sincronizada en la nube de forma segura.</p>
 
-          <div class="auth-feature-grid">
-            <div class="auth-feature">
-              <strong>Planeación inteligente</strong>
-              <p>Recibe una guía clara para distribuir tus pagos semanales según prioridad, metas y saldo pendiente.</p>
-            </div>
-            <div class="auth-feature">
-              <strong>Seguridad por usuario</strong>
-              <p>Cada cuenta accede únicamente a su propia información gracias a reglas privadas configuradas en Supabase.</p>
-            </div>
-            <div class="auth-feature">
-              <strong>Visión financiera</strong>
-              <p>Observa tu progreso general, cuánto debes y cuánto has pagado en un solo lugar.</p>
-            </div>
-            <div class="auth-feature">
-              <strong>Respaldo en línea</strong>
-              <p>Tus datos no quedan solo en el navegador: se conservan en la nube para seguir desde cualquier equipo.</p>
-            </div>
-          </div>
-
-          <div class="auth-chip-row">
-            <span class="auth-chip">Control de deudas</span>
-            <span class="auth-chip">Pagos semanales</span>
-            <span class="auth-chip">Metas financieras</span>
-            <span class="auth-chip">Sincronización segura</span>
-          </div>
-        </div>
-
-        <div>
-          <div class="auth-kpis">
-            <div class="auth-kpi"><strong>100%</strong><span>Tu información financiera en un entorno privado y profesional.</span></div>
-            <div class="auth-kpi"><strong>24/7</strong><span>Acceso a tu panel desde donde lo necesites.</span></div>
-            <div class="auth-kpi"><strong>₡</strong><span>Organización clara para pagos, saldos y proyección semanal.</span></div>
-          </div>
-        </div>
-        <div class="auth-watermark">FCTechSystems</div>
-        <div class="auth-water-logo"></div>
-      </div>
-
-      <div class="auth-panel">
-        <div class="auth-card">
-          <div class="auth-mark">
-            <div class="logo"><img src="https://dlnwibdjdpppsookllkx.supabase.co/storage/v1/object/public/CONTROL%20DE%20DEUDASS/LOGO%20PLAY%20STORE.png" alt="Logo FCTechSystems"></div>
-            <div class="brand-text">
-              <h2>Bienvenido</h2>
-              <p>Ingresa a tu centro de administración financiera y continúa construyendo un mejor control de tus deudas.</p>
-            </div>
-          </div>
-
-          <div class="auth-card-title">Acceso seguro</div>
-          <h3>Inicia sesión en tu cuenta premium</h3>
-          <p>Accede con tu correo y contraseña para gestionar tus deudas con una experiencia ejecutiva color oro, elegante, clara y enfocada en finanzas.</p>
-
-          <div class="auth-tabs">
-            <button id="loginTab" type="button" class="btn selected" onclick="setAuthMode('login')">Iniciar sesión</button>
-            <button id="registerTab" type="button" class="btn" onclick="setAuthMode('register')">Crear cuenta</button>
-          </div>
-
-          <form id="authForm">
-            <div class="field"><label>Correo electrónico</label><input id="authEmail" type="email" required placeholder="correo@ejemplo.com"></div>
-            <div class="field" style="margin-top:12px"><label>Contraseña</label><input id="authPassword" type="password" minlength="6" required placeholder="Mínimo 6 caracteres"></div>
-            <div class="actions end"><button id="authSubmit" class="btn primary full" type="submit">Iniciar sesión</button></div>
-          </form>
-
-          <div id="authMessage" class="auth-help">Bienvenido de nuevo. Inicia sesión para acceder a tu panel financiero privado y continuar con el control de tus pagos.</div>
-
-          <a class="whatsapp-direct" href="https://wa.me/50683843992?text=Hola%20Fabian,%20quiero%20ayuda%20con%20mi%20panel%20financiero" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp directo al 83843992">
-            <span class="whatsapp-icon">✆</span>
-            <span>
-              WhatsApp directo
-              <small>Tocar para escribir al 83843992</small>
-            </span>
-          </a>
-
-          <div class="support-note">Atención directa y rápida desde tu panel.</div>
-          <div class="auth-mini-note">Tu marca, tu panel y tu información en un entorno profesional respaldado en la nube.</div>
-          <div class="actions end" style="justify-content:center;margin-top:12px">
-            <button class="btn small" type="button" onclick="testSupabaseConnection()">Probar conexión a Supabase</button>
-          </div>
-          <div id="connectionDiagnostic" class="auth-help" style="text-align:center"></div>
-        </div>
+<div class="cloud-modal-backdrop" id="cloudAccessModal">
+  <div class="cloud-access-card">
+    <div class="cloud-access-brand">
+      <div class="logo"><img src="https://dlnwibdjdpppsookllkx.supabase.co/storage/v1/object/public/CONTROL%20DE%20DEUDASS/LOGO%20PLAY%20STORE.png" alt="Logo FCTechSystems"></div>
+      <div>
+        <h2>Conectar con Supabase</h2>
+        <p>Sin correo y sin contraseña. Escribe tu código privado de 8 dígitos para abrir el mismo panel desde cualquier dispositivo.</p>
       </div>
     </div>
+    <form id="cloudAccessForm">
+      <input id="cloudAccessCode" class="cloud-code-input" autocomplete="off" inputmode="numeric" pattern="[0-9]{8}" maxlength="8" spellcheck="false" required placeholder="Código privado de 8 dígitos">
+      <div class="cloud-access-actions">
+        <button class="btn primary" type="submit">Conectar y sincronizar</button>
+        <button class="btn" type="button" onclick="continueLocalOnly()">Usar solo este dispositivo</button>
+      </div>
+    </form>
+    <div id="cloudAccessMessage" class="cloud-message"></div>
+    <div class="cloud-help">El código no está escrito dentro de esta página. Se guarda únicamente en tu navegador después de conectarte. En el teléfono y en la computadora usa exactamente los mismos 8 dígitos.</div>
   </div>
 </div>
 
 <div class="loading-screen" id="loadingScreen"><div><div class="spinner"></div><strong id="loadingText">Sincronizando información...</strong></div></div>
 
 
-<script>
-/* ================================================================
-   Supabase Lite Client · integrado en el archivo
-   Evita depender de una librería JavaScript externa para iniciar.
-   ================================================================ */
-function createSupabaseLite(baseUrl, publishableKey){
-  const sessionKey = 'fc_supabase_session_' + baseUrl.replace(/[^a-z0-9]/gi,'_');
-  const legacySessionKey = 'sb-dlnwibdjdpppsookllkx-auth-token';
-  const authListeners = new Set();
-
-  function makeError(payload, status){
-    const message =
-      payload?.msg ||
-      payload?.message ||
-      payload?.error_description ||
-      payload?.error ||
-      ('Error HTTP ' + status);
-    const error = new Error(String(message));
-    error.status = status;
-    error.code = payload?.code || payload?.error_code || '';
-    error.details = payload?.details || '';
-    return error;
-  }
-
-  async function parseResponse(response){
-    const text = await response.text();
-    let payload = null;
-    if(text){
-      try{ payload = JSON.parse(text); }
-      catch(_e){ payload = text; }
-    }
-    if(!response.ok) throw makeError(typeof payload === 'object' ? payload : {message:payload}, response.status);
-    return payload;
-  }
-
-  function getStoredSession(){
-    try{
-      const current = JSON.parse(localStorage.getItem(sessionKey) || 'null');
-      if(current?.access_token) return current;
-      const legacy = JSON.parse(localStorage.getItem(legacySessionKey) || 'null');
-      if(legacy?.access_token) return legacy;
-      if(Array.isArray(legacy) && legacy[0]?.access_token) return legacy[0];
-    }catch(_e){}
-    return null;
-  }
-
-  function storeSession(session){
-    if(session?.access_token) localStorage.setItem(sessionKey, JSON.stringify(session));
-    else localStorage.removeItem(sessionKey);
-  }
-
-  function clearSession(){
-    localStorage.removeItem(sessionKey);
-    localStorage.removeItem(legacySessionKey);
-  }
-
-  function notify(event, session){
-    authListeners.forEach(cb=>{
-      try{ cb(event, session); }catch(e){ console.error(e); }
-    });
-  }
-
-  function sessionExpired(session){
-    if(!session?.access_token) return true;
-    if(session.expires_at) return Number(session.expires_at) * 1000 < Date.now() + 15000;
-    try{
-      const payload = JSON.parse(atob(session.access_token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
-      return Number(payload.exp || 0) * 1000 < Date.now() + 15000;
-    }catch(_e){ return false; }
-  }
-
-  async function authRequest(path, body, token){
-    const headers = {'apikey':publishableKey, 'Content-Type':'application/json'};
-    if(token) headers.Authorization = 'Bearer ' + token;
-    const response = await fetch(baseUrl + '/auth/v1/' + path, {
-      method:'POST', headers, body: body ? JSON.stringify(body) : undefined
-    });
-    return await parseResponse(response);
-  }
-
-  function normalizeSession(payload){
-    if(!payload?.access_token) return null;
-    const session = {...payload};
-    if(!session.expires_at && session.expires_in){
-      session.expires_at = Math.floor(Date.now()/1000) + Number(session.expires_in);
-    }
-    return session;
-  }
-
-  async function refreshSession(){
-    const current = getStoredSession();
-    if(!current?.refresh_token) return null;
-    try{
-      const payload = await authRequest('token?grant_type=refresh_token', {refresh_token:current.refresh_token});
-      const session = normalizeSession(payload);
-      storeSession(session);
-      notify('TOKEN_REFRESHED', session);
-      return session;
-    }catch(error){
-      clearSession();
-      return null;
-    }
-  }
-
-  async function validSession(){
-    let session = getStoredSession();
-    if(session && sessionExpired(session)) session = await refreshSession();
-    return session;
-  }
-
-  function restHeaders(token, extra={}){
-    return {
-      'apikey':publishableKey,
-      'Authorization':'Bearer ' + (token || publishableKey),
-      'Content-Type':'application/json',
-      ...extra
-    };
-  }
-
-  class QueryBuilder{
-    constructor(table){
-      this.table = table;
-      this.method = 'GET';
-      this.params = new URLSearchParams();
-      this.filters = [];
-      this.orders = [];
-      this.payload = undefined;
-      this.prefer = [];
-      this.singleMode = false;
-    }
-    select(columns='*'){ this.params.set('select', columns); return this; }
-    order(column, options={}){ this.orders.push(column + '.' + (options.ascending===false?'desc':'asc')); return this; }
-    eq(column, value){ this.filters.push([column, 'eq.' + value]); return this; }
-    insert(payload){ this.method='POST'; this.payload=payload; this.prefer.push('return=minimal'); return this; }
-    update(payload){ this.method='PATCH'; this.payload=payload; this.prefer.push('return=minimal'); return this; }
-    delete(){ this.method='DELETE'; this.prefer.push('return=minimal'); return this; }
-    upsert(payload, options={}){
-      this.method='POST'; this.payload=payload;
-      this.prefer.push('resolution=merge-duplicates','return=minimal');
-      if(options.onConflict) this.params.set('on_conflict', options.onConflict);
-      return this;
-    }
-    maybeSingle(){ this.singleMode=true; return this.execute(); }
-    then(resolve, reject){ return this.execute().then(resolve, reject); }
-    async execute(){
-      try{
-        const session = await validSession();
-        if(this.method==='GET' && !this.params.has('select')) this.params.set('select','*');
-        this.filters.forEach(([key,value])=>this.params.append(key,value));
-        if(this.orders.length) this.params.set('order',this.orders.join(','));
-        const query = this.params.toString();
-        const url = baseUrl + '/rest/v1/' + encodeURIComponent(this.table) + (query?'?'+query:'');
-        const headers = restHeaders(session?.access_token);
-        if(this.prefer.length) headers.Prefer = this.prefer.join(',');
-        const response = await fetch(url,{
-          method:this.method,
-          headers,
-          body:this.payload===undefined ? undefined : JSON.stringify(this.payload)
-        });
-        const data = await parseResponse(response);
-        if(this.singleMode) return {data:Array.isArray(data)?(data[0]||null):data,error:null};
-        return {data,error:null};
-      }catch(error){
-        return {data:null,error};
-      }
-    }
-  }
-
-  const auth = {
-    async getSession(){
-      try{
-        const session = await validSession();
-        return {data:{session},error:null};
-      }catch(error){ return {data:{session:null},error}; }
-    },
-    async signInWithPassword({email,password}){
-      try{
-        const payload = await authRequest('token?grant_type=password',{email,password});
-        const session = normalizeSession(payload);
-        storeSession(session);
-        notify('SIGNED_IN', session);
-        return {data:{user:session?.user||null,session},error:null};
-      }catch(error){ return {data:{user:null,session:null},error}; }
-    },
-    async signUp({email,password}){
-      try{
-        const payload = await authRequest('signup',{email,password});
-        const session = normalizeSession(payload);
-        if(session) storeSession(session);
-        notify('SIGNED_UP', session);
-        return {data:{user:payload?.user||session?.user||null,session},error:null};
-      }catch(error){ return {data:{user:null,session:null},error}; }
-    },
-    async signOut(){
-      const session = getStoredSession();
-      try{
-        if(session?.access_token) await authRequest('logout',null,session.access_token);
-      }catch(_e){}
-      clearSession();
-      notify('SIGNED_OUT', null);
-      return {error:null};
-    },
-    onAuthStateChange(callback){
-      authListeners.add(callback);
-      return {data:{subscription:{unsubscribe:()=>authListeners.delete(callback)}}};
-    }
-  };
-
-  return {
-    auth,
-    from(table){ return new QueryBuilder(table); },
-    async rpc(functionName, payload={}){
-      try{
-        const session = await validSession();
-        const response = await fetch(baseUrl + '/rest/v1/rpc/' + encodeURIComponent(functionName),{
-          method:'POST',
-          headers:restHeaders(session?.access_token),
-          body:JSON.stringify(payload)
-        });
-        const data = await parseResponse(response);
-        return {data,error:null};
-      }catch(error){ return {data:null,error}; }
-    },
-    async health(){
-      try{
-        const response = await fetch(baseUrl + '/auth/v1/health',{headers:{apikey:publishableKey}});
-        const data = await parseResponse(response);
-        return {data,error:null};
-      }catch(error){ return {data:null,error}; }
-    }
-  };
-}
-
-function withTimeout(promise, ms=15000){
-  return Promise.race([
-    promise,
-    new Promise((_,reject)=>setTimeout(()=>reject(new Error('La conexión tardó demasiado. Revisa tu internet e inténtalo nuevamente.')),ms))
-  ]);
-}
-</script>
 
 <script>
-const SUPABASE_URL = 'https://dlnwibdjdpppsookllkx.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_pcnOhCB1_C7hrDTmWUsCgg_svJ12C-M';
-const db = createSupabaseLite(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-const LEGACY_STORAGE_KEY = 'fc_debt_manager_v1';
-const CACHE_PREFIX = 'fc_finance_complete_supabase_';
+const STORAGE_KEY='fctech_control_financiero_local_v1';
+const CLOUD_CODE_KEY='fctech_supabase_private_code_v1';
+const SUPABASE_URL='https://dlnwibdjdpppsookllkx.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_pcnOhCB1_C7hrDTmWUsCgg_svJ12C-M';
+let state=loadState();
+let calendarCursor=new Date();
+let cloudConnected=false,cloudLocalOnly=false,cloudSyncTimer=null,cloudSaving=false,cloudPending=false;
 
-let currentUser = null;
-let authMode = 'login';
-let state = defaultState();
-let calendarCursor = new Date();
-
-function defaultState(){
- return {
-  settings:{weeklyIncome:0,weeklyExpenses:0,baseMainBalance:0,baseCurrentBalance:0},
-  debts:[], payments:[], movements:[], fixedExpenses:[], obligations:[]
- };
+function defaultState(){return{settings:{weeklyIncome:0,weeklyExpenses:0,baseMainBalance:0,baseCurrentBalance:0},debts:[],payments:[],movements:[],fixedExpenses:[],obligations:[]}}
+function normalizeState(data){const base=defaultState();return{settings:{...base.settings,...(data?.settings||{})},debts:Array.isArray(data?.debts)?data.debts:[],payments:Array.isArray(data?.payments)?data.payments:[],movements:Array.isArray(data?.movements)?data.movements:[],fixedExpenses:Array.isArray(data?.fixedExpenses)?data.fixedExpenses:[],obligations:Array.isArray(data?.obligations)?data.obligations:[]}}
+function loadState(){try{return normalizeState(JSON.parse(localStorage.getItem(STORAGE_KEY)||'null'))}catch(e){return defaultState()}}
+function saveLocalState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function saveState(){saveLocalState();render();scheduleCloudSave()}
+function cloudCode(){return(localStorage.getItem(CLOUD_CODE_KEY)||'').trim()}
+function setCloudStatus(kind,text,detail=''){
+ const dot=document.getElementById('cloudSyncDot'),label=document.getElementById('cloudSyncText'),small=document.getElementById('cloudSyncDetail');
+ if(!dot||!label||!small)return;
+ dot.className='sync-dot '+(kind||'saving');label.textContent=text;small.textContent=detail||'Sin correo ni contraseña';
 }
-function cacheKey(){return currentUser?CACHE_PREFIX+currentUser.id:LEGACY_STORAGE_KEY}
-function loadCache(){try{return {...defaultState(),...(JSON.parse(localStorage.getItem(cacheKey()))||{})}}catch(e){return defaultState()}}
-function saveCache(){if(currentUser)localStorage.setItem(cacheKey(),JSON.stringify(state))}
+function openCloudAccessModal(message=''){
+ const modal=document.getElementById('cloudAccessModal');if(!modal)return;
+ document.getElementById('cloudAccessMessage').innerHTML=message;
+ document.getElementById('cloudAccessCode').value=cloudCode();
+ modal.classList.add('show');
+ setTimeout(()=>document.getElementById('cloudAccessCode').focus(),80);
+}
+function closeCloudAccessModal(){document.getElementById('cloudAccessModal')?.classList.remove('show')}
+function continueLocalOnly(){cloudLocalOnly=true;cloudConnected=false;closeCloudAccessModal();setCloudStatus('saving','Modo local activo','No se sincroniza entre dispositivos')}
+async function rpc(name,payload={}){
+ const response=await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`,{
+  method:'POST',
+  headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json'},
+  body:JSON.stringify(payload)
+ });
+ const text=await response.text();let data=null;
+ if(text){try{data=JSON.parse(text)}catch(_e){data=text}}
+ if(!response.ok){const msg=(data&&typeof data==='object'&&(data.message||data.hint||data.details))||data||`Error HTTP ${response.status}`;throw new Error(String(msg))}
+ return data;
+}
+function isFinanceStateEmpty(data){
+ const s=normalizeState(data);return !s.debts.length&&!s.payments.length&&!s.movements.length&&!s.fixedExpenses.length&&!s.obligations.length&&Object.values(s.settings).every(v=>!Number(v||0))
+}
+async function connectCloud({showModalOnError=true,forcePull=false}={}){
+ const code=cloudCode();
+ if(!code){openCloudAccessModal();setCloudStatus('saving','Código requerido','Escríbelo una vez para sincronizar');return false}
+ setCloudStatus('saving','Conectando con Supabase...','Verificando código privado');
+ try{
+  const remoteRaw=await rpc('fc_load_finance',{p_pin:code});
+  const remote=normalizeState(remoteRaw);
+  const local=normalizeState(state);
+  if(isFinanceStateEmpty(remote)&&!isFinanceStateEmpty(local)){
+   await rpc('fc_save_finance',{p_pin:code,p_data:local});state=local;saveLocalState();
+  }else if(forcePull||!isFinanceStateEmpty(remote)){
+   state=remote;saveLocalState();render();
+  }
+  cloudConnected=true;cloudLocalOnly=false;closeCloudAccessModal();
+  setCloudStatus('online','Supabase sincronizado','Mismo panel en teléfono y computadora');
+  return true;
+ }catch(error){
+  console.error(error);cloudConnected=false;
+  setCloudStatus('offline','No conectado','Revisa el código privado o ejecuta el SQL');
+  if(showModalOnError)openCloudAccessModal(`<span class="danger-text">${escapeHtml(error.message||'No fue posible conectar.')}</span>`);
+  return false;
+ }
+}
+function scheduleCloudSave(){
+ if(!cloudConnected||cloudLocalOnly)return;
+ clearTimeout(cloudSyncTimer);cloudSyncTimer=setTimeout(()=>syncToCloud(),420);
+}
+async function syncToCloud(){
+ if(!cloudConnected||cloudLocalOnly)return;
+ if(cloudSaving){cloudPending=true;return}
+ cloudSaving=true;cloudPending=false;setCloudStatus('saving','Guardando en Supabase...','Sincronización automática');
+ try{
+  await rpc('fc_save_finance',{p_pin:cloudCode(),p_data:state});
+  setCloudStatus('online','Supabase sincronizado','Cambios guardados en línea');
+ }catch(error){
+  console.error(error);cloudConnected=false;
+  setCloudStatus('offline','No conectado','Tus cambios siguen guardados localmente');
+ }finally{
+  cloudSaving=false;if(cloudPending){cloudPending=false;syncToCloud()}
+ }
+}
+async function manualRefreshCloud(){
+ if(!cloudCode()){openCloudAccessModal();return}
+ showLoading(true,'Actualizando desde Supabase...');
+ try{await connectCloud({forcePull:true})}finally{showLoading(false)}
+}
+document.getElementById('cloudAccessForm').addEventListener('submit',async e=>{
+ e.preventDefault();const code=document.getElementById('cloudAccessCode').value.trim();
+ localStorage.setItem(CLOUD_CODE_KEY,code);document.getElementById('cloudAccessMessage').textContent='Conectando...';
+ await connectCloud({showModalOnError:true,forcePull:true});
+});
+async function initCloud(){
+ if(cloudCode())await connectCloud({showModalOnError:false});
+ else openCloudAccessModal();
+}
+function uid(){return crypto?.randomUUID?.()||('id-'+Date.now()+'-'+Math.random().toString(16).slice(2))}
 function currency(n){return new Intl.NumberFormat('es-CR',{style:'currency',currency:'CRC',maximumFractionDigits:0}).format(Number(n)||0)}
 function todayISO(){return new Date().toISOString().slice(0,10)}
-function dateCR(value){return value?new Date(value+'T00:00:00').toLocaleDateString('es-CR'):'Sin fecha'}
-function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function dateCR(v){return v?new Date(v+'T00:00:00').toLocaleDateString('es-CR'):'Sin fecha'}
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 function debtById(id){return state.debts.find(d=>d.id===id)}
-function priorityScore(p){return ({alta:3,media:2,baja:1})[p]||0}
-function weeksUntil(date){if(!date)return 0;const ms=new Date(date+'T23:59:59')-new Date();return Math.max(1,Math.ceil(ms/(1000*60*60*24*7)))}
-function suggestedWeekly(d){const minimum=(Number(d.minimum)||0)/4.33;const target=d.target?Number(d.balance)/weeksUntil(d.target):0;return Math.ceil(Math.max(minimum,target))}
-function estimatedPayoff(d){const s=buildInstallmentSchedule(d);return Number(d.balance||0)<=0?'Pagada':(s.at(-1)?.date?dateCR(s.at(-1).date):'Sin cálculo')}
+function priorityScore(p){return({alta:3,media:2,baja:1})[p]||0}
+function methodLabel(m){return m==='efectivo'?'Efectivo':'SINPE Móvil'}
+function frequencyLabel(f){return({semanal:'Semanal',quincenal:'Quincenal',mensual:'Mensual'})[f]||'Mensual'}
+function weeksUntil(date){if(!date)return 0;return Math.max(1,Math.ceil((new Date(date+'T23:59:59')-new Date())/604800000))}
+function suggestedWeekly(d){const minimum=(Number(d.minimum)||0)/4.33,target=d.target?Number(d.balance)/weeksUntil(d.target):0;return Math.ceil(Math.max(minimum,target))}
+function debtInstallment(d){return Math.max(1,Number(d.installmentAmount||0)||suggestedWeekly(d)||Number(d.balance||0))}
+function dateToISO(date){const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,'0'),day=String(date.getDate()).padStart(2,'0');return`${y}-${m}-${day}`}
+function addFrequency(dateStr,frequency){const d=new Date((dateStr||todayISO())+'T12:00:00');if(frequency==='semanal')d.setDate(d.getDate()+7);else if(frequency==='quincenal')d.setDate(d.getDate()+15);else d.setMonth(d.getMonth()+1);return dateToISO(d)}
+function nextDueFromDay(day){if(!day)return todayISO();const now=new Date(),max=new Date(now.getFullYear(),now.getMonth()+1,0).getDate(),d=new Date(now.getFullYear(),now.getMonth(),Math.min(day,max),12);if(d<new Date(now.getFullYear(),now.getMonth(),now.getDate(),0)){d.setMonth(d.getMonth()+1);d.setDate(Math.min(day,new Date(d.getFullYear(),d.getMonth()+1,0).getDate()))}return dateToISO(d)}
+function firstDebtPaymentDate(d){return d.nextPaymentDate||nextDueFromDay(Number(d.dueDay||0))}
+function buildInstallmentSchedule(d,limit=240){const rows=[];let remain=Number(d.balance||0),date=firstDebtPaymentDate(d),amount=debtInstallment(d),i=1;while(remain>0&&i<=limit){const paid=Math.min(amount,remain);remain=Math.max(0,remain-paid);rows.push({number:i,date,amount:paid,remaining:remain,method:d.paymentMethod||'sinpe_movil'});date=addFrequency(date,d.paymentFrequency||'mensual');i++}return rows}
+function estimatedPayoff(d){const rows=buildInstallmentSchedule(d);return Number(d.balance||0)<=0?'Pagada':(rows.at(-1)?.date?dateCR(rows.at(-1).date):'Sin cálculo')}
 function initialDebtTotal(){return state.debts.reduce((s,d)=>s+Number(d.balance||0)+state.payments.filter(p=>p.debtId===d.id).reduce((a,p)=>a+Number(p.amount||0),0),0)}
 function totalPaid(){return state.payments.reduce((s,p)=>s+Number(p.amount||0),0)}
 function remainingTotal(){return state.debts.reduce((s,d)=>s+Number(d.balance||0),0)}
-function movementSign(m){return ['ingreso_extra','ganancia'].includes(m.type)?1:-1}
+function movementSign(m){return['ingreso_extra','ganancia'].includes(m.type)?1:-1}
 function movementSignedAmount(m){return movementSign(m)*Number(m.amount||0)}
-function movementsForAccount(account){return state.movements.filter(m=>m.account===account).reduce((s,m)=>s+movementSignedAmount(m),0)}
-function accountBalance(account){const base=account==='principal'?Number(state.settings.baseMainBalance||0):Number(state.settings.baseCurrentBalance||0);return base+movementsForAccount(account)}
+function movementsForAccount(a){return state.movements.filter(m=>m.account===a).reduce((s,m)=>s+movementSignedAmount(m),0)}
+function accountBalance(a){const base=a==='principal'?Number(state.settings.baseMainBalance||0):Number(state.settings.baseCurrentBalance||0);return base+movementsForAccount(a)}
 function totalAccounts(){return accountBalance('principal')+accountBalance('cuenta_corriente')}
 function extrasTotal(){return state.movements.filter(m=>['ingreso_extra','ganancia'].includes(m.type)).reduce((s,m)=>s+Number(m.amount||0),0)}
 function outputsTotal(){return state.movements.filter(m=>!['ingreso_extra','ganancia'].includes(m.type)).reduce((s,m)=>s+Number(m.amount||0),0)}
-function recentExtrasWeekly(){const cutoff=new Date();cutoff.setDate(cutoff.getDate()-28);return state.movements.filter(m=>['ingreso_extra','ganancia'].includes(m.type)&&new Date(m.date+'T00:00:00')>=cutoff).reduce((s,m)=>s+Number(m.amount||0),0)/4}
+function antExpenseTotalCurrentMonth(){const n=new Date();return state.movements.filter(x=>x.isAntExpense&&!['ingreso_extra','ganancia'].includes(x.type)).filter(x=>{const d=new Date(x.date+'T12:00:00');return d.getFullYear()===n.getFullYear()&&d.getMonth()===n.getMonth()}).reduce((s,x)=>s+Number(x.amount||0),0)}
+function recentExtrasWeekly(){const c=new Date();c.setDate(c.getDate()-28);return state.movements.filter(m=>['ingreso_extra','ganancia'].includes(m.type)&&new Date(m.date+'T00:00:00')>=c).reduce((s,m)=>s+Number(m.amount||0),0)/4}
 function fixedExpenseWeekly(e){return Number(e.amount||0)/(e.frequency==='mensual'?4.33:1)}
 function detailedFixedWeekly(){return state.fixedExpenses.reduce((s,e)=>s+fixedExpenseWeekly(e),0)}
 function totalFixedWeekly(){return Number(state.settings.weeklyExpenses||0)+detailedFixedWeekly()}
 function totalFixedMonthly(){return totalFixedWeekly()*4.33}
 function availableWeekly(){return Math.max(0,Number(state.settings.weeklyIncome||0)+recentExtrasWeekly()-totalFixedWeekly())}
-function movementLabel(type){return ({ingreso_extra:'Ingreso extra',ganancia:'Ganancia',gasto:'Gasto',inversion:'Inversión',deuda:'Deuda / financiado'})[type]||type}
-function accountLabel(account){return account==='cuenta_corriente'?'Cuenta corriente':'Cuenta principal'}
-function methodLabel(m){return m==='efectivo'?'Efectivo':'SINPE Móvil'}
-function frequencyLabel(f){return ({semanal:'Semanal',quincenal:'Quincenal',mensual:'Mensual'})[f]||'Mensual'}
-function dateToISO(date){const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,'0'),d=String(date.getDate()).padStart(2,'0');return `${y}-${m}-${d}`}
-function addFrequency(dateStr,f){const d=new Date((dateStr||todayISO())+'T12:00:00');if(f==='semanal')d.setDate(d.getDate()+7);else if(f==='quincenal')d.setDate(d.getDate()+15);else d.setMonth(d.getMonth()+1);return dateToISO(d)}
-function nextDueFromDay(day){if(!day)return todayISO();const now=new Date(),d=new Date(now.getFullYear(),now.getMonth(),Math.min(day,new Date(now.getFullYear(),now.getMonth()+1,0).getDate()),12);if(d<new Date(now.getFullYear(),now.getMonth(),now.getDate())){d.setMonth(d.getMonth()+1);d.setDate(Math.min(day,new Date(d.getFullYear(),d.getMonth()+1,0).getDate()))}return dateToISO(d)}
-function firstDebtPaymentDate(d){return d.nextPaymentDate||nextDueFromDay(Number(d.dueDay||0))}
-function debtInstallment(d){return Math.max(1,Number(d.installmentAmount||0)||suggestedWeekly(d)||Number(d.balance||0))}
-function buildInstallmentSchedule(d,limit=240){const rows=[];let remain=Number(d.balance||0),date=firstDebtPaymentDate(d),amount=debtInstallment(d),i=1;while(remain>0&&i<=limit){const paid=Math.min(amount,remain);remain=Math.max(0,remain-paid);rows.push({number:i,date,amount:paid,remaining:remain,method:d.paymentMethod||'sinpe_movil'});date=addFrequency(date,d.paymentFrequency||'mensual');i++}return rows}
-function antExpenseTotalCurrentMonth(){const now=new Date();return state.movements.filter(x=>x.isAntExpense&&!['ingreso_extra','ganancia'].includes(x.type)).filter(x=>{const d=new Date(x.date+'T12:00:00');return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth()}).reduce((s,x)=>s+Number(x.amount||0),0)}
-function showLoading(show,text='Sincronizando información...'){document.getElementById('loadingText').textContent=text;document.getElementById('loadingScreen').classList.toggle('show',show)}
-function syncStatus(type,text){const dot=document.getElementById('syncDot');dot.className='sync-dot '+(type||'');document.getElementById('syncText').textContent=text}
-function friendlyError(error){const msg=String(error?.message||'');if(msg.toLowerCase().includes('email not confirmed'))return 'Tu correo todavía no está confirmado. En Supabase puedes desactivar la confirmación obligatoria para entrar directamente con correo y clave.';if(/financial_movements|fixed_expenses|base_main_balance|due_day|planned_obligations|preferred_payment_method|installment_amount|payment_frequency|next_payment_date|is_ant_expense|payment_method/i.test(msg))return 'Falta ejecutar el nuevo archivo SQL para activar calendario, métodos de pago y gastos hormiga.';if(/failed to fetch|networkerror|load failed|tardó demasiado/i.test(msg))return 'No fue posible contactar Supabase. Revisa tu conexión a internet y presiona “Probar conexión a Supabase”.';return msg||'Ocurrió un error al sincronizar.'}
-function showError(error,fallback='Ocurrió un error al sincronizar.'){console.error(error);syncStatus('error','Error de conexión');alert(friendlyError(error)||fallback)}
-function requireUser(){if(!currentUser){document.getElementById('authModal').classList.add('show');return false}return true}
-
-async function initApp(){
- document.getElementById('authModal').classList.add('show');
- syncStatus('','Preparando acceso...');
- try{
-  const result=await withTimeout(db.auth.getSession(),5000);
-  if(result.error)throw result.error;
-  await handleSession(result.data.session);
-  db.auth.onAuthStateChange(async(_event,session)=>{await handleSession(session)});
- }catch(error){
-  console.error(error);
-  currentUser=null;
-  syncStatus('error','No conectado');
-  document.getElementById('authModal').classList.add('show');
-  document.getElementById('authMessage').innerHTML='<span class="danger-text">'+escapeHtml(friendlyError(error))+'</span>';
- }
-}
-async function testSupabaseConnection(){
- const box=document.getElementById('connectionDiagnostic');
- box.innerHTML='Probando conexión...';
- try{
-  const result=await withTimeout(db.health(),8000);
-  if(result.error)throw result.error;
-  box.innerHTML='<span class="good-text">✓ Supabase responde correctamente. Ya puedes iniciar sesión.</span>';
-  syncStatus('online','Supabase disponible');
- }catch(error){
-  box.innerHTML='<span class="danger-text">No fue posible contactar Supabase. Revisa tu conexión a internet.</span>';
-  syncStatus('error','No conectado');
- }
-}
-async function handleSession(session){
- currentUser=session?.user||null;
- document.getElementById('logoutBtn').style.display=currentUser?'block':'none';
- document.getElementById('userEmail').textContent=currentUser?.email||'Sin sesión iniciada';
- if(!currentUser){state=defaultState();render();syncStatus('','Inicia sesión');document.getElementById('authModal').classList.add('show');return}
- document.getElementById('authModal').classList.remove('show');
- state=loadCache();render();await loadRemoteState();
-}
-function setAuthMode(mode){
- authMode=mode;
- document.getElementById('loginTab').classList.toggle('selected',mode==='login');
- document.getElementById('registerTab').classList.toggle('selected',mode==='register');
- document.getElementById('authSubmit').textContent=mode==='login'?'Iniciar sesión':'Crear cuenta';
- document.getElementById('authMessage').textContent=mode==='login'?'Escribe tu correo y contraseña para entrar al mismo panel desde el teléfono o la computadora.':'Crea tu cuenta una sola vez. Si Supabase tiene verificación de correo activa, tendrás que confirmar el registro antes de ingresar.';
-}
-document.getElementById('authForm').addEventListener('submit',async e=>{
- e.preventDefault();const email=document.getElementById('authEmail').value.trim();const password=document.getElementById('authPassword').value;
- showLoading(true,authMode==='login'?'Iniciando sesión...':'Creando cuenta...');
- try{
-  if(authMode==='login'){const {error}=await withTimeout(db.auth.signInWithPassword({email,password}),15000);if(error)throw error}
-  else{const {data,error}=await withTimeout(db.auth.signUp({email,password}),15000);if(error)throw error;if(!data.session){setAuthMode('login');document.getElementById('authMessage').innerHTML='<span class="good-text">Cuenta creada. Revisa tu correo para confirmar o desactiva la confirmación obligatoria en Supabase.</span>'}}
- }catch(error){document.getElementById('authMessage').innerHTML='<span class="danger-text">'+escapeHtml(friendlyError(error))+'</span>'}
- finally{showLoading(false)}
-});
-async function logout(){showLoading(true,'Cerrando sesión...');await db.auth.signOut();showLoading(false)}
-
-async function loadRemoteState(){
- if(!requireUser())return;showLoading(true);
- try{
-  const [settingsRes,debtsRes,paymentsRes,movementsRes,fixedRes,obligationsRes]=await Promise.all([
-   db.from('finance_settings').select('*').maybeSingle(),
-   db.from('debts').select('*').order('created_at',{ascending:true}),
-   db.from('payments').select('*').order('created_at',{ascending:false}),
-   db.from('financial_movements').select('*').order('movement_date',{ascending:false}).order('created_at',{ascending:false}),
-   db.from('fixed_expenses').select('*').order('created_at',{ascending:true}),
-   db.from('planned_obligations').select('*').order('due_date',{ascending:true}).order('created_at',{ascending:true})
-  ]);
-  for(const r of [settingsRes,debtsRes,paymentsRes,movementsRes,fixedRes,obligationsRes])if(r.error)throw r.error;
-  state={
-   settings:{
-    weeklyIncome:Number(settingsRes.data?.weekly_income||0),weeklyExpenses:Number(settingsRes.data?.weekly_expenses||0),
-    baseMainBalance:Number(settingsRes.data?.base_main_balance||0),baseCurrentBalance:Number(settingsRes.data?.base_current_balance||0)
-   },
-   debts:(debtsRes.data||[]).map(d=>({id:d.id,name:d.name,creditor:d.creditor||'',balance:Number(d.balance),minimum:Number(d.minimum||0),target:d.target||'',priority:d.priority||'media',dueDay:Number(d.due_day||0),paymentMethod:d.preferred_payment_method||'sinpe_movil',installmentAmount:Number(d.installment_amount||0),paymentFrequency:d.payment_frequency||'mensual',nextPaymentDate:d.next_payment_date||''})),
-   payments:(paymentsRes.data||[]).map(p=>({id:p.id,debtId:p.debt_id,amount:Number(p.amount),date:p.payment_date,note:p.note||'',paymentMethod:p.payment_method||'sinpe_movil'})),
-   movements:(movementsRes.data||[]).map(m=>({id:m.id,type:m.movement_type,account:m.account_name,description:m.description,amount:Number(m.amount),date:m.movement_date,note:m.note||'',paymentMethod:m.payment_method||'efectivo',isAntExpense:!!m.is_ant_expense})),
-   fixedExpenses:(fixedRes.data||[]).map(e=>({id:e.id,name:e.name,amount:Number(e.amount),frequency:e.frequency,account:e.account_name,dueDay:Number(e.due_day||0)})),
-   obligations:(obligationsRes.data||[]).map(x=>({id:x.id,description:x.description,amount:Number(x.amount),dueDate:x.due_date,paymentMethod:x.payment_method||'sinpe_movil',category:x.category||'pago_programado',priority:x.priority||'media',paid:!!x.paid,note:x.note||''}))
-  };
-  saveCache();render();syncStatus('online','Sincronizado en línea');
- }catch(error){state=loadCache();render();showError(error,'No se pudo cargar la información. Ejecuta el archivo SQL nuevo en Supabase.')}
- finally{showLoading(false)}
-}
-async function saveSettingsRemote(){
- const payload={user_id:currentUser.id,weekly_income:Number(state.settings.weeklyIncome||0),weekly_expenses:Number(state.settings.weeklyExpenses||0),base_main_balance:Number(state.settings.baseMainBalance||0),base_current_balance:Number(state.settings.baseCurrentBalance||0),updated_at:new Date().toISOString()};
- const {error}=await db.from('finance_settings').upsert(payload,{onConflict:'user_id'});if(error)throw error;
-}
-
-// Navegación
+function movementLabel(t){return({ingreso_extra:'Ingreso extra',ganancia:'Ganancia',gasto:'Gasto',inversion:'Inversión',deuda:'Deuda / financiado'})[t]||t}
+function accountLabel(a){return a==='cuenta_corriente'?'Cuenta corriente':'Cuenta principal'}
+function showLoading(show,text='Procesando...'){const s=document.getElementById('loadingScreen');if(!s)return;document.getElementById('loadingText').textContent=text;s.classList.toggle('show',show)}
+function sortedDebts(){return[...state.debts].sort((a,b)=>(Number(a.balance<=0)-Number(b.balance<=0))||priorityScore(b.priority)-priorityScore(a.priority)||debtInstallment(b)-debtInstallment(a))}
 function showSection(id){document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.section===id));document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));if(id==='calendar')renderCalendar()}
 document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>showSection(btn.dataset.section)));
 
-// Deudas
-function openDebtModal(id=''){
- if(!requireUser())return;document.getElementById('debtForm').reset();document.getElementById('debtId').value='';document.getElementById('modalTitle').textContent='Agregar deuda';document.getElementById('debtPriority').value='media';document.getElementById('debtPaymentMethod').value='sinpe_movil';document.getElementById('debtPaymentFrequency').value='mensual';
- if(id){const d=debtById(id);if(!d)return;document.getElementById('modalTitle').textContent='Editar deuda';document.getElementById('debtId').value=d.id;document.getElementById('debtName').value=d.name;document.getElementById('debtCreditor').value=d.creditor||'';document.getElementById('debtBalance').value=d.balance;document.getElementById('debtMinimum').value=d.minimum||0;document.getElementById('debtTarget').value=d.target||'';document.getElementById('debtDueDay').value=d.dueDay||'';document.getElementById('debtPaymentMethod').value=d.paymentMethod||'sinpe_movil';document.getElementById('debtInstallmentAmount').value=d.installmentAmount||'';document.getElementById('debtPaymentFrequency').value=d.paymentFrequency||'mensual';document.getElementById('debtNextPaymentDate').value=d.nextPaymentDate||'';document.getElementById('debtPriority').value=d.priority||'media'}
- document.getElementById('debtModal').classList.add('show');
-}
+function openDebtModal(id=''){document.getElementById('debtForm').reset();document.getElementById('debtId').value='';document.getElementById('modalTitle').textContent='Agregar deuda';document.getElementById('debtPriority').value='media';document.getElementById('debtPaymentMethod').value='sinpe_movil';document.getElementById('debtPaymentFrequency').value='mensual';if(id){const d=debtById(id);if(!d)return;document.getElementById('modalTitle').textContent='Editar deuda';document.getElementById('debtId').value=d.id;document.getElementById('debtName').value=d.name;document.getElementById('debtCreditor').value=d.creditor||'';document.getElementById('debtBalance').value=d.balance;document.getElementById('debtMinimum').value=d.minimum||0;document.getElementById('debtTarget').value=d.target||'';document.getElementById('debtDueDay').value=d.dueDay||'';document.getElementById('debtPaymentMethod').value=d.paymentMethod||'sinpe_movil';document.getElementById('debtInstallmentAmount').value=d.installmentAmount||'';document.getElementById('debtPaymentFrequency').value=d.paymentFrequency||'mensual';document.getElementById('debtNextPaymentDate').value=d.nextPaymentDate||'';document.getElementById('debtPriority').value=d.priority||'media'}document.getElementById('debtModal').classList.add('show')}
 function closeDebtModal(){document.getElementById('debtModal').classList.remove('show')}
 document.getElementById('debtModal').addEventListener('click',e=>{if(e.target.id==='debtModal')closeDebtModal()});
-document.getElementById('debtForm').addEventListener('submit',async e=>{
- e.preventDefault();if(!requireUser())return;showLoading(true,'Guardando deuda...');
- const id=document.getElementById('debtId').value;
- const payload={user_id:currentUser.id,name:document.getElementById('debtName').value.trim(),creditor:document.getElementById('debtCreditor').value.trim()||null,balance:Number(document.getElementById('debtBalance').value),minimum:Number(document.getElementById('debtMinimum').value||0),target:document.getElementById('debtTarget').value||null,due_day:Number(document.getElementById('debtDueDay').value)||null,preferred_payment_method:document.getElementById('debtPaymentMethod').value,installment_amount:Number(document.getElementById('debtInstallmentAmount').value||0),payment_frequency:document.getElementById('debtPaymentFrequency').value,next_payment_date:document.getElementById('debtNextPaymentDate').value||null,priority:document.getElementById('debtPriority').value,updated_at:new Date().toISOString()};
- try{const res=id?await db.from('debts').update(payload).eq('id',id):await db.from('debts').insert(payload);if(res.error)throw res.error;closeDebtModal();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}
-});
-async function deleteDebt(id){const d=debtById(id);if(!d||!confirm(`¿Eliminar la deuda "${d.name}" y su historial de pagos?`))return;showLoading(true,'Eliminando deuda...');try{const {error}=await db.from('debts').delete().eq('id',id);if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
+document.getElementById('debtForm').addEventListener('submit',e=>{e.preventDefault();const id=document.getElementById('debtId').value,d={id:id||uid(),name:document.getElementById('debtName').value.trim(),creditor:document.getElementById('debtCreditor').value.trim(),balance:Number(document.getElementById('debtBalance').value),minimum:Number(document.getElementById('debtMinimum').value||0),target:document.getElementById('debtTarget').value,dueDay:Number(document.getElementById('debtDueDay').value||0),paymentMethod:document.getElementById('debtPaymentMethod').value,installmentAmount:Number(document.getElementById('debtInstallmentAmount').value||0),paymentFrequency:document.getElementById('debtPaymentFrequency').value,nextPaymentDate:document.getElementById('debtNextPaymentDate').value,priority:document.getElementById('debtPriority').value};if(id)state.debts=state.debts.map(x=>x.id===id?d:x);else state.debts.push(d);closeDebtModal();saveState()});
+function deleteDebt(id){const d=debtById(id);if(!d||!confirm(`¿Eliminar la deuda "${d.name}" y sus abonos?`))return;state.debts=state.debts.filter(x=>x.id!==id);state.payments=state.payments.filter(x=>x.debtId!==id);saveState()}
 
-// Pagos
 document.getElementById('paymentDebt').addEventListener('change',e=>{const d=debtById(e.target.value);if(d)document.getElementById('paymentMethod').value=d.paymentMethod||'sinpe_movil'});
-document.getElementById('paymentForm').addEventListener('submit',async e=>{
- e.preventDefault();if(!requireUser())return;const id=document.getElementById('paymentDebt').value;const d=debtById(id);if(!d)return alert('Selecciona una deuda.');const amount=Number(document.getElementById('paymentAmount').value);if(amount<=0)return;if(amount>d.balance&&!confirm('El pago supera el saldo pendiente. Se aplicará solamente el saldo restante. ¿Continuar?'))return;
- showLoading(true,'Registrando pago...');try{const {error}=await db.rpc('register_debt_payment_v2',{p_debt_id:id,p_amount:amount,p_payment_date:document.getElementById('paymentDate').value,p_note:document.getElementById('paymentNote').value.trim()||null,p_payment_method:document.getElementById('paymentMethod').value});if(error)throw error;e.target.reset();
-function renderObligations(){const t=document.getElementById('obligationsTable');if(!state.obligations.length){t.innerHTML='<tr><td colspan="7" class="empty">No hay pagos puntuales programados.</td></tr>';return}t.innerHTML=state.obligations.map(x=>`<tr class="${x.paid?'paid-row':''}"><td>${dateCR(x.dueDate)}</td><td><strong>${escapeHtml(x.description)}</strong><div class="muted">${escapeHtml(x.note||'')}</div></td><td><span class="method-chip ${x.paymentMethod}">${methodLabel(x.paymentMethod)}</span></td><td>${currency(x.amount)}</td><td><span class="badge ${x.priority}">${x.priority}</span></td><td>${x.paid?'<span class="good-text">Pagado</span>':'Pendiente'}</td><td><button class="btn small" onclick="toggleObligation('${x.id}',${x.paid})">${x.paid?'Reabrir':'Marcar pagado'}</button> <button class="btn small danger" onclick="deleteObligation('${x.id}')">Eliminar</button></td></tr>`).join('')}
-function renderProjectionDebtSelect(){const s=document.getElementById('projectionDebt'),current=s.value,ds=sortedDebts().filter(d=>Number(d.balance)>0);s.innerHTML=ds.length?ds.map(d=>`<option value="${d.id}">${escapeHtml(d.name)} · ${currency(d.balance)}</option>`).join(''):'<option value="">No hay deudas pendientes</option>';if(ds.some(d=>d.id===current))s.value=current}
-function renderInstallmentProjection(){const id=document.getElementById('projectionDebt')?.value,d=debtById(id),summary=document.getElementById('projectionSummary'),t=document.getElementById('projectionTable');if(!summary||!t)return;if(!d){summary.innerHTML='<div class="empty">Selecciona una deuda.</div>';t.innerHTML='<tr><td colspan="5" class="empty">No hay proyección disponible.</td></tr>';return}const rows=buildInstallmentSchedule(d);summary.innerHTML=`<div class="projection-box"><span>Saldo actual</span><strong>${currency(d.balance)}</strong></div><div class="projection-box"><span>Abono acordado</span><strong>${currency(debtInstallment(d))}</strong></div><div class="projection-box"><span>Número de abonos</span><strong>${rows.length}</strong></div><div class="projection-box"><span>Termina aproximadamente</span><strong>${rows.length?dateCR(rows.at(-1).date):'Pagada'}</strong></div>`;t.innerHTML=rows.length?rows.map(r=>`<tr><td>${r.number}</td><td>${dateCR(r.date)}</td><td>${currency(r.amount)}</td><td class="${r.remaining===0?'good-text':''}">${currency(r.remaining)}</td><td><span class="method-chip ${r.method}">${methodLabel(r.method)}</span></td></tr>`).join(''):'<tr><td colspan="5" class="empty good-text">Esta deuda ya llegó a cero.</td></tr>'}
+document.getElementById('paymentForm').addEventListener('submit',e=>{e.preventDefault();const d=debtById(document.getElementById('paymentDebt').value),amount=Number(document.getElementById('paymentAmount').value);if(!d)return alert('Selecciona una deuda.');if(amount<=0)return;const applied=Math.min(amount,Number(d.balance));d.balance=Math.max(0,Number(d.balance)-applied);d.nextPaymentDate=d.balance>0?addFrequency(document.getElementById('paymentDate').value,d.paymentFrequency||'mensual'):'';state.payments.unshift({id:uid(),debtId:d.id,amount:applied,date:document.getElementById('paymentDate').value,paymentMethod:document.getElementById('paymentMethod').value,note:document.getElementById('paymentNote').value.trim()});e.target.reset();document.getElementById('paymentDate').value=todayISO();saveState()});
+function deletePayment(id){const p=state.payments.find(x=>x.id===id);if(!p||!confirm('¿Eliminar este abono? El saldo de la deuda volverá a aumentar.'))return;const d=debtById(p.debtId);if(d)d.balance=Number(d.balance)+Number(p.amount);state.payments=state.payments.filter(x=>x.id!==id);saveState()}
+
+document.getElementById('movementForm').addEventListener('submit',e=>{e.preventDefault();state.movements.unshift({id:uid(),type:document.getElementById('movementType').value,account:document.getElementById('movementAccount').value,description:document.getElementById('movementDescription').value.trim(),amount:Number(document.getElementById('movementAmount').value),date:document.getElementById('movementDate').value,paymentMethod:document.getElementById('movementPaymentMethod').value,note:document.getElementById('movementNote').value.trim(),isAntExpense:document.getElementById('movementIsAnt').checked});e.target.reset();document.getElementById('movementDate').value=todayISO();saveState()});
+function deleteMovement(id){if(confirm('¿Eliminar este movimiento?')){state.movements=state.movements.filter(x=>x.id!==id);saveState()}}
+
+document.getElementById('fixedExpenseForm').addEventListener('submit',e=>{e.preventDefault();state.fixedExpenses.push({id:uid(),name:document.getElementById('fixedExpenseName').value.trim(),amount:Number(document.getElementById('fixedExpenseAmount').value),frequency:document.getElementById('fixedExpenseFrequency').value,dueDay:Number(document.getElementById('fixedExpenseDueDay').value||0),account:document.getElementById('fixedExpenseAccount').value});e.target.reset();saveState()});
+function deleteFixedExpense(id){if(confirm('¿Eliminar este gasto fijo?')){state.fixedExpenses=state.fixedExpenses.filter(x=>x.id!==id);saveState()}}
+
+document.getElementById('obligationForm').addEventListener('submit',e=>{e.preventDefault();state.obligations.push({id:uid(),description:document.getElementById('obligationDescription').value.trim(),amount:Number(document.getElementById('obligationAmount').value),dueDate:document.getElementById('obligationDate').value,paymentMethod:document.getElementById('obligationPaymentMethod').value,category:document.getElementById('obligationCategory').value,priority:document.getElementById('obligationPriority').value,note:document.getElementById('obligationNote').value.trim(),paid:false});e.target.reset();document.getElementById('obligationDate').value=todayISO();saveState()});
+function toggleObligation(id,paid){const o=state.obligations.find(x=>x.id===id);if(o){o.paid=!paid;saveState()}}
+function deleteObligation(id){if(confirm('¿Eliminar este pago programado?')){state.obligations=state.obligations.filter(x=>x.id!==id);saveState()}}
+
+document.getElementById('settingsForm').addEventListener('submit',e=>{e.preventDefault();state.settings.weeklyIncome=Number(document.getElementById('weeklyIncome').value||0);state.settings.weeklyExpenses=Number(document.getElementById('weeklyExpenses').value||0);state.settings.baseMainBalance=Number(document.getElementById('baseMainBalance').value||0);state.settings.baseCurrentBalance=Number(document.getElementById('baseCurrentBalance').value||0);saveState();alert(cloudConnected?'Configuración guardada y enviada a Supabase.':'Configuración guardada en este dispositivo.')});
+function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='respaldo-control-financiero-fctechsystems.json';a.click();URL.revokeObjectURL(url)}
+document.getElementById('importFile').addEventListener('change',e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{state=normalizeState(JSON.parse(reader.result));saveState();alert(cloudConnected?'Respaldo importado y enviado a Supabase.':'Respaldo importado correctamente.')}catch(err){alert('El archivo no contiene un respaldo válido.')}};reader.readAsText(file);e.target.value=''});
+function clearAll(){if(confirm('¿Seguro que deseas borrar toda la información guardada en este dispositivo?')){state=defaultState();saveState()}}
+
+function render(){
+ const total=remainingTotal(),paid=totalPaid(),initial=initialDebtTotal(),available=availableWeekly(),suggested=state.debts.filter(d=>d.balance>0).reduce((s,d)=>s+suggestedWeekly(d),0),pct=initial?Math.min(100,Math.round(paid/initial*100)):0;
+ document.getElementById('kpiTotal').textContent=currency(total);document.getElementById('kpiDebtCount').textContent=`${state.debts.filter(d=>d.balance>0).length} deudas pendientes`;document.getElementById('kpiFixedMonthly').textContent=currency(totalFixedMonthly());document.getElementById('kpiMainAccount').textContent=currency(accountBalance('principal'));document.getElementById('kpiCurrentAccount').textContent=currency(accountBalance('cuenta_corriente'));document.getElementById('kpiAvailable').textContent=currency(available);document.getElementById('kpiExtras').textContent=currency(extrasTotal());document.getElementById('kpiAntExpenses').textContent=currency(antExpenseTotalCurrentMonth());
+ document.getElementById('overallPct').textContent=`${pct}%`;document.getElementById('overallBar').style.width=`${pct}%`;document.getElementById('weeklyIncome').value=state.settings.weeklyIncome||'';document.getElementById('weeklyExpenses').value=state.settings.weeklyExpenses||'';document.getElementById('baseMainBalance').value=state.settings.baseMainBalance||'';document.getElementById('baseCurrentBalance').value=state.settings.baseCurrentBalance||'';document.getElementById('movementIncomeTotal').textContent=currency(extrasTotal());document.getElementById('movementExpenseTotal').textContent=currency(outputsTotal());document.getElementById('movementAntTotal').textContent=currency(antExpenseTotalCurrentMonth());document.getElementById('fixedWeeklyDetailed').textContent=currency(detailedFixedWeekly());document.getElementById('fixedMonthlyTotal').textContent=currency(totalFixedMonthly());
+ const notice=document.getElementById('capacityNotice');if(!state.settings.weeklyIncome&&!state.fixedExpenses.length)notice.textContent='Configura tu ingreso y registra tus gastos fijos para calcular tu capacidad real.';else if(suggested===0)notice.innerHTML='<span class="good-text">No tienes deudas pendientes.</span>';else if(available>=suggested)notice.innerHTML=`<span class="good-text">Tu presupuesto alcanza para el plan.</span> Quedarían ${currency(available-suggested)} libres por semana.`;else notice.innerHTML=`<span class="warn-text">El plan requiere ${currency(suggested)} y tienes ${currency(available)} disponibles.</span> Dirige extras a las prioridades rojas.`;
+ renderWeeklyPlan(available);renderQuickDebts();renderDebtsTable();renderPaymentSelect();renderPayments();renderMovements();renderFixedExpenses();renderPrioritySolutions();renderFastSolutions();renderUpcomingCommitments();renderObligations();renderProjectionDebtSelect();renderInstallmentProjection();renderCalendar()
+}
+function renderWeeklyPlan(available){const box=document.getElementById('weeklyPlan'),ds=sortedDebts().filter(d=>d.balance>0);if(!ds.length){box.innerHTML='<div class="empty good-text">No tienes saldos pendientes.</div>';return}let left=available;box.innerHTML=ds.slice(0,5).map(d=>{const ideal=debtInstallment(d),amount=available?Math.min(ideal,Math.max(0,left)):ideal;left-=amount;return`<div class="plan-item"><div class="row-title"><span>${escapeHtml(d.name)} <span class="badge ${d.priority}">${d.priority}</span></span><span class="plan-money">${currency(amount)}</span></div><div class="muted" style="font-size:12px;margin-top:7px">Próximo: ${dateCR(firstDebtPaymentDate(d))} · ${frequencyLabel(d.paymentFrequency)}</div></div>`}).join('')}
+function renderQuickDebts(){const box=document.getElementById('quickDebts'),ds=sortedDebts().slice(0,6);box.innerHTML=ds.length?ds.map(d=>`<div class="plan-item ${d.priority==='alta'?'priority-line':''}"><div class="row-title"><span><strong>${escapeHtml(d.name)}</strong> <span class="badge ${d.priority}">${d.priority}</span></span><span>${currency(d.balance)}</span></div><div class="muted" style="font-size:12px;margin-top:6px">Próximo abono: ${dateCR(firstDebtPaymentDate(d))} · Termina aproximadamente: ${estimatedPayoff(d)}</div></div>`).join(''):'<div class="empty">Todavía no has agregado deudas.</div>'}
+function renderDebtsTable(){const t=document.getElementById('debtsTable'),ds=sortedDebts();t.innerHTML=ds.length?ds.map(d=>`<tr class="${d.priority==='alta'?'high-priority-row':''}"><td><strong>${escapeHtml(d.name)}</strong><div class="muted">${escapeHtml(d.creditor||'Sin entidad')}</div></td><td>${currency(d.balance)}</td><td><span class="method-chip ${d.paymentMethod}">${methodLabel(d.paymentMethod)}</span></td><td>${dateCR(firstDebtPaymentDate(d))}</td><td>${frequencyLabel(d.paymentFrequency)}</td><td>${currency(debtInstallment(d))}</td><td>${dateCR(d.target)}<div class="muted">Estimado: ${estimatedPayoff(d)}</div></td><td><span class="badge ${d.priority}">${d.priority}</span></td><td><button class="btn small" onclick="openDebtModal('${d.id}')">Editar</button> <button class="btn small" onclick="openProjection('${d.id}')">Plan</button> <button class="btn small danger" onclick="deleteDebt('${d.id}')">Eliminar</button></td></tr>`).join(''):'<tr><td colspan="9" class="empty">No hay deudas registradas.</td></tr>'}
+function renderPaymentSelect(){const s=document.getElementById('paymentDebt'),current=s.value,ds=sortedDebts().filter(d=>d.balance>0);s.innerHTML=ds.length?'<option value="">Seleccionar...</option>'+ds.map(d=>`<option value="${d.id}">${escapeHtml(d.name)} · ${currency(d.balance)}</option>`).join(''):'<option value="">No hay deudas pendientes</option>';if(ds.some(d=>d.id===current))s.value=current}
+function renderPayments(){const t=document.getElementById('paymentsTable');t.innerHTML=state.payments.length?state.payments.map(p=>{const d=debtById(p.debtId);return`<tr><td>${dateCR(p.date)}</td><td>${escapeHtml(d?.name||'Deuda eliminada')}</td><td><span class="method-chip ${p.paymentMethod}">${methodLabel(p.paymentMethod)}</span></td><td class="money-in">${currency(p.amount)}</td><td>${d&&d.balance>0?dateCR(firstDebtPaymentDate(d)):'Pagada'}</td><td>${escapeHtml(p.note||'—')}</td><td><button class="btn small danger" onclick="deletePayment('${p.id}')">Eliminar</button></td></tr>`}).join(''):'<tr><td colspan="7" class="empty">Todavía no has registrado pagos.</td></tr>'}
+function renderMovements(){const t=document.getElementById('movementsTable');t.innerHTML=state.movements.length?state.movements.map(m=>`<tr><td>${dateCR(m.date)}</td><td><span class="movement-type ${m.type}">${movementLabel(m.type)}</span></td><td><strong>${escapeHtml(m.description)}</strong></td><td><span class="account-chip ${m.account}">${accountLabel(m.account)}</span></td><td><span class="method-chip ${m.paymentMethod}">${methodLabel(m.paymentMethod)}</span></td><td class="${movementSign(m)>0?'money-in':'money-out'}">${movementSign(m)>0?'+':'−'} ${currency(m.amount)}</td><td>${m.isAntExpense?'<span class="ant-chip">Gasto hormiga</span>':'—'}</td><td>${escapeHtml(m.note||'—')}</td><td><button class="btn small danger" onclick="deleteMovement('${m.id}')">Eliminar</button></td></tr>`).join(''):'<tr><td colspan="9" class="empty">Todavía no has registrado movimientos.</td></tr>'}
+function renderFixedExpenses(){const t=document.getElementById('fixedExpensesTable');t.innerHTML=state.fixedExpenses.length?state.fixedExpenses.map(e=>`<tr><td><strong>${escapeHtml(e.name)}</strong></td><td>${currency(e.amount)}</td><td>${e.frequency}</td><td>${e.dueDay?`Día ${e.dueDay}`:'Sin definir'}</td><td><span class="account-chip ${e.account}">${accountLabel(e.account)}</span></td><td><button class="btn small danger" onclick="deleteFixedExpense('${e.id}')">Eliminar</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">Todavía no has registrado gastos fijos.</td></tr>'}
+function renderPrioritySolutions(){const b=document.getElementById('prioritySolutions'),ds=sortedDebts().filter(d=>d.priority==='alta'&&d.balance>0);b.innerHTML=ds.length?ds.map(d=>`<div class="priority-line"><div class="row-title"><strong>${escapeHtml(d.name)}</strong><strong class="danger-text">${currency(d.balance)}</strong></div><div class="small-help">Siguiente abono: <strong>${dateCR(firstDebtPaymentDate(d))}</strong>. Abona <strong>${currency(debtInstallment(d))}</strong> ${frequencyLabel(d.paymentFrequency).toLowerCase()} hasta llegar a cero.</div></div>`).join(''):'<div class="empty">No hay prioridades altas.</div>'}
+function renderFastSolutions(){const b=document.getElementById('fastSolutions'),ds=sortedDebts().filter(d=>d.balance>0),top=ds[0];b.innerHTML=top?`<div class="solution-card urgent"><strong>1. Ataca primero: ${escapeHtml(top.name)}</strong><p>Abona ${currency(debtInstallment(top))} con frecuencia ${frequencyLabel(top.paymentFrequency).toLowerCase()}.</p></div><div class="solution-card"><strong>2. Vigila gastos hormiga</strong><p>Este mes llevas ${currency(antExpenseTotalCurrentMonth())}. Redirige parte a la deuda prioritaria.</p></div><div class="solution-card"><strong>3. Usa tus extras</strong><p>Tu promedio extra reciente es ${currency(recentExtrasWeekly())} por semana.</p></div>`:'<div class="solution-card"><strong>Sin deudas pendientes</strong><p>Continúa controlando tus gastos.</p></div>'}
+function renderUpcomingCommitments(){const b=document.getElementById('upcomingCommitments'),items=[];state.obligations.filter(x=>!x.paid).forEach(x=>items.push({date:x.dueDate,text:`${escapeHtml(x.description)} · ${currency(x.amount)}`,kind:'Programado'}));state.debts.filter(d=>d.balance>0).forEach(d=>items.push({date:firstDebtPaymentDate(d),text:`${escapeHtml(d.name)} · ${currency(debtInstallment(d))}`,kind:'Abono'}));items.sort((a,b)=>a.date.localeCompare(b.date));b.innerHTML=items.length?items.slice(0,7).map(x=>`<div class="plan-item"><div class="row-title"><span>${x.kind}: <strong>${x.text}</strong></span><span class="due-chip">${dateCR(x.date)}</span></div></div>`).join(''):'<div class="empty">No hay compromisos próximos.</div>'}
+function renderObligations(){const t=document.getElementById('obligationsTable');t.innerHTML=state.obligations.length?state.obligations.map(x=>`<tr class="${x.paid?'paid-row':''}"><td>${dateCR(x.dueDate)}</td><td><strong>${escapeHtml(x.description)}</strong><div class="muted">${escapeHtml(x.note||'')}</div></td><td><span class="method-chip ${x.paymentMethod}">${methodLabel(x.paymentMethod)}</span></td><td>${currency(x.amount)}</td><td><span class="badge ${x.priority}">${x.priority}</span></td><td>${x.paid?'<span class="good-text">Pagado</span>':'Pendiente'}</td><td><button class="btn small" onclick="toggleObligation('${x.id}',${x.paid})">${x.paid?'Reabrir':'Marcar pagado'}</button> <button class="btn small danger" onclick="deleteObligation('${x.id}')">Eliminar</button></td></tr>`).join(''):'<tr><td colspan="7" class="empty">No hay pagos puntuales programados.</td></tr>'}
+function renderProjectionDebtSelect(){const s=document.getElementById('projectionDebt'),current=s.value,ds=sortedDebts().filter(d=>d.balance>0);s.innerHTML=ds.length?ds.map(d=>`<option value="${d.id}">${escapeHtml(d.name)} · ${currency(d.balance)}</option>`).join(''):'<option value="">No hay deudas pendientes</option>';if(ds.some(d=>d.id===current))s.value=current}
+function renderInstallmentProjection(){const d=debtById(document.getElementById('projectionDebt')?.value),summary=document.getElementById('projectionSummary'),t=document.getElementById('projectionTable');if(!d){summary.innerHTML='<div class="empty">Selecciona una deuda.</div>';t.innerHTML='<tr><td colspan="5" class="empty">No hay proyección disponible.</td></tr>';return}const rows=buildInstallmentSchedule(d);summary.innerHTML=`<div class="projection-box"><span>Saldo actual</span><strong>${currency(d.balance)}</strong></div><div class="projection-box"><span>Abono acordado</span><strong>${currency(debtInstallment(d))}</strong></div><div class="projection-box"><span>Número de abonos</span><strong>${rows.length}</strong></div><div class="projection-box"><span>Termina aproximadamente</span><strong>${rows.length?dateCR(rows.at(-1).date):'Pagada'}</strong></div>`;t.innerHTML=rows.length?rows.map(r=>`<tr><td>${r.number}</td><td>${dateCR(r.date)}</td><td>${currency(r.amount)}</td><td class="${r.remaining===0?'good-text':''}">${currency(r.remaining)}</td><td><span class="method-chip ${r.method}">${methodLabel(r.method)}</span></td></tr>`).join(''):'<tr><td colspan="5" class="empty good-text">Esta deuda ya llegó a cero.</td></tr>'}
 function openProjection(id){showSection('calendar');document.getElementById('projectionDebt').value=id;renderInstallmentProjection();window.scrollTo({top:0,behavior:'smooth'})}
 function changeCalendarMonth(delta){calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()+delta,1);renderCalendar()}
 function goCalendarToday(){calendarCursor=new Date();renderCalendar()}
-function calendarEventsForDate(iso){const events=[];state.obligations.filter(x=>!x.paid&&x.dueDate===iso).forEach(x=>events.push({cls:'planned-event',text:`${escapeHtml(x.description)} ${currency(x.amount)}`}));state.fixedExpenses.forEach(x=>{if(Number(iso.slice(8,10))===Number(x.dueDay||0))events.push({cls:'fixed-event',text:`${escapeHtml(x.name)} ${currency(x.amount)}`})});state.debts.filter(d=>Number(d.balance)>0).forEach(d=>{buildInstallmentSchedule(d,80).filter(x=>x.date===iso).forEach(x=>events.push({cls:'debt-event',text:`${escapeHtml(d.name)} ${currency(x.amount)}`}));if(d.target===iso)events.push({cls:'target-event',text:`Meta: ${escapeHtml(d.name)}`})});return events}
-function renderCalendar(){const grid=document.getElementById('calendarGrid');if(!grid)return;const y=calendarCursor.getFullYear(),m=calendarCursor.getMonth(),name=new Intl.DateTimeFormat('es-CR',{month:'long',year:'numeric'}).format(new Date(y,m,1));document.getElementById('calendarTitle').textContent=name.charAt(0).toUpperCase()+name.slice(1);let cells=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(x=>`<div class="calendar-weekday">${x}</div>`).join('');const first=new Date(y,m,1),days=new Date(y,m+1,0).getDate(),offset=(first.getDay()+6)%7;for(let i=0;i<offset;i++)cells+='<div class="calendar-day empty-day"></div>';for(let day=1;day<=days;day++){const iso=dateToISO(new Date(y,m,day,12)),events=calendarEventsForDate(iso);cells+=`<div class="calendar-day ${iso===todayISO()?'today':''}"><div class="calendar-date">${day}</div>${events.slice(0,5).map(e=>`<span class="calendar-event ${e.cls}">${e.text}</span>`).join('')}${events.length>5?`<span class="calendar-event">+${events.length-5} más</span>`:''}</div>`}grid.innerHTML=cells}
-
-document.getElementById('paymentDate').value=todayISO();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}
-});
-async function deletePayment(id){if(!confirm('¿Eliminar este pago? El saldo pendiente volverá a aumentar.'))return;showLoading(true,'Eliminando pago...');try{const {error}=await db.rpc('delete_debt_payment',{p_payment_id:id});if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
-
-// Movimientos
-document.getElementById('movementForm').addEventListener('submit',async e=>{
- e.preventDefault();if(!requireUser())return;showLoading(true,'Guardando movimiento...');
- const payload={user_id:currentUser.id,movement_type:document.getElementById('movementType').value,account_name:document.getElementById('movementAccount').value,description:document.getElementById('movementDescription').value.trim(),amount:Number(document.getElementById('movementAmount').value),movement_date:document.getElementById('movementDate').value,payment_method:document.getElementById('movementPaymentMethod').value,is_ant_expense:document.getElementById('movementIsAnt').checked,note:document.getElementById('movementNote').value.trim()||null};
- try{const {error}=await db.from('financial_movements').insert(payload);if(error)throw error;e.target.reset();document.getElementById('movementDate').value=todayISO();
-document.getElementById('obligationDate').value=todayISO();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}
-});
-async function deleteMovement(id){if(!confirm('¿Eliminar este movimiento? El saldo de la cuenta se recalculará.'))return;showLoading(true,'Eliminando movimiento...');try{const {error}=await db.from('financial_movements').delete().eq('id',id);if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
-
-// Gastos fijos
-document.getElementById('fixedExpenseForm').addEventListener('submit',async e=>{
- e.preventDefault();if(!requireUser())return;showLoading(true,'Guardando gasto fijo...');
- const payload={user_id:currentUser.id,name:document.getElementById('fixedExpenseName').value.trim(),amount:Number(document.getElementById('fixedExpenseAmount').value),frequency:document.getElementById('fixedExpenseFrequency').value,due_day:Number(document.getElementById('fixedExpenseDueDay').value)||null,account_name:document.getElementById('fixedExpenseAccount').value};
- try{const {error}=await db.from('fixed_expenses').insert(payload);if(error)throw error;e.target.reset();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}
-});
-async function deleteFixedExpense(id){if(!confirm('¿Eliminar este gasto fijo?'))return;showLoading(true,'Eliminando gasto fijo...');try{const {error}=await db.from('fixed_expenses').delete().eq('id',id);if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
-
-// Configuración y respaldo
-
-document.getElementById('obligationForm').addEventListener('submit',async e=>{e.preventDefault();if(!requireUser())return;showLoading(true,'Guardando compromiso...');const payload={user_id:currentUser.id,description:document.getElementById('obligationDescription').value.trim(),amount:Number(document.getElementById('obligationAmount').value),due_date:document.getElementById('obligationDate').value,payment_method:document.getElementById('obligationPaymentMethod').value,category:document.getElementById('obligationCategory').value,priority:document.getElementById('obligationPriority').value,note:document.getElementById('obligationNote').value.trim()||null};try{const{error}=await db.from('planned_obligations').insert(payload);if(error)throw error;e.target.reset();document.getElementById('obligationDate').value=todayISO();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}});
-async function toggleObligation(id,paid){showLoading(true,'Actualizando compromiso...');try{const{error}=await db.from('planned_obligations').update({paid:!paid}).eq('id',id);if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
-async function deleteObligation(id){if(!confirm('¿Eliminar este pago programado?'))return;showLoading(true,'Eliminando compromiso...');try{const{error}=await db.from('planned_obligations').delete().eq('id',id);if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
-
-document.getElementById('settingsForm').addEventListener('submit',async e=>{
- e.preventDefault();if(!requireUser())return;
- state.settings.weeklyIncome=Number(document.getElementById('weeklyIncome').value||0);state.settings.weeklyExpenses=Number(document.getElementById('weeklyExpenses').value||0);state.settings.baseMainBalance=Number(document.getElementById('baseMainBalance').value||0);state.settings.baseCurrentBalance=Number(document.getElementById('baseCurrentBalance').value||0);
- showLoading(true,'Guardando presupuesto...');try{await saveSettingsRemote();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}
-});
-function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='respaldo-control-financiero.json';a.click();URL.revokeObjectURL(url)}
-document.getElementById('importFile').addEventListener('change',e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=async()=>{try{const data=JSON.parse(reader.result);if(!data.settings||!Array.isArray(data.debts)||!Array.isArray(data.payments))throw new Error('El archivo no contiene un respaldo válido.');if(!confirm('Esto reemplazará la información actual guardada en Supabase. ¿Continuar?'))return;showLoading(true,'Importando respaldo...');await replaceRemoteData(data);await loadRemoteState();alert('Respaldo importado correctamente.')}catch(error){showError(error)}finally{showLoading(false)}};reader.readAsText(file);e.target.value=''});
-async function replaceRemoteData(data){
- if(!requireUser())return;let r;
- for(const table of ['payments','financial_movements','fixed_expenses','planned_obligations','debts']){r=await db.from(table).delete().eq('user_id',currentUser.id);if(r.error)throw r.error}
- const debts=(data.debts||[]).map(d=>({id:d.id||crypto.randomUUID(),user_id:currentUser.id,name:d.name,creditor:d.creditor||null,balance:Number(d.balance||0),minimum:Number(d.minimum||0),target:d.target||null,due_day:Number(d.dueDay)||null,priority:d.priority||'media'}));if(debts.length){r=await db.from('debts').insert(debts);if(r.error)throw r.error}
- const ids=new Set(debts.map(d=>d.id));const payments=(data.payments||[]).filter(p=>ids.has(p.debtId)).map(p=>({id:p.id||crypto.randomUUID(),user_id:currentUser.id,debt_id:p.debtId,amount:Number(p.amount||0),payment_date:p.date||todayISO(),note:p.note||null}));if(payments.length){r=await db.from('payments').insert(payments);if(r.error)throw r.error}
- const movements=(data.movements||[]).map(m=>({id:m.id||crypto.randomUUID(),user_id:currentUser.id,movement_type:m.type,account_name:m.account||'principal',description:m.description,amount:Number(m.amount||0),movement_date:m.date||todayISO(),note:m.note||null}));if(movements.length){r=await db.from('financial_movements').insert(movements);if(r.error)throw r.error}
- const expenses=(data.fixedExpenses||[]).map(e=>({id:e.id||crypto.randomUUID(),user_id:currentUser.id,name:e.name,amount:Number(e.amount||0),frequency:e.frequency||'mensual',due_day:Number(e.dueDay)||null,account_name:e.account||'principal'}));if(expenses.length){r=await db.from('fixed_expenses').insert(expenses);if(r.error)throw r.error}
- state.settings={weeklyIncome:Number(data.settings?.weeklyIncome||0),weeklyExpenses:Number(data.settings?.weeklyExpenses||0),baseMainBalance:Number(data.settings?.baseMainBalance||0),baseCurrentBalance:Number(data.settings?.baseCurrentBalance||0)};await saveSettingsRemote();
-}
-async function clearAll(){if(!requireUser()||!confirm('¿Seguro que deseas borrar deudas, pagos, movimientos, gastos fijos y configuración?'))return;showLoading(true,'Borrando datos...');try{for(const table of ['payments','financial_movements','fixed_expenses','debts']){const {error}=await db.from(table).delete().eq('user_id',currentUser.id);if(error)throw error}state=defaultState();await saveSettingsRemote();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
-
-// Render
-function sortedDebts(){return [...state.debts].sort((a,b)=>(Number(a.balance<=0)-Number(b.balance<=0))||priorityScore(b.priority)-priorityScore(a.priority)||suggestedWeekly(b)-suggestedWeekly(a))}
-function render(){
- const total=remainingTotal(),paid=totalPaid(),initial=initialDebtTotal(),available=availableWeekly(),suggestedTotal=state.debts.filter(d=>Number(d.balance)>0).reduce((s,d)=>s+suggestedWeekly(d),0),pct=initial?Math.min(100,Math.round(paid/initial*100)):0;
- document.getElementById('kpiTotal').textContent=currency(total);document.getElementById('kpiDebtCount').textContent=`${state.debts.filter(d=>Number(d.balance)>0).length} deudas pendientes`;
- document.getElementById('kpiFixedMonthly').textContent=currency(totalFixedMonthly());document.getElementById('kpiMainAccount').textContent=currency(accountBalance('principal'));document.getElementById('kpiCurrentAccount').textContent=currency(accountBalance('cuenta_corriente'));document.getElementById('kpiAvailable').textContent=currency(available);document.getElementById('kpiExtras').textContent=currency(extrasTotal());document.getElementById('kpiAntExpenses').textContent=currency(antExpenseTotalCurrentMonth());
- document.getElementById('overallPct').textContent=`${pct}%`;document.getElementById('overallBar').style.width=`${pct}%`;
- document.getElementById('weeklyIncome').value=state.settings.weeklyIncome||'';document.getElementById('weeklyExpenses').value=state.settings.weeklyExpenses||'';document.getElementById('baseMainBalance').value=state.settings.baseMainBalance||'';document.getElementById('baseCurrentBalance').value=state.settings.baseCurrentBalance||'';
- document.getElementById('movementIncomeTotal').textContent=currency(extrasTotal());document.getElementById('movementExpenseTotal').textContent=currency(outputsTotal());document.getElementById('movementAntTotal').textContent=currency(antExpenseTotalCurrentMonth());document.getElementById('fixedWeeklyDetailed').textContent=currency(detailedFixedWeekly());document.getElementById('fixedMonthlyTotal').textContent=currency(totalFixedMonthly());
- const notice=document.getElementById('capacityNotice');if(!state.settings.weeklyIncome&&!state.fixedExpenses.length)notice.textContent='Configura tu ingreso normal y registra gastos fijos para calcular tu capacidad real de pago.';else if(suggestedTotal===0)notice.innerHTML='<span class="good-text">No tienes deudas pendientes. Excelente trabajo.</span>';else if(available>=suggestedTotal)notice.innerHTML=`<span class="good-text">Tu presupuesto alcanza para cumplir el plan ideal.</span> Después de separar los pagos quedarían <strong>${currency(available-suggestedTotal)}</strong> libres por semana.`;else notice.innerHTML=`<span class="warn-text">Tu plan ideal requiere ${currency(suggestedTotal)} semanales y tienes disponibles ${currency(available)}.</span> Enfoca ingresos extra en las prioridades rojas.`;
- renderWeeklyPlan(available);renderQuickDebts();renderDebtsTable();renderPaymentSelect();renderPayments();renderMovements();renderFixedExpenses();renderPrioritySolutions();renderFastSolutions();renderUpcomingCommitments();renderObligations();renderProjectionDebtSelect();renderInstallmentProjection();renderCalendar();
-}
-function renderWeeklyPlan(available){
- const box=document.getElementById('weeklyPlan'),debts=sortedDebts().filter(d=>Number(d.balance)>0);if(!debts.length){box.innerHTML='<div class="empty good-text">No tienes saldos pendientes.</div>';return}
- let left=available,html='';debts.slice(0,5).forEach(d=>{const ideal=suggestedWeekly(d),amount=available?Math.min(ideal,Math.max(0,left)):ideal;left-=amount;html+=`<div class="plan-item"><div class="row-title"><span>${escapeHtml(d.name)} <span class="badge ${d.priority}">${d.priority}</span></span><span class="plan-money">${currency(amount)}</span></div><div class="muted" style="font-size:12px;margin-top:7px">Meta completa: ${dateCR(d.target)} · Ideal: ${currency(ideal)} por semana</div></div>`});box.innerHTML=html;
-}
-function renderQuickDebts(){const box=document.getElementById('quickDebts'),debts=sortedDebts().slice(0,6);if(!debts.length){box.innerHTML='<div class="empty">Todavía no has agregado deudas.</div>';return}box.innerHTML=debts.map(d=>{const paidForDebt=state.payments.filter(p=>p.debtId===d.id).reduce((s,p)=>s+Number(p.amount),0),init=Number(d.balance)+paidForDebt,pct=init?Math.min(100,Math.round(paidForDebt/init*100)):0;return `<div class="plan-item ${d.priority==='alta'?'priority-line':''}"><div class="row-title"><span><strong>${escapeHtml(d.name)}</strong> <span class="badge ${d.priority}">${d.priority}</span></span><span>${currency(d.balance)}</span></div><div class="muted" style="font-size:12px;margin-top:6px">Cancelar completa: ${dateCR(d.target)} · Estimada: ${estimatedPayoff(d)}</div><div class="progress"><i style="width:${pct}%"></i></div></div>`}).join('')}
-function renderDebtsTable(){const tbody=document.getElementById('debtsTable'),debts=sortedDebts();if(!debts.length){tbody.innerHTML='<tr><td colspan="9" class="empty">No hay deudas registradas.</td></tr>';return}tbody.innerHTML=debts.map(d=>`<tr class="${d.priority==='alta'?'high-priority-row':''}"><td><strong>${escapeHtml(d.name)}</strong><div class="muted">${escapeHtml(d.creditor||'Sin entidad')}</div></td><td>${currency(d.balance)}</td><td><span class="method-chip ${d.paymentMethod}">${methodLabel(d.paymentMethod)}</span></td><td>${dateCR(firstDebtPaymentDate(d))}</td><td>${frequencyLabel(d.paymentFrequency)}</td><td>${currency(debtInstallment(d))}</td><td>${dateCR(d.target)}<div class="muted">Estimado: ${estimatedPayoff(d)}</div></td><td><span class="badge ${d.priority}">${d.priority}</span></td><td><button class="btn small" onclick="openDebtModal('${d.id}')">Editar</button> <button class="btn small" onclick="openProjection('${d.id}')">Plan</button> <button class="btn small danger" onclick="deleteDebt('${d.id}')">Eliminar</button></td></tr>`).join('')}
-function renderPaymentSelect(){const select=document.getElementById('paymentDebt'),current=select.value,debts=sortedDebts().filter(d=>Number(d.balance)>0);select.innerHTML=debts.length?'<option value="">Seleccionar...</option>'+debts.map(d=>`<option value="${d.id}">${escapeHtml(d.name)} · ${currency(d.balance)}</option>`).join(''):'<option value="">No hay deudas pendientes</option>';if(debts.some(d=>d.id===current))select.value=current}
-function renderPayments(){const tbody=document.getElementById('paymentsTable');if(!state.payments.length){tbody.innerHTML='<tr><td colspan="7" class="empty">Todavía no has registrado pagos.</td></tr>';return}tbody.innerHTML=state.payments.map(p=>{const d=debtById(p.debtId);return `<tr><td>${dateCR(p.date)}</td><td>${escapeHtml(d?.name||'Deuda eliminada')}</td><td><span class="method-chip ${p.paymentMethod}">${methodLabel(p.paymentMethod)}</span></td><td class="money-in">${currency(p.amount)}</td><td>${d&&d.balance>0?dateCR(firstDebtPaymentDate(d)):'Pagada'}</td><td>${escapeHtml(p.note||'—')}</td><td><button class="btn small danger" onclick="deletePayment('${p.id}')">Eliminar</button></td></tr>`}).join('')}
-function renderMovements(){const tbody=document.getElementById('movementsTable');if(!state.movements.length){tbody.innerHTML='<tr><td colspan="9" class="empty">Todavía no has registrado movimientos.</td></tr>';return}tbody.innerHTML=state.movements.map(m=>`<tr><td>${dateCR(m.date)}</td><td><span class="movement-type ${m.type}">${movementLabel(m.type)}</span></td><td><strong>${escapeHtml(m.description)}</strong></td><td><span class="account-chip ${m.account}">${accountLabel(m.account)}</span></td><td><span class="method-chip ${m.paymentMethod}">${methodLabel(m.paymentMethod)}</span></td><td class="${movementSign(m)>0?'money-in':'money-out'}">${movementSign(m)>0?'+':'−'} ${currency(m.amount)}</td><td>${m.isAntExpense?'<span class="ant-chip">Gasto hormiga</span>':'—'}</td><td>${escapeHtml(m.note||'—')}</td><td><button class="btn small danger" onclick="deleteMovement('${m.id}')">Eliminar</button></td></tr>`).join('')}
-function renderFixedExpenses(){const tbody=document.getElementById('fixedExpensesTable');if(!state.fixedExpenses.length){tbody.innerHTML='<tr><td colspan="6" class="empty">Todavía no has registrado gastos fijos detallados.</td></tr>';return}tbody.innerHTML=state.fixedExpenses.map(e=>`<tr><td><strong>${escapeHtml(e.name)}</strong></td><td>${currency(e.amount)}</td><td>${e.frequency}</td><td>${e.dueDay?`Día ${e.dueDay}`:'Sin definir'}</td><td><span class="account-chip ${e.account}">${accountLabel(e.account)}</span></td><td><button class="btn small danger" onclick="deleteFixedExpense('${e.id}')">Eliminar</button></td></tr>`).join('')}
-function renderPrioritySolutions(){const box=document.getElementById('prioritySolutions'),urgent=sortedDebts().filter(d=>d.priority==='alta'&&Number(d.balance)>0);if(!urgent.length){box.innerHTML='<div class="empty">No hay prioridades altas.</div>';return}box.innerHTML=urgent.map(d=>`<div class="priority-line"><div class="row-title"><strong>${escapeHtml(d.name)}</strong><strong class="danger-text">${currency(d.balance)}</strong></div><div class="small-help">Siguiente abono: <strong>${dateCR(firstDebtPaymentDate(d))}</strong>. Abona <strong>${currency(debtInstallment(d))}</strong> ${frequencyLabel(d.paymentFrequency).toLowerCase()} hasta llegar a cero.</div></div>`).join('')}
-function renderFastSolutions(){const box=document.getElementById('fastSolutions'),debts=sortedDebts().filter(d=>Number(d.balance)>0),top=debts[0];if(!top){box.innerHTML='<div class="solution-card"><strong>Sin deudas pendientes</strong><p>Continúa controlando tus gastos.</p></div>';return}box.innerHTML=`<div class="solution-card urgent"><strong>1. Ataca primero: ${escapeHtml(top.name)}</strong><p>Abona ${currency(debtInstallment(top))} con frecuencia ${frequencyLabel(top.paymentFrequency).toLowerCase()}.</p></div><div class="solution-card"><strong>2. Vigila gastos hormiga</strong><p>Este mes llevas ${currency(antExpenseTotalCurrentMonth())}. Redirige parte de ese monto a la deuda prioritaria.</p></div><div class="solution-card"><strong>3. Usa tus extras</strong><p>Tu promedio extra reciente es ${currency(recentExtrasWeekly())} por semana. Úsalo para adelantar abonos.</p></div>`}
-function renderUpcomingCommitments(){const box=document.getElementById('upcomingCommitments'),items=[];state.obligations.filter(x=>!x.paid).forEach(x=>items.push({date:x.dueDate,text:`${escapeHtml(x.description)} · ${currency(x.amount)}`,kind:'Programado'}));state.debts.filter(d=>Number(d.balance)>0).forEach(d=>items.push({date:firstDebtPaymentDate(d),text:`${escapeHtml(d.name)} · ${currency(debtInstallment(d))}`,kind:'Abono'}));items.sort((a,b)=>a.date.localeCompare(b.date));box.innerHTML=items.length?items.slice(0,7).map(i=>`<div class="plan-item"><div class="row-title"><span>${i.kind}: <strong>${i.text}</strong></span><span class="due-chip">${dateCR(i.date)}</span></div></div>`).join(''):'<div class="empty">No hay compromisos próximos.</div>'}
+function calendarEventsForDate(iso){const events=[];state.obligations.filter(x=>!x.paid&&x.dueDate===iso).forEach(x=>events.push({cls:'planned-event',text:`${escapeHtml(x.description)} ${currency(x.amount)}`}));state.fixedExpenses.forEach(x=>{if(Number(iso.slice(8,10))===Number(x.dueDay||0))events.push({cls:'fixed-event',text:`${escapeHtml(x.name)} ${currency(x.amount)}`})});state.debts.filter(d=>d.balance>0).forEach(d=>{buildInstallmentSchedule(d,80).filter(x=>x.date===iso).forEach(x=>events.push({cls:'debt-event',text:`${escapeHtml(d.name)} ${currency(x.amount)}`}));if(d.target===iso)events.push({cls:'target-event',text:`Meta: ${escapeHtml(d.name)}`})});return events}
+function renderCalendar(){const grid=document.getElementById('calendarGrid');if(!grid)return;const y=calendarCursor.getFullYear(),m=calendarCursor.getMonth(),name=new Intl.DateTimeFormat('es-CR',{month:'long',year:'numeric'}).format(new Date(y,m,1));document.getElementById('calendarTitle').textContent=name.charAt(0).toUpperCase()+name.slice(1);const headers=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(x=>`<div class="calendar-weekday">${x}</div>`).join(''),first=new Date(y,m,1),days=new Date(y,m+1,0).getDate(),offset=(first.getDay()+6)%7;let cells='';for(let i=0;i<offset;i++)cells+='<div class="calendar-day empty-day"></div>';for(let day=1;day<=days;day++){const iso=dateToISO(new Date(y,m,day,12)),events=calendarEventsForDate(iso);cells+=`<div class="calendar-day ${iso===todayISO()?'today':''}"><div class="calendar-date">${day}</div>${events.slice(0,5).map(e=>`<span class="calendar-event ${e.cls}">${e.text}</span>`).join('')}${events.length>5?`<span class="calendar-event">+${events.length-5} más</span>`:''}</div>`}grid.innerHTML=headers+cells}
 
 document.getElementById('paymentDate').value=todayISO();
 document.getElementById('movementDate').value=todayISO();
-render();initApp();
+document.getElementById('obligationDate').value=todayISO();
+render();
+initCloud();
 </script>
+
 </body>
 </html>
