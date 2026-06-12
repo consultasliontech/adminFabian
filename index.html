@@ -43,6 +43,347 @@ button{cursor:pointer}
 .auth-brand .logo{width:62px;height:62px;border-radius:18px}
 .auth-brand h2{margin:0}
 .auth-brand .muted{font-size:12px;margin-top:5px}
+
+#authModal{
+  background:
+    radial-gradient(circle at top left, rgba(79,140,255,.22), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(108,229,177,.14), transparent 26%),
+    linear-gradient(135deg, rgba(4,7,14,.90), rgba(8,14,26,.82));
+  backdrop-filter: blur(14px);
+}
+#authModal .modal{
+  width:min(1120px,100%);
+  max-width:1120px;
+  padding:0;
+  overflow:hidden;
+  border:1px solid rgba(111,147,201,.18);
+  background:rgba(9,14,23,.84);
+  backdrop-filter: blur(24px);
+  position:relative;
+}
+.auth-shell{
+  display:grid;
+  grid-template-columns: 1.08fr .92fr;
+  min-height:640px;
+  position:relative;
+}
+.auth-shell::before{
+  content:"";
+  position:absolute;
+  inset:-8%;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(79,140,255,.16), transparent 24%),
+    radial-gradient(circle at 80% 82%, rgba(108,229,177,.11), transparent 22%),
+    url("https://dlnwibdjdpppsookllkx.supabase.co/storage/v1/object/public/CONTROL%20DE%20DEUDASS/LOGO%20PLAY%20STORE.png") no-repeat 8% 18% / 370px auto;
+  filter: blur(8px);
+  opacity:.12;
+  pointer-events:none;
+}
+.auth-shell::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg, rgba(7,12,22,.28), rgba(7,12,22,.06) 54%, rgba(7,12,22,.10));
+  pointer-events:none;
+}
+.auth-visual, .auth-panel{position:relative; z-index:1}
+.auth-visual{
+  padding:38px 34px 34px 38px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  border-right:1px solid rgba(255,255,255,.06);
+}
+.auth-panel{
+  padding:38px 34px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  background:linear-gradient(180deg, rgba(14,22,36,.76), rgba(10,16,27,.88));
+}
+.auth-watermark{
+  position:absolute;
+  right:28px;
+  bottom:18px;
+  font-size:64px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:rgba(255,255,255,.035);
+  text-transform:uppercase;
+  pointer-events:none;
+  user-select:none;
+}
+.auth-topline{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border:1px solid rgba(140,176,232,.16);
+  border-radius:999px;
+  background:rgba(255,255,255,.04);
+  color:#c6d7f3;
+  font-size:12px;
+  width:max-content;
+  margin-bottom:18px;
+}
+.auth-heading{
+  margin:0 0 12px;
+  font-size:40px;
+  line-height:1.05;
+  letter-spacing:-1.3px;
+}
+.auth-heading span{
+  display:block;
+  color:#9dbbff;
+}
+.auth-lead{
+  margin:0;
+  max-width:530px;
+  color:#c9d7ed;
+  font-size:15px;
+  line-height:1.7;
+}
+.auth-feature-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:26px;
+}
+.auth-feature{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:18px;
+  padding:15px 16px;
+  box-shadow:0 18px 45px rgba(0,0,0,.16);
+  backdrop-filter: blur(16px);
+}
+.auth-feature strong{display:block;font-size:14px;margin-bottom:7px}
+.auth-feature p{margin:0;color:#b6c4da;font-size:12px;line-height:1.55}
+.auth-kpis{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:26px;
+}
+.auth-kpi{
+  background:linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:16px 14px;
+  backdrop-filter: blur(14px);
+}
+.auth-kpi strong{display:block;font-size:22px;letter-spacing:-.5px}
+.auth-kpi span{display:block;margin-top:7px;color:#afbfd7;font-size:12px;line-height:1.4}
+.auth-mark{
+  display:flex;
+  gap:13px;
+  align-items:center;
+  margin-bottom:22px;
+}
+.auth-mark .logo{
+  width:74px;
+  height:74px;
+  border-radius:22px;
+  background:rgba(255,255,255,.06);
+}
+.auth-mark .brand-text h2{margin:0;font-size:28px;letter-spacing:-.7px}
+.auth-mark .brand-text p{margin:7px 0 0;color:#9fb1ca;font-size:13px;line-height:1.5}
+.auth-chip-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.auth-chip{
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:999px;
+  padding:9px 12px;
+  background:rgba(255,255,255,.05);
+  font-size:12px;
+  color:#dce8fb;
+}
+.auth-card{
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.05);
+  border-radius:24px;
+  padding:28px 24px;
+  box-shadow:0 24px 60px rgba(0,0,0,.25);
+  backdrop-filter: blur(18px);
+}
+.auth-card-title{font-size:14px;color:#9dbbff;margin:0 0 6px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.auth-card h3{margin:0 0 10px;font-size:30px;letter-spacing:-1px}
+.auth-card p{margin:0 0 18px;color:#b7c6db;font-size:13px;line-height:1.6}
+.auth-tabs{display:flex;gap:8px;margin-bottom:16px}
+.auth-tabs button{flex:1}
+.auth-tabs .selected{background:linear-gradient(135deg,var(--accent),#6d64ff);border-color:transparent}
+.auth-help{font-size:12px;color:var(--muted);line-height:1.6;margin-top:12px}
+.auth-mini-note{margin-top:14px;color:#8fa3c2;font-size:11px;line-height:1.6}
+.auth-water-logo{
+  position:absolute;
+  left:-26px;
+  bottom:-30px;
+  width:180px;
+  height:180px;
+  background:url("https://dlnwibdjdpppsookllkx.supabase.co/storage/v1/object/public/CONTROL%20DE%20DEUDASS/LOGO%20PLAY%20STORE.png") no-repeat center/contain;
+  opacity:.045;
+  filter:blur(.4px);
+  pointer-events:none;
+}
+
+/* ===== Tema Oro Premium para inicio de sesión ===== */
+#authModal{
+  background:
+    radial-gradient(circle at top left, rgba(212,175,55,.20), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255,215,110,.14), transparent 24%),
+    linear-gradient(135deg, rgba(12,9,4,.92), rgba(20,14,7,.88));
+}
+#authModal .modal{
+  border:1px solid rgba(212,175,55,.20);
+  background:linear-gradient(145deg, rgba(20,14,8,.93), rgba(9,9,11,.96));
+  box-shadow:0 30px 80px rgba(0,0,0,.42), 0 0 0 1px rgba(212,175,55,.08) inset;
+}
+.auth-shell::before{
+  background:
+    radial-gradient(circle at 18% 22%, rgba(212,175,55,.17), transparent 24%),
+    radial-gradient(circle at 80% 82%, rgba(255,218,128,.10), transparent 20%),
+    url("https://dlnwibdjdpppsookllkx.supabase.co/storage/v1/object/public/CONTROL%20DE%20DEUDASS/LOGO%20PLAY%20STORE.png") no-repeat 8% 18% / 370px auto;
+  filter: blur(8px);
+  opacity:.14;
+}
+.auth-shell::after{
+  background:linear-gradient(90deg, rgba(20,14,8,.25), rgba(20,14,8,.06) 54%, rgba(20,14,8,.12));
+}
+.auth-visual{
+  background:
+    linear-gradient(180deg, rgba(26,18,10,.55), rgba(9,9,11,.25));
+  border-right:1px solid rgba(212,175,55,.10);
+}
+.auth-panel{
+  background:linear-gradient(180deg, rgba(26,18,10,.72), rgba(10,10,12,.92));
+}
+.auth-topline{
+  border:1px solid rgba(212,175,55,.28);
+  background:rgba(212,175,55,.09);
+  color:#f7e3a3;
+  box-shadow:0 0 0 1px rgba(255,233,168,.05) inset;
+}
+.auth-heading span{color:#f1cf6a}
+.auth-lead{color:#e5d6b3}
+.auth-feature{
+  background:linear-gradient(180deg, rgba(212,175,55,.08), rgba(255,255,255,.025));
+  border:1px solid rgba(212,175,55,.14);
+}
+.auth-feature strong{color:#f4dd98}
+.auth-feature p{color:#d2c1a0}
+.auth-chip{
+  border:1px solid rgba(212,175,55,.14);
+  background:rgba(212,175,55,.07);
+  color:#f4df9c;
+}
+.auth-kpi{
+  background:linear-gradient(180deg, rgba(212,175,55,.11), rgba(255,255,255,.02));
+  border:1px solid rgba(212,175,55,.14);
+}
+.auth-kpi strong{color:#f6dfa0}
+.auth-kpi span{color:#d9c6a3}
+.auth-watermark{color:rgba(255,221,136,.045)}
+.auth-card{
+  border:1px solid rgba(212,175,55,.18);
+  background:linear-gradient(180deg, rgba(34,24,14,.68), rgba(18,16,16,.78));
+  box-shadow:0 24px 70px rgba(0,0,0,.35), 0 0 0 1px rgba(255,229,149,.05) inset;
+}
+.auth-mark .logo{
+  background:linear-gradient(180deg, rgba(212,175,55,.14), rgba(255,255,255,.04));
+  box-shadow:0 12px 28px rgba(0,0,0,.26);
+}
+.auth-mark .brand-text p{color:#cbb896}
+.auth-card-title{color:#f0cf69}
+.auth-card h3{color:#fff5d8}
+.auth-card p{color:#d9c9a8}
+#authModal .field label{color:#e9d7a6}
+#authModal .field input{
+  background:rgba(12,10,8,.82);
+  border:1px solid rgba(212,175,55,.16);
+  color:#fff9ea;
+}
+#authModal .field input:focus{border-color:#d4af37; box-shadow:0 0 0 3px rgba(212,175,55,.10)}
+#authModal .auth-tabs .selected,
+#authModal .btn.primary{
+  background:linear-gradient(135deg, #b88915 0%, #d4af37 38%, #f0cf69 68%, #b7860b 100%);
+  color:#1c1408;
+  border-color:transparent;
+  font-weight:800;
+  box-shadow:0 14px 30px rgba(212,175,55,.20);
+}
+#authModal .auth-tabs .selected:hover,
+#authModal .btn.primary:hover{
+  border-color:transparent;
+  transform:translateY(-1px);
+}
+#authModal .auth-tabs .btn:not(.selected){
+  background:rgba(255,255,255,.03);
+  border-color:rgba(212,175,55,.14);
+  color:#f4e0a9;
+}
+#authModal .auth-help{color:#cdbd98}
+.auth-mini-note{color:#a8946d}
+
+.whatsapp-direct{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-top:14px;
+  text-decoration:none;
+  width:100%;
+  padding:12px 14px;
+  border-radius:14px;
+  background:linear-gradient(135deg, rgba(37,211,102,.16), rgba(14,124,53,.14));
+  border:1px solid rgba(37,211,102,.28);
+  color:#dff9e9;
+  font-weight:700;
+  transition:.2s;
+}
+.whatsapp-direct:hover{
+  transform:translateY(-1px);
+  border-color:rgba(37,211,102,.42);
+  box-shadow:0 14px 30px rgba(37,211,102,.10);
+}
+.whatsapp-direct small{
+  display:block;
+  font-size:11px;
+  color:#baf1c9;
+  font-weight:500;
+}
+.whatsapp-icon{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:rgba(37,211,102,.18);
+  font-size:19px;
+  flex:0 0 auto;
+}
+.support-note{
+  margin-top:10px;
+  text-align:center;
+  color:#a99772;
+  font-size:11px;
+  line-height:1.6;
+}
+
+@media(max-width:1050px){
+  #authModal .modal{max-width:760px}
+  .auth-shell{grid-template-columns:1fr}
+  .auth-visual{padding:28px 24px;border-right:0;border-bottom:1px solid rgba(255,255,255,.06)}
+  .auth-panel{padding:28px 24px}
+  .auth-heading{font-size:31px}
+  .auth-kpis{grid-template-columns:1fr 1fr 1fr}
+}
+@media(max-width:720px){
+  #authModal{padding:12px}
+  .auth-visual{display:none}
+  .auth-panel{padding:22px 18px}
+  .auth-card{padding:22px 18px;border-radius:20px}
+  .auth-mark .logo{width:62px;height:62px;border-radius:18px}
+  .auth-mark .brand-text h2{font-size:24px}
+}
 .brand strong{display:block;font-size:16px}.brand span{display:block;font-size:12px;color:var(--muted);margin-top:3px}
 .nav button{
   width:100%;border:0;background:transparent;color:var(--muted);text-align:left;
@@ -124,6 +465,44 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 .auth-tabs .selected{background:linear-gradient(135deg,var(--accent),#6d64ff);border-color:transparent}.auth-help{font-size:12px;color:var(--muted);line-height:1.5;margin-top:12px}.full{width:100%}
 .loading-screen{display:none;position:fixed;inset:0;background:rgba(6,9,15,.82);z-index:30;place-items:center;text-align:center;color:white}.loading-screen.show{display:grid}.spinner{width:38px;height:38px;border:4px solid #273349;border-top-color:#6d9cff;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}@keyframes spin{to{transform:rotate(360deg)}}
 
+
+/* ===== Módulo financiero completo ===== */
+.cards-finance{grid-template-columns:repeat(6,minmax(0,1fr));margin-bottom:17px}
+.kpi.gold{color:#f0cf69}.kpi.red{color:#ff8996}.kpi.green{color:#98f2cc}
+.priority-card{border:1px solid rgba(255,107,122,.34);background:linear-gradient(145deg,rgba(84,23,32,.30),rgba(16,22,34,.90))}
+.priority-card h3{color:#ff9aa5}.priority-line{border-left:3px solid var(--danger);padding-left:11px;margin-top:12px}
+.solution-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.solution-card{border:1px solid var(--line);background:#0d1420;border-radius:15px;padding:14px}
+.solution-card.urgent{border-color:rgba(255,107,122,.40);background:rgba(255,107,122,.075)}
+.solution-card strong{display:block;margin-bottom:7px}.solution-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.55}
+.money-in{color:#98f2cc;font-weight:800}.money-out{color:#ff9aa5;font-weight:800}.money-neutral{color:#f1cf6a;font-weight:800}
+.movement-type{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800}
+.movement-type.ingreso_extra,.movement-type.ganancia{background:rgba(108,229,177,.12);color:#98f2cc}
+.movement-type.gasto,.movement-type.inversion,.movement-type.deuda{background:rgba(255,107,122,.12);color:#ff9aa5}
+.account-chip{display:inline-block;padding:4px 7px;border-radius:999px;background:rgba(79,140,255,.12);color:#b6ccff;font-size:11px}
+.account-chip.cuenta_corriente{background:rgba(240,207,105,.11);color:#f1d98d}
+.due-chip{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(255,200,87,.12);color:#ffd77e;font-size:11px}
+.overdue{color:#ff9aa5;font-weight:800}
+.high-priority-row{background:rgba(255,107,122,.045)}
+.high-priority-row td:first-child{border-left:3px solid var(--danger)}
+.finance-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:16px}
+.finance-box{padding:15px;border:1px solid var(--line);border-radius:15px;background:#0d1420}
+.finance-box span{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}.finance-box strong{font-size:20px}
+.section-actions{display:flex;gap:9px;flex-wrap:wrap}
+.small-help{font-size:12px;color:var(--muted);line-height:1.6}
+.callout-red{border:1px solid rgba(255,107,122,.34);background:rgba(255,107,122,.08);padding:12px;border-radius:12px;font-size:12px;color:#ffd0d5;line-height:1.55}
+@media(max-width:1350px){.cards-finance{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:1050px){.solution-grid{grid-template-columns:1fr 1fr}.finance-summary{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.cards-finance{grid-template-columns:1fr}.solution-grid,.finance-summary{grid-template-columns:1fr}}
+
+
+/* ===== Calendario, métodos de pago y gastos hormiga ===== */
+.method-chip,.ant-chip{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:800}
+.method-chip.sinpe_movil{background:rgba(79,140,255,.14);color:#b8ccff}.method-chip.efectivo{background:rgba(108,229,177,.12);color:#a5f2cf}.ant-chip{background:rgba(255,200,87,.14);color:#ffda83}
+.checkbox-card{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:#0c111b;min-height:45px}.checkbox-card input{width:17px;height:17px;accent-color:#ffc857}.checkbox-card label{font-size:12px;color:#d7e1ef;margin:0}
+.calendar-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.calendar-toolbar h2{margin:0}.calendar-controls{display:flex;gap:8px;flex-wrap:wrap}.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px}.calendar-weekday{text-align:center;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.6px;padding:6px 0}.calendar-day{min-height:128px;padding:8px;border:1px solid var(--line);border-radius:12px;background:#0c121d;overflow:hidden}.calendar-day.empty-day{opacity:.35;background:rgba(12,18,29,.40)}.calendar-day.today{border-color:rgba(79,140,255,.70);box-shadow:0 0 0 2px rgba(79,140,255,.11) inset}.calendar-date{font-size:12px;font-weight:850;color:#dce7f5;margin-bottom:6px}.calendar-event{display:block;margin:5px 0 0;padding:5px 6px;border-radius:8px;font-size:10px;line-height:1.35;border-left:3px solid #4f8cff;background:rgba(79,140,255,.10);color:#dce8ff}.calendar-event.debt-event{border-left-color:#ff6b7a;background:rgba(255,107,122,.10);color:#ffd1d6}.calendar-event.fixed-event{border-left-color:#ffc857;background:rgba(255,200,87,.09);color:#ffe1a0}.calendar-event.planned-event{border-left-color:#6ce5b1;background:rgba(108,229,177,.09);color:#c8f7e0}.calendar-event.target-event{border-left-color:#b78cff;background:rgba(183,140,255,.10);color:#e2d1ff}.calendar-legend{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.calendar-legend span{font-size:11px;color:var(--muted)}.legend-dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}.legend-dot.debt{background:#ff6b7a}.legend-dot.fixed{background:#ffc857}.legend-dot.planned{background:#6ce5b1}.legend-dot.target{background:#b78cff}.projection-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:14px}.projection-box{background:#0d1420;border:1px solid var(--line);border-radius:13px;padding:13px}.projection-box span{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}.projection-box strong{font-size:16px}.paid-row{opacity:.58}.calendar-note{font-size:12px;color:var(--muted);line-height:1.55}
+@media(max-width:1050px){.calendar-day{min-height:105px;padding:6px}.calendar-event{font-size:9px}.projection-summary{grid-template-columns:1fr 1fr}}@media(max-width:720px){.calendar-grid{gap:4px}.calendar-day{min-height:83px;padding:5px;border-radius:9px}.calendar-date{font-size:10px}.calendar-event{font-size:8px;padding:4px}.calendar-toolbar{align-items:flex-start;flex-direction:column}.projection-summary{grid-template-columns:1fr}}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -135,6 +514,9 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
       <button class="active" data-section="dashboard">▦ Resumen</button>
       <button data-section="debts">◷ Mis deudas</button>
       <button data-section="payments">₡ Registrar pagos</button>
+      <button data-section="movements">↕ Movimientos</button>
+      <button data-section="fixed-expenses">▤ Gastos fijos</button>
+      <button data-section="calendar">▦ Calendario y abonos</button>
       <button data-section="settings">⚙ Configuración</button>
     </nav>
     <div class="sync-box">
@@ -148,22 +530,29 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
   <main class="main">
     <section id="dashboard" class="section active">
       <div class="topbar">
-        <div><h1>Panel de administración de deudas</h1><p class="subtitle">Organiza tus pagos y mira cuánto separar cada semana.</p></div>
-        <button class="btn primary" onclick="openDebtModal()">+ Agregar deuda</button>
+        <div><h1>Panel financiero integral</h1><p class="subtitle">Controla tus deudas, gastos fijos, ganancias, inversiones y cuentas en un solo lugar.</p></div>
+        <div class="section-actions">
+          <button class="btn" onclick="showSection('movements')">+ Movimiento</button>
+          <button class="btn primary" onclick="openDebtModal()">+ Agregar deuda</button>
+        </div>
       </div>
-      <div class="grid cards">
-        <article class="card"><div class="kpi-label">Saldo total pendiente</div><div class="kpi" id="kpiTotal">₡0</div><div class="kpi-hint" id="kpiDebtCount">0 deudas registradas</div></article>
-        <article class="card"><div class="kpi-label">Disponible por semana</div><div class="kpi" id="kpiAvailable">₡0</div><div class="kpi-hint">Después de gastos fijos semanales</div></article>
-        <article class="card"><div class="kpi-label">Pago recomendado semanal</div><div class="kpi" id="kpiSuggested">₡0</div><div class="kpi-hint" id="suggestedHint">Según tus metas registradas</div></article>
-        <article class="card"><div class="kpi-label">Pagado acumulado</div><div class="kpi" id="kpiPaid">₡0</div><div class="kpi-hint" id="paidHint">Sigue avanzando paso a paso</div></article>
+
+      <div class="grid cards-finance">
+        <article class="card"><div class="kpi-label">Deudas pendientes</div><div class="kpi red" id="kpiTotal">₡0</div><div class="kpi-hint" id="kpiDebtCount">0 deudas registradas</div></article>
+        <article class="card"><div class="kpi-label">Gastos fijos mensuales</div><div class="kpi" id="kpiFixedMonthly">₡0</div><div class="kpi-hint">Incluye gastos detallados y reserva semanal</div></article>
+        <article class="card"><div class="kpi-label">Cuenta principal</div><div class="kpi gold" id="kpiMainAccount">₡0</div><div class="kpi-hint">Saldo inicial + movimientos</div></article>
+        <article class="card"><div class="kpi-label">Cuenta corriente</div><div class="kpi gold" id="kpiCurrentAccount">₡0</div><div class="kpi-hint">Saldo inicial + movimientos</div></article>
+        <article class="card"><div class="kpi-label">Disponible por semana</div><div class="kpi green" id="kpiAvailable">₡0</div><div class="kpi-hint">Ingreso normal + promedio extra − gastos fijos</div></article>
+        <article class="card"><div class="kpi-label">Ganancias e ingresos extra</div><div class="kpi green" id="kpiExtras">₡0</div><div class="kpi-hint">Total acumulado registrado</div></article>
+        <article class="card"><div class="kpi-label">Gastos hormiga del mes</div><div class="kpi red" id="kpiAntExpenses">₡0</div><div class="kpi-hint">Pequeñas salidas que conviene vigilar</div></article>
       </div>
 
       <div class="grid two">
         <article class="card">
-          <h2>Progreso general</h2>
+          <h2>Progreso general de las deudas</h2>
           <div class="row-title"><span>Deuda pagada</span><strong id="overallPct">0%</strong></div>
           <div class="bar" style="margin:10px 0 15px"><span id="overallBar" style="width:0%"></span></div>
-          <div class="notice" id="capacityNotice">Configura tu ingreso y tus gastos semanales para calcular tu capacidad real de pago.</div>
+          <div class="notice" id="capacityNotice">Configura tu ingreso y registra gastos fijos para calcular tu capacidad real.</div>
         </article>
         <article class="card">
           <h2>Plan sugerido para esta semana</h2>
@@ -171,7 +560,23 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
         </article>
       </div>
 
+      <div class="grid two">
+        <article class="card priority-card">
+          <h2>Prioridades en rojo</h2>
+          <div id="prioritySolutions"></div>
+        </article>
+        <article class="card">
+          <h2>Próximos compromisos</h2>
+          <div id="upcomingCommitments"></div>
+        </article>
+      </div>
+
       <article class="card">
+        <h2>Soluciones para pagar más rápido</h2>
+        <div id="fastSolutions" class="solution-grid"></div>
+      </article>
+
+      <article class="card" style="margin-top:17px">
         <h2>Vista rápida de tus deudas</h2>
         <div id="quickDebts"></div>
       </article>
@@ -179,13 +584,14 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 
     <section id="debts" class="section">
       <div class="topbar">
-        <div><h1>Mis deudas</h1><p class="subtitle">Registra cada saldo pendiente y define su prioridad.</p></div>
+        <div><h1>Mis deudas</h1><p class="subtitle">Define la fecha para cancelar cada deuda completa y revisa su plan acelerado.</p></div>
         <button class="btn primary" onclick="openDebtModal()">+ Agregar deuda</button>
       </div>
       <article class="card">
-        <div class="table-wrap">
+        <div class="callout-red">Las deudas con prioridad alta aparecen marcadas en rojo. El panel calcula un abono semanal sugerido y una fecha estimada para terminar cada una.</div>
+        <div class="table-wrap" style="margin-top:12px">
           <table>
-            <thead><tr><th>Deuda</th><th>Saldo actual</th><th>Pago mínimo mensual</th><th>Meta</th><th>Prioridad</th><th>Recomendado/semana</th><th>Acciones</th></tr></thead>
+            <thead><tr><th>Deuda</th><th>Saldo actual</th><th>Tipo de pago</th><th>Próximo abono</th><th>Frecuencia</th><th>Abono acordado</th><th>Cancelar completa el</th><th>Prioridad</th><th>Acciones</th></tr></thead>
             <tbody id="debtsTable"></tbody>
           </table>
         </div>
@@ -204,6 +610,7 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
               <div class="field"><label>Seleccionar deuda</label><select id="paymentDebt" required></select></div>
               <div class="field"><label>Monto abonado</label><input id="paymentAmount" type="number" min="1" step="1" placeholder="Ejemplo: 15000" required></div>
               <div class="field"><label>Fecha</label><input id="paymentDate" type="date" required></div>
+              <div class="field"><label>Tipo de pago</label><select id="paymentMethod"><option value="sinpe_movil">SINPE Móvil</option><option value="efectivo">Efectivo</option></select></div>
               <div class="field"><label>Nota opcional</label><input id="paymentNote" type="text" placeholder="Ejemplo: pago de esta semana"></div>
             </div>
             <div class="actions end"><button class="btn primary" type="submit">Guardar pago</button></div>
@@ -216,8 +623,105 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
       </div>
       <article class="card">
         <h2>Historial de pagos</h2>
-        <div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Deuda</th><th>Monto</th><th>Nota</th><th>Acción</th></tr></thead><tbody id="paymentsTable"></tbody></table></div>
+        <div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Deuda</th><th>Tipo de pago</th><th>Monto</th><th>Siguiente abono</th><th>Nota</th><th>Acción</th></tr></thead><tbody id="paymentsTable"></tbody></table></div>
       </article>
+    </section>
+
+
+    <section id="movements" class="section">
+      <div class="topbar">
+        <div><h1>Movimientos de dinero</h1><p class="subtitle">Registra extras, ganancias, gastos, inversiones o compras que generen deuda.</p></div>
+      </div>
+      <div class="grid two">
+        <article class="card">
+          <h2>Agregar movimiento</h2>
+          <form id="movementForm">
+            <div class="form-grid">
+              <div class="field"><label>Tipo de movimiento</label>
+                <select id="movementType" required>
+                  <option value="ingreso_extra">Ingreso extra</option>
+                  <option value="ganancia">Ganancia</option>
+                  <option value="gasto">Gasto</option>
+                  <option value="inversion">Inversión</option>
+                  <option value="deuda">Compra o gasto financiado / deuda</option>
+                </select>
+              </div>
+              <div class="field"><label>Cuenta donde se mezcla</label>
+                <select id="movementAccount" required>
+                  <option value="principal">Cuenta principal</option>
+                  <option value="cuenta_corriente">Cuenta corriente</option>
+                </select>
+              </div>
+              <div class="field"><label>Descripción</label><input id="movementDescription" required placeholder="Ejemplo: arreglo de teléfono"></div>
+              <div class="field"><label>Monto</label><input id="movementAmount" type="number" min="1" step="1" required placeholder="Ejemplo: 16000"></div>
+              <div class="field"><label>Fecha</label><input id="movementDate" type="date" required></div>
+              <div class="field"><label>Forma de pago</label><select id="movementPaymentMethod"><option value="sinpe_movil">SINPE Móvil</option><option value="efectivo">Efectivo</option></select></div>
+              <div class="field"><label>Nota opcional</label><input id="movementNote" placeholder="Ejemplo: inversión realizada el día 16"></div>
+              <div class="checkbox-card"><input id="movementIsAnt" type="checkbox"><label for="movementIsAnt">Marcar como gasto hormiga</label></div>
+            </div>
+            <div class="actions end"><button class="btn primary" type="submit">Guardar movimiento</button></div>
+          </form>
+        </article>
+        <article class="card">
+          <h2>Cómo usar esta sección</h2>
+          <div class="notice">Ejemplo: si pagas un arreglo de teléfono el día 16 por ₡16.000, registra <strong>Inversión</strong>, elige la cuenta usada y escribe la fecha. Si recibes dinero adicional, utiliza <strong>Ingreso extra</strong> o <strong>Ganancia</strong>; el sistema lo suma a la cuenta seleccionada.</div>
+          <div class="finance-summary" style="margin-top:14px">
+            <div class="finance-box"><span>Entradas acumuladas</span><strong class="money-in" id="movementIncomeTotal">₡0</strong></div>
+            <div class="finance-box"><span>Salidas acumuladas</span><strong class="money-out" id="movementExpenseTotal">₡0</strong></div>
+            <div class="finance-box"><span>Gastos hormiga del mes</span><strong class="money-out" id="movementAntTotal">₡0</strong></div>
+          </div>
+        </article>
+      </div>
+      <article class="card">
+        <h2>Historial de movimientos</h2>
+        <div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Tipo</th><th>Descripción</th><th>Cuenta</th><th>Pago</th><th>Monto</th><th>Control</th><th>Nota</th><th>Acción</th></tr></thead><tbody id="movementsTable"></tbody></table></div>
+      </article>
+    </section>
+
+    <section id="fixed-expenses" class="section">
+      <div class="topbar">
+        <div><h1>Gastos fijos</h1><p class="subtitle">Registra obligaciones recurrentes para saber cuánto debes reservar realmente.</p></div>
+      </div>
+      <div class="grid two">
+        <article class="card">
+          <h2>Agregar gasto fijo</h2>
+          <form id="fixedExpenseForm">
+            <div class="form-grid">
+              <div class="field"><label>Nombre</label><input id="fixedExpenseName" required placeholder="Ejemplo: internet, alquiler o transporte"></div>
+              <div class="field"><label>Monto</label><input id="fixedExpenseAmount" type="number" min="1" step="1" required placeholder="Ejemplo: 25000"></div>
+              <div class="field"><label>Frecuencia</label><select id="fixedExpenseFrequency"><option value="mensual">Mensual</option><option value="semanal">Semanal</option></select></div>
+              <div class="field"><label>Día de pago</label><input id="fixedExpenseDueDay" type="number" min="1" max="31" step="1" placeholder="Ejemplo: 16"></div>
+              <div class="field"><label>Cuenta habitual</label><select id="fixedExpenseAccount"><option value="principal">Cuenta principal</option><option value="cuenta_corriente">Cuenta corriente</option></select></div>
+            </div>
+            <div class="actions end"><button class="btn primary" type="submit">Guardar gasto fijo</button></div>
+          </form>
+        </article>
+        <article class="card">
+          <h2>Reserva calculada</h2>
+          <div class="finance-summary">
+            <div class="finance-box"><span>Detalle semanal</span><strong id="fixedWeeklyDetailed">₡0</strong></div>
+            <div class="finance-box"><span>Total mensual estimado</span><strong id="fixedMonthlyTotal">₡0</strong></div>
+          </div>
+          <div class="small-help">El cálculo semanal combina tus gastos detallados con el monto adicional que registres en Configuración.</div>
+        </article>
+      </div>
+      <article class="card">
+        <h2>Listado de gastos fijos</h2>
+        <div class="table-wrap"><table><thead><tr><th>Gasto fijo</th><th>Monto</th><th>Frecuencia</th><th>Día de pago</th><th>Cuenta</th><th>Acción</th></tr></thead><tbody id="fixedExpensesTable"></tbody></table></div>
+      </article>
+    </section>
+
+
+    <section id="calendar" class="section">
+      <div class="topbar"><div><h1>Calendario y plan de abonos</h1><p class="subtitle">Programa pagos puntuales y visualiza cómo cada deuda llega a cero.</p></div></div>
+      <div class="grid two">
+        <article class="card"><h2>Programar algo que debes pagar</h2><form id="obligationForm"><div class="form-grid">
+          <div class="field"><label>Descripción</label><input id="obligationDescription" required placeholder="Ejemplo: pagar reparación o entregar dinero a una persona"></div><div class="field"><label>Monto</label><input id="obligationAmount" type="number" min="1" step="1" required placeholder="Ejemplo: 20000"></div><div class="field"><label>Fecha exacta</label><input id="obligationDate" type="date" required></div><div class="field"><label>Tipo de pago</label><select id="obligationPaymentMethod"><option value="sinpe_movil">SINPE Móvil</option><option value="efectivo">Efectivo</option></select></div><div class="field"><label>Categoría</label><select id="obligationCategory"><option value="pago_programado">Pago programado</option><option value="deuda">Deuda</option><option value="gasto">Gasto</option><option value="inversion">Inversión</option></select></div><div class="field"><label>Prioridad</label><select id="obligationPriority"><option value="alta">Alta</option><option value="media" selected>Media</option><option value="baja">Baja</option></select></div><div class="field"><label>Nota opcional</label><input id="obligationNote" placeholder="Ejemplo: confirmar antes de pagar"></div>
+        </div><div class="actions end"><button class="btn primary" type="submit">Guardar compromiso</button></div></form></article>
+        <article class="card"><h2>Proyección de abonos hasta llegar a ₡0</h2><div class="field"><label>Seleccionar deuda o persona</label><select id="projectionDebt" onchange="renderInstallmentProjection()"></select></div><div id="projectionSummary" class="projection-summary" style="margin-top:14px"></div><div class="calendar-note">El sistema utiliza el monto, la frecuencia y la fecha del próximo abono definidos en cada deuda. Después de registrar un pago, calcula la siguiente fecha automáticamente.</div></article>
+      </div>
+      <article class="card"><div class="calendar-toolbar"><h2 id="calendarTitle">Calendario</h2><div class="calendar-controls"><button class="btn small" type="button" onclick="changeCalendarMonth(-1)">← Mes anterior</button><button class="btn small" type="button" onclick="goCalendarToday()">Hoy</button><button class="btn small" type="button" onclick="changeCalendarMonth(1)">Mes siguiente →</button></div></div><div id="calendarGrid" class="calendar-grid"></div><div class="calendar-legend"><span><i class="legend-dot debt"></i>Abonos de deudas</span><span><i class="legend-dot fixed"></i>Gastos fijos</span><span><i class="legend-dot planned"></i>Pagos programados</span><span><i class="legend-dot target"></i>Fecha meta de cancelación</span></div></article>
+      <div class="grid two" style="margin-top:17px"><article class="card"><h2>Calendario de abonos de la deuda seleccionada</h2><div class="table-wrap"><table><thead><tr><th>#</th><th>Fecha</th><th>Abono</th><th>Saldo después del abono</th><th>Tipo de pago</th></tr></thead><tbody id="projectionTable"></tbody></table></div></article><article class="card"><h2>Pagos puntuales programados</h2><div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Compromiso</th><th>Pago</th><th>Monto</th><th>Prioridad</th><th>Estado</th><th>Acción</th></tr></thead><tbody id="obligationsTable"></tbody></table></div></article></div>
     </section>
 
     <section id="settings" class="section">
@@ -227,9 +731,12 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
           <h2>Presupuesto semanal</h2>
           <form id="settingsForm">
             <div class="form-grid">
-              <div class="field"><label>Ingreso por semana</label><input id="weeklyIncome" type="number" min="0" step="1" placeholder="Ejemplo: 100000"></div>
-              <div class="field"><label>Gastos fijos por semana</label><input id="weeklyExpenses" type="number" min="0" step="1" placeholder="Ejemplo: 45000"></div>
+              <div class="field"><label>Ingreso normal por semana</label><input id="weeklyIncome" type="number" min="0" step="1" placeholder="Ejemplo: 100000"></div>
+              <div class="field"><label>Otros gastos fijos semanales no detallados</label><input id="weeklyExpenses" type="number" min="0" step="1" placeholder="Ejemplo: 10000"></div>
+              <div class="field"><label>Saldo inicial cuenta principal</label><input id="baseMainBalance" type="number" step="1" placeholder="Ejemplo: 85000"></div>
+              <div class="field"><label>Saldo inicial cuenta corriente</label><input id="baseCurrentBalance" type="number" step="1" placeholder="Ejemplo: 30000"></div>
             </div>
+            <p class="small-help">Los ingresos extra, ganancias, gastos e inversiones se mezclarán automáticamente con la cuenta que selecciones al registrarlos.</p>
             <div class="actions end"><button class="btn primary" type="submit">Guardar presupuesto</button></div>
           </form>
         </article>
@@ -259,7 +766,12 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
         <div class="field"><label>Entidad o persona</label><input id="debtCreditor" placeholder="Ejemplo: banco, tienda o familiar"></div>
         <div class="field"><label>Saldo pendiente</label><input id="debtBalance" required type="number" min="1" step="1" placeholder="Ejemplo: 250000"></div>
         <div class="field"><label>Pago mínimo mensual</label><input id="debtMinimum" type="number" min="0" step="1" placeholder="Ejemplo: 25000"></div>
-        <div class="field"><label>Fecha meta para terminar</label><input id="debtTarget" type="date"></div>
+        <div class="field"><label>Fecha para pagarla completa</label><input id="debtTarget" type="date"></div>
+        <div class="field"><label>Día habitual de pago mensual</label><input id="debtDueDay" type="number" min="1" max="31" step="1" placeholder="Ejemplo: 16"></div>
+        <div class="field"><label>Tipo de pago preferido</label><select id="debtPaymentMethod"><option value="sinpe_movil">SINPE Móvil</option><option value="efectivo">Efectivo</option></select></div>
+        <div class="field"><label>Monto de cada abono</label><input id="debtInstallmentAmount" type="number" min="0" step="1" placeholder="Ejemplo: 10000"></div>
+        <div class="field"><label>Frecuencia de abonos</label><select id="debtPaymentFrequency"><option value="semanal">Semanal</option><option value="quincenal">Quincenal</option><option value="mensual" selected>Mensual</option></select></div>
+        <div class="field"><label>Fecha del próximo abono</label><input id="debtNextPaymentDate" type="date"></div>
         <div class="field"><label>Prioridad</label><select id="debtPriority"><option value="alta">Alta</option><option value="media" selected>Media</option><option value="baja">Baja</option></select></div>
       </div>
       <div class="actions end"><button class="btn" type="button" onclick="closeDebtModal()">Cancelar</button><button class="btn primary" type="submit">Guardar deuda</button></div>
@@ -267,22 +779,94 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
   </div>
 </div>
 
+
 <div class="modal-backdrop" id="authModal">
-  <div class="modal" style="max-width:460px">
-    <div class="auth-brand">
-      <div class="logo"><img src="https://dlnwibdjdpppsookllkx.supabase.co/storage/v1/object/public/CONTROL%20DE%20DEUDASS/LOGO%20PLAY%20STORE.png" alt="Logo FCTechSystems"></div>
-      <div><h2>Acceder a tu panel</h2><div class="muted">FCTechSystems · almacenamiento privado en línea</div></div>
+  <div class="modal">
+    <div class="auth-shell">
+      <div class="auth-visual">
+        <div>
+          <div class="auth-topline">● Bienvenido a tu panel financiero privado</div>
+          <h1 class="auth-heading">Ordena tus deudas<span>y toma control de tu dinero</span></h1>
+          <p class="auth-lead">Con <strong>FCTechSystems</strong> puedes visualizar tus deudas, planificar pagos semanales, llevar control de tus avances y mantener toda tu información sincronizada en la nube de forma segura.</p>
+
+          <div class="auth-feature-grid">
+            <div class="auth-feature">
+              <strong>Planeación inteligente</strong>
+              <p>Recibe una guía clara para distribuir tus pagos semanales según prioridad, metas y saldo pendiente.</p>
+            </div>
+            <div class="auth-feature">
+              <strong>Seguridad por usuario</strong>
+              <p>Cada cuenta accede únicamente a su propia información gracias a reglas privadas configuradas en Supabase.</p>
+            </div>
+            <div class="auth-feature">
+              <strong>Visión financiera</strong>
+              <p>Observa tu progreso general, cuánto debes y cuánto has pagado en un solo lugar.</p>
+            </div>
+            <div class="auth-feature">
+              <strong>Respaldo en línea</strong>
+              <p>Tus datos no quedan solo en el navegador: se conservan en la nube para seguir desde cualquier equipo.</p>
+            </div>
+          </div>
+
+          <div class="auth-chip-row">
+            <span class="auth-chip">Control de deudas</span>
+            <span class="auth-chip">Pagos semanales</span>
+            <span class="auth-chip">Metas financieras</span>
+            <span class="auth-chip">Sincronización segura</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="auth-kpis">
+            <div class="auth-kpi"><strong>100%</strong><span>Tu información financiera en un entorno privado y profesional.</span></div>
+            <div class="auth-kpi"><strong>24/7</strong><span>Acceso a tu panel desde donde lo necesites.</span></div>
+            <div class="auth-kpi"><strong>₡</strong><span>Organización clara para pagos, saldos y proyección semanal.</span></div>
+          </div>
+        </div>
+        <div class="auth-watermark">FCTechSystems</div>
+        <div class="auth-water-logo"></div>
+      </div>
+
+      <div class="auth-panel">
+        <div class="auth-card">
+          <div class="auth-mark">
+            <div class="logo"><img src="https://dlnwibdjdpppsookllkx.supabase.co/storage/v1/object/public/CONTROL%20DE%20DEUDASS/LOGO%20PLAY%20STORE.png" alt="Logo FCTechSystems"></div>
+            <div class="brand-text">
+              <h2>Bienvenido</h2>
+              <p>Ingresa a tu centro de administración financiera y continúa construyendo un mejor control de tus deudas.</p>
+            </div>
+          </div>
+
+          <div class="auth-card-title">Acceso seguro</div>
+          <h3>Inicia sesión en tu cuenta premium</h3>
+          <p>Accede con tu correo y contraseña para gestionar tus deudas con una experiencia ejecutiva color oro, elegante, clara y enfocada en finanzas.</p>
+
+          <div class="auth-tabs">
+            <button id="loginTab" type="button" class="btn selected" onclick="setAuthMode('login')">Iniciar sesión</button>
+            <button id="registerTab" type="button" class="btn" onclick="setAuthMode('register')">Crear cuenta</button>
+          </div>
+
+          <form id="authForm">
+            <div class="field"><label>Correo electrónico</label><input id="authEmail" type="email" required placeholder="correo@ejemplo.com"></div>
+            <div class="field" style="margin-top:12px"><label>Contraseña</label><input id="authPassword" type="password" minlength="6" required placeholder="Mínimo 6 caracteres"></div>
+            <div class="actions end"><button id="authSubmit" class="btn primary full" type="submit">Iniciar sesión</button></div>
+          </form>
+
+          <div id="authMessage" class="auth-help">Bienvenido de nuevo. Inicia sesión para acceder a tu panel financiero privado y continuar con el control de tus pagos.</div>
+
+          <a class="whatsapp-direct" href="https://wa.me/50683843992?text=Hola%20Fabian,%20quiero%20ayuda%20con%20mi%20panel%20financiero" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp directo al 83843992">
+            <span class="whatsapp-icon">✆</span>
+            <span>
+              WhatsApp directo
+              <small>Tocar para escribir al 83843992</small>
+            </span>
+          </a>
+
+          <div class="support-note">Atención directa y rápida desde tu panel.</div>
+          <div class="auth-mini-note">Tu marca, tu panel y tu información en un entorno profesional respaldado en la nube.</div>
+        </div>
+      </div>
     </div>
-    <div class="auth-tabs">
-      <button id="loginTab" type="button" class="btn selected" onclick="setAuthMode('login')">Iniciar sesión</button>
-      <button id="registerTab" type="button" class="btn" onclick="setAuthMode('register')">Crear cuenta</button>
-    </div>
-    <form id="authForm">
-      <div class="field"><label>Correo electrónico</label><input id="authEmail" type="email" required placeholder="correo@ejemplo.com"></div>
-      <div class="field" style="margin-top:12px"><label>Contraseña</label><input id="authPassword" type="password" minlength="6" required placeholder="Mínimo 6 caracteres"></div>
-      <div class="actions end"><button id="authSubmit" class="btn primary full" type="submit">Iniciar sesión</button></div>
-    </form>
-    <div id="authMessage" class="auth-help">Usa una cuenta personal. Las reglas de seguridad permiten que cada usuario vea únicamente sus propios datos.</div>
   </div>
 </div>
 
@@ -293,136 +877,236 @@ const SUPABASE_URL = 'https://dlnwibdjdpppsookllkx.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_pcnOhCB1_C7hrDTmWUsCgg_svJ12C-M';
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
 const LEGACY_STORAGE_KEY = 'fc_debt_manager_v1';
-const CACHE_PREFIX = 'fc_debt_manager_supabase_';
+const CACHE_PREFIX = 'fc_finance_complete_supabase_';
 
 let currentUser = null;
 let authMode = 'login';
 let state = defaultState();
+let calendarCursor = new Date();
 
-function defaultState(){ return {settings:{weeklyIncome:0,weeklyExpenses:0},debts:[],payments:[]}; }
-function cacheKey(){ return currentUser ? CACHE_PREFIX + currentUser.id : LEGACY_STORAGE_KEY; }
-function loadCache(){ try{return JSON.parse(localStorage.getItem(cacheKey())) || defaultState()}catch(e){return defaultState()} }
-function saveCache(){ if(currentUser)localStorage.setItem(cacheKey(),JSON.stringify(state)); }
-function currency(n){ return new Intl.NumberFormat('es-CR',{style:'currency',currency:'CRC',maximumFractionDigits:0}).format(Number(n)||0); }
-function todayISO(){ return new Date().toISOString().slice(0,10); }
-function escapeHtml(value){ return String(value??'').replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])); }
-function debtById(id){ return state.debts.find(d=>d.id===id); }
-function weeksUntil(date){ if(!date)return 0; const ms=new Date(date+'T23:59:59')-new Date(); return Math.max(1,Math.ceil(ms/(1000*60*60*24*7))); }
-function suggestedWeekly(d){ const byMinimum=(Number(d.minimum)||0)/4.33; const byTarget=d.target?Number(d.balance)/weeksUntil(d.target):0; return Math.ceil(Math.max(byMinimum,byTarget)); }
-function initialDebtTotal(){ return state.debts.reduce((s,d)=>s+Number(d.balance||0)+state.payments.filter(p=>p.debtId===d.id).reduce((a,p)=>a+Number(p.amount||0),0),0); }
-function totalPaid(){ return state.payments.reduce((s,p)=>s+Number(p.amount||0),0); }
-function remainingTotal(){ return state.debts.reduce((s,d)=>s+Number(d.balance||0),0); }
-function priorityScore(p){ return ({alta:3,media:2,baja:1})[p]||0; }
-function showLoading(show,text='Sincronizando información...'){ document.getElementById('loadingText').textContent=text;document.getElementById('loadingScreen').classList.toggle('show',show); }
-function syncStatus(type,text){ const dot=document.getElementById('syncDot');dot.className='sync-dot '+(type||'');document.getElementById('syncText').textContent=text; }
-function showError(error, fallback='Ocurrió un error al sincronizar.'){ console.error(error);syncStatus('error','Error de conexión');alert(error?.message||fallback); }
-function requireUser(){ if(!currentUser){document.getElementById('authModal').classList.add('show');return false} return true; }
+function defaultState(){
+ return {
+  settings:{weeklyIncome:0,weeklyExpenses:0,baseMainBalance:0,baseCurrentBalance:0},
+  debts:[], payments:[], movements:[], fixedExpenses:[], obligations:[]
+ };
+}
+function cacheKey(){return currentUser?CACHE_PREFIX+currentUser.id:LEGACY_STORAGE_KEY}
+function loadCache(){try{return {...defaultState(),...(JSON.parse(localStorage.getItem(cacheKey()))||{})}}catch(e){return defaultState()}}
+function saveCache(){if(currentUser)localStorage.setItem(cacheKey(),JSON.stringify(state))}
+function currency(n){return new Intl.NumberFormat('es-CR',{style:'currency',currency:'CRC',maximumFractionDigits:0}).format(Number(n)||0)}
+function todayISO(){return new Date().toISOString().slice(0,10)}
+function dateCR(value){return value?new Date(value+'T00:00:00').toLocaleDateString('es-CR'):'Sin fecha'}
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function debtById(id){return state.debts.find(d=>d.id===id)}
+function priorityScore(p){return ({alta:3,media:2,baja:1})[p]||0}
+function weeksUntil(date){if(!date)return 0;const ms=new Date(date+'T23:59:59')-new Date();return Math.max(1,Math.ceil(ms/(1000*60*60*24*7)))}
+function suggestedWeekly(d){const minimum=(Number(d.minimum)||0)/4.33;const target=d.target?Number(d.balance)/weeksUntil(d.target):0;return Math.ceil(Math.max(minimum,target))}
+function estimatedPayoff(d){const s=buildInstallmentSchedule(d);return Number(d.balance||0)<=0?'Pagada':(s.at(-1)?.date?dateCR(s.at(-1).date):'Sin cálculo')}
+function initialDebtTotal(){return state.debts.reduce((s,d)=>s+Number(d.balance||0)+state.payments.filter(p=>p.debtId===d.id).reduce((a,p)=>a+Number(p.amount||0),0),0)}
+function totalPaid(){return state.payments.reduce((s,p)=>s+Number(p.amount||0),0)}
+function remainingTotal(){return state.debts.reduce((s,d)=>s+Number(d.balance||0),0)}
+function movementSign(m){return ['ingreso_extra','ganancia'].includes(m.type)?1:-1}
+function movementSignedAmount(m){return movementSign(m)*Number(m.amount||0)}
+function movementsForAccount(account){return state.movements.filter(m=>m.account===account).reduce((s,m)=>s+movementSignedAmount(m),0)}
+function accountBalance(account){const base=account==='principal'?Number(state.settings.baseMainBalance||0):Number(state.settings.baseCurrentBalance||0);return base+movementsForAccount(account)}
+function totalAccounts(){return accountBalance('principal')+accountBalance('cuenta_corriente')}
+function extrasTotal(){return state.movements.filter(m=>['ingreso_extra','ganancia'].includes(m.type)).reduce((s,m)=>s+Number(m.amount||0),0)}
+function outputsTotal(){return state.movements.filter(m=>!['ingreso_extra','ganancia'].includes(m.type)).reduce((s,m)=>s+Number(m.amount||0),0)}
+function recentExtrasWeekly(){const cutoff=new Date();cutoff.setDate(cutoff.getDate()-28);return state.movements.filter(m=>['ingreso_extra','ganancia'].includes(m.type)&&new Date(m.date+'T00:00:00')>=cutoff).reduce((s,m)=>s+Number(m.amount||0),0)/4}
+function fixedExpenseWeekly(e){return Number(e.amount||0)/(e.frequency==='mensual'?4.33:1)}
+function detailedFixedWeekly(){return state.fixedExpenses.reduce((s,e)=>s+fixedExpenseWeekly(e),0)}
+function totalFixedWeekly(){return Number(state.settings.weeklyExpenses||0)+detailedFixedWeekly()}
+function totalFixedMonthly(){return totalFixedWeekly()*4.33}
+function availableWeekly(){return Math.max(0,Number(state.settings.weeklyIncome||0)+recentExtrasWeekly()-totalFixedWeekly())}
+function movementLabel(type){return ({ingreso_extra:'Ingreso extra',ganancia:'Ganancia',gasto:'Gasto',inversion:'Inversión',deuda:'Deuda / financiado'})[type]||type}
+function accountLabel(account){return account==='cuenta_corriente'?'Cuenta corriente':'Cuenta principal'}
+function methodLabel(m){return m==='efectivo'?'Efectivo':'SINPE Móvil'}
+function frequencyLabel(f){return ({semanal:'Semanal',quincenal:'Quincenal',mensual:'Mensual'})[f]||'Mensual'}
+function dateToISO(date){const y=date.getFullYear(),m=String(date.getMonth()+1).padStart(2,'0'),d=String(date.getDate()).padStart(2,'0');return `${y}-${m}-${d}`}
+function addFrequency(dateStr,f){const d=new Date((dateStr||todayISO())+'T12:00:00');if(f==='semanal')d.setDate(d.getDate()+7);else if(f==='quincenal')d.setDate(d.getDate()+15);else d.setMonth(d.getMonth()+1);return dateToISO(d)}
+function nextDueFromDay(day){if(!day)return todayISO();const now=new Date(),d=new Date(now.getFullYear(),now.getMonth(),Math.min(day,new Date(now.getFullYear(),now.getMonth()+1,0).getDate()),12);if(d<new Date(now.getFullYear(),now.getMonth(),now.getDate())){d.setMonth(d.getMonth()+1);d.setDate(Math.min(day,new Date(d.getFullYear(),d.getMonth()+1,0).getDate()))}return dateToISO(d)}
+function firstDebtPaymentDate(d){return d.nextPaymentDate||nextDueFromDay(Number(d.dueDay||0))}
+function debtInstallment(d){return Math.max(1,Number(d.installmentAmount||0)||suggestedWeekly(d)||Number(d.balance||0))}
+function buildInstallmentSchedule(d,limit=240){const rows=[];let remain=Number(d.balance||0),date=firstDebtPaymentDate(d),amount=debtInstallment(d),i=1;while(remain>0&&i<=limit){const paid=Math.min(amount,remain);remain=Math.max(0,remain-paid);rows.push({number:i,date,amount:paid,remaining:remain,method:d.paymentMethod||'sinpe_movil'});date=addFrequency(date,d.paymentFrequency||'mensual');i++}return rows}
+function antExpenseTotalCurrentMonth(){const now=new Date();return state.movements.filter(x=>x.isAntExpense&&!['ingreso_extra','ganancia'].includes(x.type)).filter(x=>{const d=new Date(x.date+'T12:00:00');return d.getFullYear()===now.getFullYear()&&d.getMonth()===now.getMonth()}).reduce((s,x)=>s+Number(x.amount||0),0)}
+function showLoading(show,text='Sincronizando información...'){document.getElementById('loadingText').textContent=text;document.getElementById('loadingScreen').classList.toggle('show',show)}
+function syncStatus(type,text){const dot=document.getElementById('syncDot');dot.className='sync-dot '+(type||'');document.getElementById('syncText').textContent=text}
+function friendlyError(error){const msg=String(error?.message||'');if(msg.toLowerCase().includes('email not confirmed'))return 'Tu correo todavía no está confirmado. En Supabase puedes desactivar la confirmación obligatoria para entrar directamente con correo y clave.';if(/financial_movements|fixed_expenses|base_main_balance|due_day|planned_obligations|preferred_payment_method|installment_amount|payment_frequency|next_payment_date|is_ant_expense|payment_method/i.test(msg))return 'Falta ejecutar el nuevo archivo SQL para activar calendario, métodos de pago y gastos hormiga.';return msg||'Ocurrió un error al sincronizar.'}
+function showError(error,fallback='Ocurrió un error al sincronizar.'){console.error(error);syncStatus('error','Error de conexión');alert(friendlyError(error)||fallback)}
+function requireUser(){if(!currentUser){document.getElementById('authModal').classList.add('show');return false}return true}
 
 async function initApp(){
-  syncStatus('','Conectando...');
-  const {data:{session}}=await db.auth.getSession();
-  await handleSession(session);
-  db.auth.onAuthStateChange(async (_event,session)=>{ await handleSession(session); });
+ syncStatus('','Conectando...');
+ const {data:{session}}=await db.auth.getSession();
+ await handleSession(session);
+ db.auth.onAuthStateChange(async(_event,session)=>{await handleSession(session)});
 }
 async function handleSession(session){
-  currentUser=session?.user||null;
-  document.getElementById('logoutBtn').style.display=currentUser?'block':'none';
-  document.getElementById('userEmail').textContent=currentUser?.email||'Sin sesión iniciada';
-  if(!currentUser){ state=defaultState();render();syncStatus('','Inicia sesión');document.getElementById('authModal').classList.add('show');return; }
-  document.getElementById('authModal').classList.remove('show');
-  state=loadCache();render();
-  await loadRemoteState();
+ currentUser=session?.user||null;
+ document.getElementById('logoutBtn').style.display=currentUser?'block':'none';
+ document.getElementById('userEmail').textContent=currentUser?.email||'Sin sesión iniciada';
+ if(!currentUser){state=defaultState();render();syncStatus('','Inicia sesión');document.getElementById('authModal').classList.add('show');return}
+ document.getElementById('authModal').classList.remove('show');
+ state=loadCache();render();await loadRemoteState();
 }
-function setAuthMode(mode){ authMode=mode;document.getElementById('loginTab').classList.toggle('selected',mode==='login');document.getElementById('registerTab').classList.toggle('selected',mode==='register');document.getElementById('authSubmit').textContent=mode==='login'?'Iniciar sesión':'Crear cuenta';document.getElementById('authMessage').textContent=mode==='login'?'Ingresa con tu correo y contraseña.':'Crea una cuenta. Dependiendo de la configuración de Supabase, puede ser necesario confirmar el correo antes de iniciar sesión.'; }
+function setAuthMode(mode){
+ authMode=mode;
+ document.getElementById('loginTab').classList.toggle('selected',mode==='login');
+ document.getElementById('registerTab').classList.toggle('selected',mode==='register');
+ document.getElementById('authSubmit').textContent=mode==='login'?'Iniciar sesión':'Crear cuenta';
+ document.getElementById('authMessage').textContent=mode==='login'?'Escribe tu correo y contraseña para entrar al mismo panel desde el teléfono o la computadora.':'Crea tu cuenta una sola vez. Si Supabase tiene verificación de correo activa, tendrás que confirmar el registro antes de ingresar.';
+}
 document.getElementById('authForm').addEventListener('submit',async e=>{
- e.preventDefault();const email=document.getElementById('authEmail').value.trim();const password=document.getElementById('authPassword').value;showLoading(true,authMode==='login'?'Iniciando sesión...':'Creando cuenta...');
+ e.preventDefault();const email=document.getElementById('authEmail').value.trim();const password=document.getElementById('authPassword').value;
+ showLoading(true,authMode==='login'?'Iniciando sesión...':'Creando cuenta...');
  try{
-  if(authMode==='login'){
-   const {error}=await db.auth.signInWithPassword({email,password});if(error)throw error;
-  }else{
-   const {data,error}=await db.auth.signUp({email,password});if(error)throw error;
-   if(!data.session){setAuthMode('login');document.getElementById('authMessage').innerHTML='<span class="good-text">Cuenta creada. Revisa tu correo para confirmar el registro y luego inicia sesión.</span>';}
-  }
- }catch(error){document.getElementById('authMessage').innerHTML='<span class="danger-text">'+escapeHtml(error.message)+'</span>';}
- finally{showLoading(false);}
+  if(authMode==='login'){const {error}=await db.auth.signInWithPassword({email,password});if(error)throw error}
+  else{const {data,error}=await db.auth.signUp({email,password});if(error)throw error;if(!data.session){setAuthMode('login');document.getElementById('authMessage').innerHTML='<span class="good-text">Cuenta creada. Revisa tu correo para confirmar o desactiva la confirmación obligatoria en Supabase.</span>'}}
+ }catch(error){document.getElementById('authMessage').innerHTML='<span class="danger-text">'+escapeHtml(friendlyError(error))+'</span>'}
+ finally{showLoading(false)}
 });
-async function logout(){ showLoading(true,'Cerrando sesión...');await db.auth.signOut();showLoading(false); }
+async function logout(){showLoading(true,'Cerrando sesión...');await db.auth.signOut();showLoading(false)}
 
 async function loadRemoteState(){
  if(!requireUser())return;showLoading(true);
  try{
-  const [settingsRes,debtsRes,paymentsRes]=await Promise.all([
+  const [settingsRes,debtsRes,paymentsRes,movementsRes,fixedRes,obligationsRes]=await Promise.all([
    db.from('finance_settings').select('*').maybeSingle(),
    db.from('debts').select('*').order('created_at',{ascending:true}),
-   db.from('payments').select('*').order('created_at',{ascending:false})
+   db.from('payments').select('*').order('created_at',{ascending:false}),
+   db.from('financial_movements').select('*').order('movement_date',{ascending:false}).order('created_at',{ascending:false}),
+   db.from('fixed_expenses').select('*').order('created_at',{ascending:true}),
+   db.from('planned_obligations').select('*').order('due_date',{ascending:true}).order('created_at',{ascending:true})
   ]);
-  if(settingsRes.error)throw settingsRes.error;if(debtsRes.error)throw debtsRes.error;if(paymentsRes.error)throw paymentsRes.error;
+  for(const r of [settingsRes,debtsRes,paymentsRes,movementsRes,fixedRes,obligationsRes])if(r.error)throw r.error;
   state={
-   settings:{weeklyIncome:Number(settingsRes.data?.weekly_income||0),weeklyExpenses:Number(settingsRes.data?.weekly_expenses||0)},
-   debts:(debtsRes.data||[]).map(d=>({id:d.id,name:d.name,creditor:d.creditor||'',balance:Number(d.balance),minimum:Number(d.minimum||0),target:d.target||'',priority:d.priority||'media'})),
-   payments:(paymentsRes.data||[]).map(p=>({id:p.id,debtId:p.debt_id,amount:Number(p.amount),date:p.payment_date,note:p.note||''}))
+   settings:{
+    weeklyIncome:Number(settingsRes.data?.weekly_income||0),weeklyExpenses:Number(settingsRes.data?.weekly_expenses||0),
+    baseMainBalance:Number(settingsRes.data?.base_main_balance||0),baseCurrentBalance:Number(settingsRes.data?.base_current_balance||0)
+   },
+   debts:(debtsRes.data||[]).map(d=>({id:d.id,name:d.name,creditor:d.creditor||'',balance:Number(d.balance),minimum:Number(d.minimum||0),target:d.target||'',priority:d.priority||'media',dueDay:Number(d.due_day||0),paymentMethod:d.preferred_payment_method||'sinpe_movil',installmentAmount:Number(d.installment_amount||0),paymentFrequency:d.payment_frequency||'mensual',nextPaymentDate:d.next_payment_date||''})),
+   payments:(paymentsRes.data||[]).map(p=>({id:p.id,debtId:p.debt_id,amount:Number(p.amount),date:p.payment_date,note:p.note||'',paymentMethod:p.payment_method||'sinpe_movil'})),
+   movements:(movementsRes.data||[]).map(m=>({id:m.id,type:m.movement_type,account:m.account_name,description:m.description,amount:Number(m.amount),date:m.movement_date,note:m.note||'',paymentMethod:m.payment_method||'efectivo',isAntExpense:!!m.is_ant_expense})),
+   fixedExpenses:(fixedRes.data||[]).map(e=>({id:e.id,name:e.name,amount:Number(e.amount),frequency:e.frequency,account:e.account_name,dueDay:Number(e.due_day||0)})),
+   obligations:(obligationsRes.data||[]).map(x=>({id:x.id,description:x.description,amount:Number(x.amount),dueDate:x.due_date,paymentMethod:x.payment_method||'sinpe_movil',category:x.category||'pago_programado',priority:x.priority||'media',paid:!!x.paid,note:x.note||''}))
   };
   saveCache();render();syncStatus('online','Sincronizado en línea');
-  await offerLegacyMigration();
- }catch(error){ state=loadCache();render();showError(error,'No se pudo cargar la información. Revisa que hayas ejecutado el archivo SQL en Supabase.'); }
- finally{showLoading(false);}
+ }catch(error){state=loadCache();render();showError(error,'No se pudo cargar la información. Ejecuta el archivo SQL nuevo en Supabase.')}
+ finally{showLoading(false)}
 }
-async function offerLegacyMigration(){
- const legacy=localStorage.getItem(LEGACY_STORAGE_KEY);if(!legacy||state.debts.length||state.payments.length||state.settings.weeklyIncome)return;
- try{const old=JSON.parse(legacy);if((old.debts?.length||old.payments?.length||old.settings?.weeklyIncome) && confirm('Encontré datos guardados anteriormente en este navegador. ¿Deseas subirlos ahora a Supabase?')){await replaceRemoteData(old);localStorage.removeItem(LEGACY_STORAGE_KEY);await loadRemoteState();}}catch(e){}
-}
-
 async function saveSettingsRemote(){
- const payload={user_id:currentUser.id,weekly_income:Number(state.settings.weeklyIncome||0),weekly_expenses:Number(state.settings.weeklyExpenses||0),updated_at:new Date().toISOString()};
+ const payload={user_id:currentUser.id,weekly_income:Number(state.settings.weeklyIncome||0),weekly_expenses:Number(state.settings.weeklyExpenses||0),base_main_balance:Number(state.settings.baseMainBalance||0),base_current_balance:Number(state.settings.baseCurrentBalance||0),updated_at:new Date().toISOString()};
  const {error}=await db.from('finance_settings').upsert(payload,{onConflict:'user_id'});if(error)throw error;
 }
 
-// Navigation
-document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.section').forEach(x=>x.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.section).classList.add('active');}));
+// Navegación
+function showSection(id){document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x.dataset.section===id));document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));if(id==='calendar')renderCalendar()}
+document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>showSection(btn.dataset.section)));
 
-function openDebtModal(id=''){ if(!requireUser())return;document.getElementById('debtForm').reset();document.getElementById('debtId').value='';document.getElementById('modalTitle').textContent='Agregar deuda';document.getElementById('debtPriority').value='media';if(id){const d=debtById(id);if(!d)return;document.getElementById('modalTitle').textContent='Editar deuda';document.getElementById('debtId').value=d.id;document.getElementById('debtName').value=d.name;document.getElementById('debtCreditor').value=d.creditor||'';document.getElementById('debtBalance').value=d.balance;document.getElementById('debtMinimum').value=d.minimum||0;document.getElementById('debtTarget').value=d.target||'';document.getElementById('debtPriority').value=d.priority||'media';}document.getElementById('debtModal').classList.add('show'); }
-function closeDebtModal(){ document.getElementById('debtModal').classList.remove('show'); }
-document.getElementById('debtModal').addEventListener('click',e=>{if(e.target.id==='debtModal')closeDebtModal();});
-
+// Deudas
+function openDebtModal(id=''){
+ if(!requireUser())return;document.getElementById('debtForm').reset();document.getElementById('debtId').value='';document.getElementById('modalTitle').textContent='Agregar deuda';document.getElementById('debtPriority').value='media';document.getElementById('debtPaymentMethod').value='sinpe_movil';document.getElementById('debtPaymentFrequency').value='mensual';
+ if(id){const d=debtById(id);if(!d)return;document.getElementById('modalTitle').textContent='Editar deuda';document.getElementById('debtId').value=d.id;document.getElementById('debtName').value=d.name;document.getElementById('debtCreditor').value=d.creditor||'';document.getElementById('debtBalance').value=d.balance;document.getElementById('debtMinimum').value=d.minimum||0;document.getElementById('debtTarget').value=d.target||'';document.getElementById('debtDueDay').value=d.dueDay||'';document.getElementById('debtPaymentMethod').value=d.paymentMethod||'sinpe_movil';document.getElementById('debtInstallmentAmount').value=d.installmentAmount||'';document.getElementById('debtPaymentFrequency').value=d.paymentFrequency||'mensual';document.getElementById('debtNextPaymentDate').value=d.nextPaymentDate||'';document.getElementById('debtPriority').value=d.priority||'media'}
+ document.getElementById('debtModal').classList.add('show');
+}
+function closeDebtModal(){document.getElementById('debtModal').classList.remove('show')}
+document.getElementById('debtModal').addEventListener('click',e=>{if(e.target.id==='debtModal')closeDebtModal()});
 document.getElementById('debtForm').addEventListener('submit',async e=>{
  e.preventDefault();if(!requireUser())return;showLoading(true,'Guardando deuda...');
- const id=document.getElementById('debtId').value;const payload={user_id:currentUser.id,name:document.getElementById('debtName').value.trim(),creditor:document.getElementById('debtCreditor').value.trim()||null,balance:Number(document.getElementById('debtBalance').value),minimum:Number(document.getElementById('debtMinimum').value||0),target:document.getElementById('debtTarget').value||null,priority:document.getElementById('debtPriority').value,updated_at:new Date().toISOString()};
- try{const res=id?await db.from('debts').update(payload).eq('id',id):await db.from('debts').insert(payload);if(res.error)throw res.error;closeDebtModal();await loadRemoteState();}catch(error){showError(error)}finally{showLoading(false);}
+ const id=document.getElementById('debtId').value;
+ const payload={user_id:currentUser.id,name:document.getElementById('debtName').value.trim(),creditor:document.getElementById('debtCreditor').value.trim()||null,balance:Number(document.getElementById('debtBalance').value),minimum:Number(document.getElementById('debtMinimum').value||0),target:document.getElementById('debtTarget').value||null,due_day:Number(document.getElementById('debtDueDay').value)||null,preferred_payment_method:document.getElementById('debtPaymentMethod').value,installment_amount:Number(document.getElementById('debtInstallmentAmount').value||0),payment_frequency:document.getElementById('debtPaymentFrequency').value,next_payment_date:document.getElementById('debtNextPaymentDate').value||null,priority:document.getElementById('debtPriority').value,updated_at:new Date().toISOString()};
+ try{const res=id?await db.from('debts').update(payload).eq('id',id):await db.from('debts').insert(payload);if(res.error)throw res.error;closeDebtModal();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}
 });
-async function deleteDebt(id){ const d=debtById(id);if(!d||!confirm(`¿Eliminar la deuda "${d.name}" y su historial de pagos?`))return;showLoading(true,'Eliminando deuda...');try{const {error}=await db.from('debts').delete().eq('id',id);if(error)throw error;await loadRemoteState();}catch(error){showError(error)}finally{showLoading(false);} }
+async function deleteDebt(id){const d=debtById(id);if(!d||!confirm(`¿Eliminar la deuda "${d.name}" y su historial de pagos?`))return;showLoading(true,'Eliminando deuda...');try{const {error}=await db.from('debts').delete().eq('id',id);if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
 
+// Pagos
+document.getElementById('paymentDebt').addEventListener('change',e=>{const d=debtById(e.target.value);if(d)document.getElementById('paymentMethod').value=d.paymentMethod||'sinpe_movil'});
 document.getElementById('paymentForm').addEventListener('submit',async e=>{
- e.preventDefault();if(!requireUser())return;const id=document.getElementById('paymentDebt').value;const d=debtById(id);if(!d)return alert('Selecciona una deuda.');const amount=Number(document.getElementById('paymentAmount').value);if(amount<=0)return;if(amount>d.balance&&!confirm('El pago supera el saldo pendiente. Se registrará solamente el saldo restante. ¿Continuar?'))return;
- showLoading(true,'Registrando pago...');try{const {error}=await db.rpc('register_debt_payment',{p_debt_id:id,p_amount:amount,p_payment_date:document.getElementById('paymentDate').value,p_note:document.getElementById('paymentNote').value.trim()||null});if(error)throw error;e.target.reset();document.getElementById('paymentDate').value=todayISO();await loadRemoteState();}catch(error){showError(error)}finally{showLoading(false);}
+ e.preventDefault();if(!requireUser())return;const id=document.getElementById('paymentDebt').value;const d=debtById(id);if(!d)return alert('Selecciona una deuda.');const amount=Number(document.getElementById('paymentAmount').value);if(amount<=0)return;if(amount>d.balance&&!confirm('El pago supera el saldo pendiente. Se aplicará solamente el saldo restante. ¿Continuar?'))return;
+ showLoading(true,'Registrando pago...');try{const {error}=await db.rpc('register_debt_payment_v2',{p_debt_id:id,p_amount:amount,p_payment_date:document.getElementById('paymentDate').value,p_note:document.getElementById('paymentNote').value.trim()||null,p_payment_method:document.getElementById('paymentMethod').value});if(error)throw error;e.target.reset();
+function renderObligations(){const t=document.getElementById('obligationsTable');if(!state.obligations.length){t.innerHTML='<tr><td colspan="7" class="empty">No hay pagos puntuales programados.</td></tr>';return}t.innerHTML=state.obligations.map(x=>`<tr class="${x.paid?'paid-row':''}"><td>${dateCR(x.dueDate)}</td><td><strong>${escapeHtml(x.description)}</strong><div class="muted">${escapeHtml(x.note||'')}</div></td><td><span class="method-chip ${x.paymentMethod}">${methodLabel(x.paymentMethod)}</span></td><td>${currency(x.amount)}</td><td><span class="badge ${x.priority}">${x.priority}</span></td><td>${x.paid?'<span class="good-text">Pagado</span>':'Pendiente'}</td><td><button class="btn small" onclick="toggleObligation('${x.id}',${x.paid})">${x.paid?'Reabrir':'Marcar pagado'}</button> <button class="btn small danger" onclick="deleteObligation('${x.id}')">Eliminar</button></td></tr>`).join('')}
+function renderProjectionDebtSelect(){const s=document.getElementById('projectionDebt'),current=s.value,ds=sortedDebts().filter(d=>Number(d.balance)>0);s.innerHTML=ds.length?ds.map(d=>`<option value="${d.id}">${escapeHtml(d.name)} · ${currency(d.balance)}</option>`).join(''):'<option value="">No hay deudas pendientes</option>';if(ds.some(d=>d.id===current))s.value=current}
+function renderInstallmentProjection(){const id=document.getElementById('projectionDebt')?.value,d=debtById(id),summary=document.getElementById('projectionSummary'),t=document.getElementById('projectionTable');if(!summary||!t)return;if(!d){summary.innerHTML='<div class="empty">Selecciona una deuda.</div>';t.innerHTML='<tr><td colspan="5" class="empty">No hay proyección disponible.</td></tr>';return}const rows=buildInstallmentSchedule(d);summary.innerHTML=`<div class="projection-box"><span>Saldo actual</span><strong>${currency(d.balance)}</strong></div><div class="projection-box"><span>Abono acordado</span><strong>${currency(debtInstallment(d))}</strong></div><div class="projection-box"><span>Número de abonos</span><strong>${rows.length}</strong></div><div class="projection-box"><span>Termina aproximadamente</span><strong>${rows.length?dateCR(rows.at(-1).date):'Pagada'}</strong></div>`;t.innerHTML=rows.length?rows.map(r=>`<tr><td>${r.number}</td><td>${dateCR(r.date)}</td><td>${currency(r.amount)}</td><td class="${r.remaining===0?'good-text':''}">${currency(r.remaining)}</td><td><span class="method-chip ${r.method}">${methodLabel(r.method)}</span></td></tr>`).join(''):'<tr><td colspan="5" class="empty good-text">Esta deuda ya llegó a cero.</td></tr>'}
+function openProjection(id){showSection('calendar');document.getElementById('projectionDebt').value=id;renderInstallmentProjection();window.scrollTo({top:0,behavior:'smooth'})}
+function changeCalendarMonth(delta){calendarCursor=new Date(calendarCursor.getFullYear(),calendarCursor.getMonth()+delta,1);renderCalendar()}
+function goCalendarToday(){calendarCursor=new Date();renderCalendar()}
+function calendarEventsForDate(iso){const events=[];state.obligations.filter(x=>!x.paid&&x.dueDate===iso).forEach(x=>events.push({cls:'planned-event',text:`${escapeHtml(x.description)} ${currency(x.amount)}`}));state.fixedExpenses.forEach(x=>{if(Number(iso.slice(8,10))===Number(x.dueDay||0))events.push({cls:'fixed-event',text:`${escapeHtml(x.name)} ${currency(x.amount)}`})});state.debts.filter(d=>Number(d.balance)>0).forEach(d=>{buildInstallmentSchedule(d,80).filter(x=>x.date===iso).forEach(x=>events.push({cls:'debt-event',text:`${escapeHtml(d.name)} ${currency(x.amount)}`}));if(d.target===iso)events.push({cls:'target-event',text:`Meta: ${escapeHtml(d.name)}`})});return events}
+function renderCalendar(){const grid=document.getElementById('calendarGrid');if(!grid)return;const y=calendarCursor.getFullYear(),m=calendarCursor.getMonth(),name=new Intl.DateTimeFormat('es-CR',{month:'long',year:'numeric'}).format(new Date(y,m,1));document.getElementById('calendarTitle').textContent=name.charAt(0).toUpperCase()+name.slice(1);let cells=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'].map(x=>`<div class="calendar-weekday">${x}</div>`).join('');const first=new Date(y,m,1),days=new Date(y,m+1,0).getDate(),offset=(first.getDay()+6)%7;for(let i=0;i<offset;i++)cells+='<div class="calendar-day empty-day"></div>';for(let day=1;day<=days;day++){const iso=dateToISO(new Date(y,m,day,12)),events=calendarEventsForDate(iso);cells+=`<div class="calendar-day ${iso===todayISO()?'today':''}"><div class="calendar-date">${day}</div>${events.slice(0,5).map(e=>`<span class="calendar-event ${e.cls}">${e.text}</span>`).join('')}${events.length>5?`<span class="calendar-event">+${events.length-5} más</span>`:''}</div>`}grid.innerHTML=cells}
+
+document.getElementById('paymentDate').value=todayISO();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}
 });
-async function deletePayment(id){ if(!confirm('¿Eliminar este pago? El saldo pendiente volverá a aumentar.'))return;showLoading(true,'Eliminando pago...');try{const {error}=await db.rpc('delete_debt_payment',{p_payment_id:id});if(error)throw error;await loadRemoteState();}catch(error){showError(error)}finally{showLoading(false);} }
+async function deletePayment(id){if(!confirm('¿Eliminar este pago? El saldo pendiente volverá a aumentar.'))return;showLoading(true,'Eliminando pago...');try{const {error}=await db.rpc('delete_debt_payment',{p_payment_id:id});if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
 
-document.getElementById('settingsForm').addEventListener('submit',async e=>{e.preventDefault();if(!requireUser())return;state.settings.weeklyIncome=Number(document.getElementById('weeklyIncome').value||0);state.settings.weeklyExpenses=Number(document.getElementById('weeklyExpenses').value||0);showLoading(true,'Guardando presupuesto...');try{await saveSettingsRemote();await loadRemoteState();}catch(error){showError(error)}finally{showLoading(false);}});
-function exportData(){ const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='respaldo-control-deudas.json';a.click();URL.revokeObjectURL(url); }
-document.getElementById('importFile').addEventListener('change',e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=async()=>{try{const data=JSON.parse(reader.result);if(!data.settings||!Array.isArray(data.debts)||!Array.isArray(data.payments))throw new Error('El archivo no contiene un respaldo válido.');if(!confirm('Esto reemplazará los datos guardados actualmente en Supabase. ¿Continuar?'))return;showLoading(true,'Importando respaldo...');await replaceRemoteData(data);await loadRemoteState();alert('Respaldo importado correctamente.');}catch(error){showError(error,error.message)}finally{showLoading(false);}};reader.readAsText(file);e.target.value='';});
+// Movimientos
+document.getElementById('movementForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!requireUser())return;showLoading(true,'Guardando movimiento...');
+ const payload={user_id:currentUser.id,movement_type:document.getElementById('movementType').value,account_name:document.getElementById('movementAccount').value,description:document.getElementById('movementDescription').value.trim(),amount:Number(document.getElementById('movementAmount').value),movement_date:document.getElementById('movementDate').value,payment_method:document.getElementById('movementPaymentMethod').value,is_ant_expense:document.getElementById('movementIsAnt').checked,note:document.getElementById('movementNote').value.trim()||null};
+ try{const {error}=await db.from('financial_movements').insert(payload);if(error)throw error;e.target.reset();document.getElementById('movementDate').value=todayISO();
+document.getElementById('obligationDate').value=todayISO();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}
+});
+async function deleteMovement(id){if(!confirm('¿Eliminar este movimiento? El saldo de la cuenta se recalculará.'))return;showLoading(true,'Eliminando movimiento...');try{const {error}=await db.from('financial_movements').delete().eq('id',id);if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
+
+// Gastos fijos
+document.getElementById('fixedExpenseForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!requireUser())return;showLoading(true,'Guardando gasto fijo...');
+ const payload={user_id:currentUser.id,name:document.getElementById('fixedExpenseName').value.trim(),amount:Number(document.getElementById('fixedExpenseAmount').value),frequency:document.getElementById('fixedExpenseFrequency').value,due_day:Number(document.getElementById('fixedExpenseDueDay').value)||null,account_name:document.getElementById('fixedExpenseAccount').value};
+ try{const {error}=await db.from('fixed_expenses').insert(payload);if(error)throw error;e.target.reset();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}
+});
+async function deleteFixedExpense(id){if(!confirm('¿Eliminar este gasto fijo?'))return;showLoading(true,'Eliminando gasto fijo...');try{const {error}=await db.from('fixed_expenses').delete().eq('id',id);if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
+
+// Configuración y respaldo
+
+document.getElementById('obligationForm').addEventListener('submit',async e=>{e.preventDefault();if(!requireUser())return;showLoading(true,'Guardando compromiso...');const payload={user_id:currentUser.id,description:document.getElementById('obligationDescription').value.trim(),amount:Number(document.getElementById('obligationAmount').value),due_date:document.getElementById('obligationDate').value,payment_method:document.getElementById('obligationPaymentMethod').value,category:document.getElementById('obligationCategory').value,priority:document.getElementById('obligationPriority').value,note:document.getElementById('obligationNote').value.trim()||null};try{const{error}=await db.from('planned_obligations').insert(payload);if(error)throw error;e.target.reset();document.getElementById('obligationDate').value=todayISO();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}});
+async function toggleObligation(id,paid){showLoading(true,'Actualizando compromiso...');try{const{error}=await db.from('planned_obligations').update({paid:!paid}).eq('id',id);if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
+async function deleteObligation(id){if(!confirm('¿Eliminar este pago programado?'))return;showLoading(true,'Eliminando compromiso...');try{const{error}=await db.from('planned_obligations').delete().eq('id',id);if(error)throw error;await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
+
+document.getElementById('settingsForm').addEventListener('submit',async e=>{
+ e.preventDefault();if(!requireUser())return;
+ state.settings.weeklyIncome=Number(document.getElementById('weeklyIncome').value||0);state.settings.weeklyExpenses=Number(document.getElementById('weeklyExpenses').value||0);state.settings.baseMainBalance=Number(document.getElementById('baseMainBalance').value||0);state.settings.baseCurrentBalance=Number(document.getElementById('baseCurrentBalance').value||0);
+ showLoading(true,'Guardando presupuesto...');try{await saveSettingsRemote();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}
+});
+function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='respaldo-control-financiero.json';a.click();URL.revokeObjectURL(url)}
+document.getElementById('importFile').addEventListener('change',e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=async()=>{try{const data=JSON.parse(reader.result);if(!data.settings||!Array.isArray(data.debts)||!Array.isArray(data.payments))throw new Error('El archivo no contiene un respaldo válido.');if(!confirm('Esto reemplazará la información actual guardada en Supabase. ¿Continuar?'))return;showLoading(true,'Importando respaldo...');await replaceRemoteData(data);await loadRemoteState();alert('Respaldo importado correctamente.')}catch(error){showError(error)}finally{showLoading(false)}};reader.readAsText(file);e.target.value=''});
 async function replaceRemoteData(data){
- if(!requireUser())return;let res=await db.from('payments').delete().eq('user_id',currentUser.id);if(res.error)throw res.error;res=await db.from('debts').delete().eq('user_id',currentUser.id);if(res.error)throw res.error;
- const debts=(data.debts||[]).map(d=>({id:d.id||crypto.randomUUID(),user_id:currentUser.id,name:d.name,creditor:d.creditor||null,balance:Number(d.balance||0),minimum:Number(d.minimum||0),target:d.target||null,priority:d.priority||'media'}));if(debts.length){res=await db.from('debts').insert(debts);if(res.error)throw res.error;}
- const ids=new Set(debts.map(d=>d.id));const payments=(data.payments||[]).filter(p=>ids.has(p.debtId)).map(p=>({id:p.id||crypto.randomUUID(),user_id:currentUser.id,debt_id:p.debtId,amount:Number(p.amount||0),payment_date:p.date||todayISO(),note:p.note||null}));if(payments.length){res=await db.from('payments').insert(payments);if(res.error)throw res.error;}
- state.settings={weeklyIncome:Number(data.settings?.weeklyIncome||0),weeklyExpenses:Number(data.settings?.weeklyExpenses||0)};await saveSettingsRemote();
+ if(!requireUser())return;let r;
+ for(const table of ['payments','financial_movements','fixed_expenses','planned_obligations','debts']){r=await db.from(table).delete().eq('user_id',currentUser.id);if(r.error)throw r.error}
+ const debts=(data.debts||[]).map(d=>({id:d.id||crypto.randomUUID(),user_id:currentUser.id,name:d.name,creditor:d.creditor||null,balance:Number(d.balance||0),minimum:Number(d.minimum||0),target:d.target||null,due_day:Number(d.dueDay)||null,priority:d.priority||'media'}));if(debts.length){r=await db.from('debts').insert(debts);if(r.error)throw r.error}
+ const ids=new Set(debts.map(d=>d.id));const payments=(data.payments||[]).filter(p=>ids.has(p.debtId)).map(p=>({id:p.id||crypto.randomUUID(),user_id:currentUser.id,debt_id:p.debtId,amount:Number(p.amount||0),payment_date:p.date||todayISO(),note:p.note||null}));if(payments.length){r=await db.from('payments').insert(payments);if(r.error)throw r.error}
+ const movements=(data.movements||[]).map(m=>({id:m.id||crypto.randomUUID(),user_id:currentUser.id,movement_type:m.type,account_name:m.account||'principal',description:m.description,amount:Number(m.amount||0),movement_date:m.date||todayISO(),note:m.note||null}));if(movements.length){r=await db.from('financial_movements').insert(movements);if(r.error)throw r.error}
+ const expenses=(data.fixedExpenses||[]).map(e=>({id:e.id||crypto.randomUUID(),user_id:currentUser.id,name:e.name,amount:Number(e.amount||0),frequency:e.frequency||'mensual',due_day:Number(e.dueDay)||null,account_name:e.account||'principal'}));if(expenses.length){r=await db.from('fixed_expenses').insert(expenses);if(r.error)throw r.error}
+ state.settings={weeklyIncome:Number(data.settings?.weeklyIncome||0),weeklyExpenses:Number(data.settings?.weeklyExpenses||0),baseMainBalance:Number(data.settings?.baseMainBalance||0),baseCurrentBalance:Number(data.settings?.baseCurrentBalance||0)};await saveSettingsRemote();
 }
-async function clearAll(){ if(!requireUser()||!confirm('¿Seguro que deseas borrar todas tus deudas, pagos y configuración guardados en línea?'))return;showLoading(true,'Borrando datos...');try{let res=await db.from('payments').delete().eq('user_id',currentUser.id);if(res.error)throw res.error;res=await db.from('debts').delete().eq('user_id',currentUser.id);if(res.error)throw res.error;state=defaultState();await saveSettingsRemote();await loadRemoteState();}catch(error){showError(error)}finally{showLoading(false);} }
+async function clearAll(){if(!requireUser()||!confirm('¿Seguro que deseas borrar deudas, pagos, movimientos, gastos fijos y configuración?'))return;showLoading(true,'Borrando datos...');try{for(const table of ['payments','financial_movements','fixed_expenses','debts']){const {error}=await db.from(table).delete().eq('user_id',currentUser.id);if(error)throw error}state=defaultState();await saveSettingsRemote();await loadRemoteState()}catch(error){showError(error)}finally{showLoading(false)}}
 
+// Render
+function sortedDebts(){return [...state.debts].sort((a,b)=>(Number(a.balance<=0)-Number(b.balance<=0))||priorityScore(b.priority)-priorityScore(a.priority)||suggestedWeekly(b)-suggestedWeekly(a))}
 function render(){
- const total=remainingTotal(),paid=totalPaid(),initial=initialDebtTotal(),available=Math.max(0,Number(state.settings.weeklyIncome)-Number(state.settings.weeklyExpenses));const suggestions=state.debts.filter(d=>Number(d.balance)>0).map(d=>({...d,weekly:suggestedWeekly(d)}));const suggestedTotal=suggestions.reduce((s,d)=>s+d.weekly,0);const pct=initial?Math.min(100,Math.round(paid/initial*100)):0;
- document.getElementById('kpiTotal').textContent=currency(total);document.getElementById('kpiDebtCount').textContent=`${state.debts.filter(d=>Number(d.balance)>0).length} deudas pendientes`;document.getElementById('kpiAvailable').textContent=currency(available);document.getElementById('kpiSuggested').textContent=currency(suggestedTotal);document.getElementById('kpiPaid').textContent=currency(paid);document.getElementById('paidHint').textContent=pct?`${pct}% de la deuda original registrada`:'Registra tus primeros pagos';document.getElementById('overallPct').textContent=`${pct}%`;document.getElementById('overallBar').style.width=`${pct}%`;document.getElementById('weeklyIncome').value=state.settings.weeklyIncome||'';document.getElementById('weeklyExpenses').value=state.settings.weeklyExpenses||'';
- const notice=document.getElementById('capacityNotice');if(!state.settings.weeklyIncome)notice.textContent='Configura tu ingreso y tus gastos semanales para calcular tu capacidad real de pago.';else if(suggestedTotal===0)notice.innerHTML='<span class="good-text">No tienes deudas pendientes registradas. Excelente trabajo.</span>';else if(available>=suggestedTotal)notice.innerHTML=`<span class="good-text">Tu presupuesto alcanza para el plan recomendado.</span> Después de cubrirlo te quedarían <strong>${currency(available-suggestedTotal)}</strong> libres por semana.`;else notice.innerHTML=`<span class="warn-text">El plan ideal supera tu disponible semanal por ${currency(suggestedTotal-available)}.</span> Puedes ampliar las fechas meta o enfocar el sobrante en las deudas prioritarias.`;
- renderQuickDebts();renderWeeklyPlan(available);renderDebtsTable();renderPaymentSelect();renderPayments();
+ const total=remainingTotal(),paid=totalPaid(),initial=initialDebtTotal(),available=availableWeekly(),suggestedTotal=state.debts.filter(d=>Number(d.balance)>0).reduce((s,d)=>s+suggestedWeekly(d),0),pct=initial?Math.min(100,Math.round(paid/initial*100)):0;
+ document.getElementById('kpiTotal').textContent=currency(total);document.getElementById('kpiDebtCount').textContent=`${state.debts.filter(d=>Number(d.balance)>0).length} deudas pendientes`;
+ document.getElementById('kpiFixedMonthly').textContent=currency(totalFixedMonthly());document.getElementById('kpiMainAccount').textContent=currency(accountBalance('principal'));document.getElementById('kpiCurrentAccount').textContent=currency(accountBalance('cuenta_corriente'));document.getElementById('kpiAvailable').textContent=currency(available);document.getElementById('kpiExtras').textContent=currency(extrasTotal());document.getElementById('kpiAntExpenses').textContent=currency(antExpenseTotalCurrentMonth());
+ document.getElementById('overallPct').textContent=`${pct}%`;document.getElementById('overallBar').style.width=`${pct}%`;
+ document.getElementById('weeklyIncome').value=state.settings.weeklyIncome||'';document.getElementById('weeklyExpenses').value=state.settings.weeklyExpenses||'';document.getElementById('baseMainBalance').value=state.settings.baseMainBalance||'';document.getElementById('baseCurrentBalance').value=state.settings.baseCurrentBalance||'';
+ document.getElementById('movementIncomeTotal').textContent=currency(extrasTotal());document.getElementById('movementExpenseTotal').textContent=currency(outputsTotal());document.getElementById('movementAntTotal').textContent=currency(antExpenseTotalCurrentMonth());document.getElementById('fixedWeeklyDetailed').textContent=currency(detailedFixedWeekly());document.getElementById('fixedMonthlyTotal').textContent=currency(totalFixedMonthly());
+ const notice=document.getElementById('capacityNotice');if(!state.settings.weeklyIncome&&!state.fixedExpenses.length)notice.textContent='Configura tu ingreso normal y registra gastos fijos para calcular tu capacidad real de pago.';else if(suggestedTotal===0)notice.innerHTML='<span class="good-text">No tienes deudas pendientes. Excelente trabajo.</span>';else if(available>=suggestedTotal)notice.innerHTML=`<span class="good-text">Tu presupuesto alcanza para cumplir el plan ideal.</span> Después de separar los pagos quedarían <strong>${currency(available-suggestedTotal)}</strong> libres por semana.`;else notice.innerHTML=`<span class="warn-text">Tu plan ideal requiere ${currency(suggestedTotal)} semanales y tienes disponibles ${currency(available)}.</span> Enfoca ingresos extra en las prioridades rojas.`;
+ renderWeeklyPlan(available);renderQuickDebts();renderDebtsTable();renderPaymentSelect();renderPayments();renderMovements();renderFixedExpenses();renderPrioritySolutions();renderFastSolutions();renderUpcomingCommitments();renderObligations();renderProjectionDebtSelect();renderInstallmentProjection();renderCalendar();
 }
-function sortedDebts(){ return [...state.debts].sort((a,b)=>(Number(a.balance<=0)-Number(b.balance<=0))||priorityScore(b.priority)-priorityScore(a.priority)||suggestedWeekly(b)-suggestedWeekly(a)); }
-function renderQuickDebts(){const box=document.getElementById('quickDebts'),debts=sortedDebts().slice(0,5);if(!debts.length){box.innerHTML='<div class="empty">Todavía no has agregado deudas.</div>';return}box.innerHTML=debts.map(d=>{const paidForDebt=state.payments.filter(p=>p.debtId===d.id).reduce((s,p)=>s+Number(p.amount),0),init=Number(d.balance)+paidForDebt,pct=init?Math.min(100,Math.round(paidForDebt/init*100)):0;return `<div class="plan-item"><div class="row-title"><span><strong>${escapeHtml(d.name)}</strong> <span class="muted">${escapeHtml(d.creditor||'')}</span></span><span>${currency(d.balance)}</span></div><div class="progress"><i style="width:${pct}%"></i></div></div>`}).join('');}
-function renderWeeklyPlan(available){const box=document.getElementById('weeklyPlan'),debts=sortedDebts().filter(d=>Number(d.balance)>0);if(!debts.length){box.innerHTML='<div class="empty good-text">No tienes saldos pendientes.</div>';return}let left=available,html='';debts.slice(0,5).forEach(d=>{const ideal=suggestedWeekly(d),amount=available?Math.min(ideal,Math.max(0,left)):ideal;left-=amount;html+=`<div class="plan-item"><div class="row-title"><span>${escapeHtml(d.name)} <span class="badge ${d.priority}">${d.priority}</span></span><span class="plan-money">${currency(amount)}</span></div><div class="muted" style="font-size:12px;margin-top:7px">Ideal según tu meta: ${currency(ideal)} por semana</div></div>`});if(!available)html+='<div class="muted" style="font-size:12px;margin-top:10px">Configura el presupuesto para repartir el monto disponible.</div>';box.innerHTML=html;}
-function renderDebtsTable(){const tbody=document.getElementById('debtsTable'),debts=sortedDebts();if(!debts.length){tbody.innerHTML='<tr><td colspan="7" class="empty">No hay deudas registradas.</td></tr>';return}tbody.innerHTML=debts.map(d=>`<tr><td><strong>${escapeHtml(d.name)}</strong><div class="muted">${escapeHtml(d.creditor||'Sin entidad')}</div></td><td class="${Number(d.balance)===0?'good-text':''}">${currency(d.balance)}</td><td>${currency(d.minimum)}</td><td>${d.target?new Date(d.target+'T00:00:00').toLocaleDateString('es-CR'):'Sin fecha'}</td><td><span class="badge ${d.priority}">${d.priority}</span></td><td>${Number(d.balance)>0?currency(suggestedWeekly(d)):'Pagada'}</td><td><button class="btn small" onclick="openDebtModal('${d.id}')">Editar</button> <button class="btn small danger" onclick="deleteDebt('${d.id}')">Eliminar</button></td></tr>`).join('');}
-function renderPaymentSelect(){const select=document.getElementById('paymentDebt'),current=select.value,debts=sortedDebts().filter(d=>Number(d.balance)>0);select.innerHTML=debts.length?'<option value="">Seleccionar...</option>'+debts.map(d=>`<option value="${d.id}">${escapeHtml(d.name)} · ${currency(d.balance)}</option>`).join(''):'<option value="">No hay deudas pendientes</option>';if(debts.some(d=>d.id===current))select.value=current;}
-function renderPayments(){const tbody=document.getElementById('paymentsTable');if(!state.payments.length){tbody.innerHTML='<tr><td colspan="5" class="empty">Todavía no has registrado pagos.</td></tr>';return}tbody.innerHTML=state.payments.map(p=>{const d=debtById(p.debtId);return `<tr><td>${new Date(p.date+'T00:00:00').toLocaleDateString('es-CR')}</td><td>${escapeHtml(d?.name||'Deuda eliminada')}</td><td class="good-text">${currency(p.amount)}</td><td>${escapeHtml(p.note||'—')}</td><td><button class="btn small danger" onclick="deletePayment('${p.id}')">Eliminar</button></td></tr>`}).join('');}
+function renderWeeklyPlan(available){
+ const box=document.getElementById('weeklyPlan'),debts=sortedDebts().filter(d=>Number(d.balance)>0);if(!debts.length){box.innerHTML='<div class="empty good-text">No tienes saldos pendientes.</div>';return}
+ let left=available,html='';debts.slice(0,5).forEach(d=>{const ideal=suggestedWeekly(d),amount=available?Math.min(ideal,Math.max(0,left)):ideal;left-=amount;html+=`<div class="plan-item"><div class="row-title"><span>${escapeHtml(d.name)} <span class="badge ${d.priority}">${d.priority}</span></span><span class="plan-money">${currency(amount)}</span></div><div class="muted" style="font-size:12px;margin-top:7px">Meta completa: ${dateCR(d.target)} · Ideal: ${currency(ideal)} por semana</div></div>`});box.innerHTML=html;
+}
+function renderQuickDebts(){const box=document.getElementById('quickDebts'),debts=sortedDebts().slice(0,6);if(!debts.length){box.innerHTML='<div class="empty">Todavía no has agregado deudas.</div>';return}box.innerHTML=debts.map(d=>{const paidForDebt=state.payments.filter(p=>p.debtId===d.id).reduce((s,p)=>s+Number(p.amount),0),init=Number(d.balance)+paidForDebt,pct=init?Math.min(100,Math.round(paidForDebt/init*100)):0;return `<div class="plan-item ${d.priority==='alta'?'priority-line':''}"><div class="row-title"><span><strong>${escapeHtml(d.name)}</strong> <span class="badge ${d.priority}">${d.priority}</span></span><span>${currency(d.balance)}</span></div><div class="muted" style="font-size:12px;margin-top:6px">Cancelar completa: ${dateCR(d.target)} · Estimada: ${estimatedPayoff(d)}</div><div class="progress"><i style="width:${pct}%"></i></div></div>`}).join('')}
+function renderDebtsTable(){const tbody=document.getElementById('debtsTable'),debts=sortedDebts();if(!debts.length){tbody.innerHTML='<tr><td colspan="9" class="empty">No hay deudas registradas.</td></tr>';return}tbody.innerHTML=debts.map(d=>`<tr class="${d.priority==='alta'?'high-priority-row':''}"><td><strong>${escapeHtml(d.name)}</strong><div class="muted">${escapeHtml(d.creditor||'Sin entidad')}</div></td><td>${currency(d.balance)}</td><td><span class="method-chip ${d.paymentMethod}">${methodLabel(d.paymentMethod)}</span></td><td>${dateCR(firstDebtPaymentDate(d))}</td><td>${frequencyLabel(d.paymentFrequency)}</td><td>${currency(debtInstallment(d))}</td><td>${dateCR(d.target)}<div class="muted">Estimado: ${estimatedPayoff(d)}</div></td><td><span class="badge ${d.priority}">${d.priority}</span></td><td><button class="btn small" onclick="openDebtModal('${d.id}')">Editar</button> <button class="btn small" onclick="openProjection('${d.id}')">Plan</button> <button class="btn small danger" onclick="deleteDebt('${d.id}')">Eliminar</button></td></tr>`).join('')}
+function renderPaymentSelect(){const select=document.getElementById('paymentDebt'),current=select.value,debts=sortedDebts().filter(d=>Number(d.balance)>0);select.innerHTML=debts.length?'<option value="">Seleccionar...</option>'+debts.map(d=>`<option value="${d.id}">${escapeHtml(d.name)} · ${currency(d.balance)}</option>`).join(''):'<option value="">No hay deudas pendientes</option>';if(debts.some(d=>d.id===current))select.value=current}
+function renderPayments(){const tbody=document.getElementById('paymentsTable');if(!state.payments.length){tbody.innerHTML='<tr><td colspan="7" class="empty">Todavía no has registrado pagos.</td></tr>';return}tbody.innerHTML=state.payments.map(p=>{const d=debtById(p.debtId);return `<tr><td>${dateCR(p.date)}</td><td>${escapeHtml(d?.name||'Deuda eliminada')}</td><td><span class="method-chip ${p.paymentMethod}">${methodLabel(p.paymentMethod)}</span></td><td class="money-in">${currency(p.amount)}</td><td>${d&&d.balance>0?dateCR(firstDebtPaymentDate(d)):'Pagada'}</td><td>${escapeHtml(p.note||'—')}</td><td><button class="btn small danger" onclick="deletePayment('${p.id}')">Eliminar</button></td></tr>`}).join('')}
+function renderMovements(){const tbody=document.getElementById('movementsTable');if(!state.movements.length){tbody.innerHTML='<tr><td colspan="9" class="empty">Todavía no has registrado movimientos.</td></tr>';return}tbody.innerHTML=state.movements.map(m=>`<tr><td>${dateCR(m.date)}</td><td><span class="movement-type ${m.type}">${movementLabel(m.type)}</span></td><td><strong>${escapeHtml(m.description)}</strong></td><td><span class="account-chip ${m.account}">${accountLabel(m.account)}</span></td><td><span class="method-chip ${m.paymentMethod}">${methodLabel(m.paymentMethod)}</span></td><td class="${movementSign(m)>0?'money-in':'money-out'}">${movementSign(m)>0?'+':'−'} ${currency(m.amount)}</td><td>${m.isAntExpense?'<span class="ant-chip">Gasto hormiga</span>':'—'}</td><td>${escapeHtml(m.note||'—')}</td><td><button class="btn small danger" onclick="deleteMovement('${m.id}')">Eliminar</button></td></tr>`).join('')}
+function renderFixedExpenses(){const tbody=document.getElementById('fixedExpensesTable');if(!state.fixedExpenses.length){tbody.innerHTML='<tr><td colspan="6" class="empty">Todavía no has registrado gastos fijos detallados.</td></tr>';return}tbody.innerHTML=state.fixedExpenses.map(e=>`<tr><td><strong>${escapeHtml(e.name)}</strong></td><td>${currency(e.amount)}</td><td>${e.frequency}</td><td>${e.dueDay?`Día ${e.dueDay}`:'Sin definir'}</td><td><span class="account-chip ${e.account}">${accountLabel(e.account)}</span></td><td><button class="btn small danger" onclick="deleteFixedExpense('${e.id}')">Eliminar</button></td></tr>`).join('')}
+function renderPrioritySolutions(){const box=document.getElementById('prioritySolutions'),urgent=sortedDebts().filter(d=>d.priority==='alta'&&Number(d.balance)>0);if(!urgent.length){box.innerHTML='<div class="empty">No hay prioridades altas.</div>';return}box.innerHTML=urgent.map(d=>`<div class="priority-line"><div class="row-title"><strong>${escapeHtml(d.name)}</strong><strong class="danger-text">${currency(d.balance)}</strong></div><div class="small-help">Siguiente abono: <strong>${dateCR(firstDebtPaymentDate(d))}</strong>. Abona <strong>${currency(debtInstallment(d))}</strong> ${frequencyLabel(d.paymentFrequency).toLowerCase()} hasta llegar a cero.</div></div>`).join('')}
+function renderFastSolutions(){const box=document.getElementById('fastSolutions'),debts=sortedDebts().filter(d=>Number(d.balance)>0),top=debts[0];if(!top){box.innerHTML='<div class="solution-card"><strong>Sin deudas pendientes</strong><p>Continúa controlando tus gastos.</p></div>';return}box.innerHTML=`<div class="solution-card urgent"><strong>1. Ataca primero: ${escapeHtml(top.name)}</strong><p>Abona ${currency(debtInstallment(top))} con frecuencia ${frequencyLabel(top.paymentFrequency).toLowerCase()}.</p></div><div class="solution-card"><strong>2. Vigila gastos hormiga</strong><p>Este mes llevas ${currency(antExpenseTotalCurrentMonth())}. Redirige parte de ese monto a la deuda prioritaria.</p></div><div class="solution-card"><strong>3. Usa tus extras</strong><p>Tu promedio extra reciente es ${currency(recentExtrasWeekly())} por semana. Úsalo para adelantar abonos.</p></div>`}
+function renderUpcomingCommitments(){const box=document.getElementById('upcomingCommitments'),items=[];state.obligations.filter(x=>!x.paid).forEach(x=>items.push({date:x.dueDate,text:`${escapeHtml(x.description)} · ${currency(x.amount)}`,kind:'Programado'}));state.debts.filter(d=>Number(d.balance)>0).forEach(d=>items.push({date:firstDebtPaymentDate(d),text:`${escapeHtml(d.name)} · ${currency(debtInstallment(d))}`,kind:'Abono'}));items.sort((a,b)=>a.date.localeCompare(b.date));box.innerHTML=items.length?items.slice(0,7).map(i=>`<div class="plan-item"><div class="row-title"><span>${i.kind}: <strong>${i.text}</strong></span><span class="due-chip">${dateCR(i.date)}</span></div></div>`).join(''):'<div class="empty">No hay compromisos próximos.</div>'}
 
-document.getElementById('paymentDate').value=todayISO();render();initApp();
-
+document.getElementById('paymentDate').value=todayISO();
+document.getElementById('movementDate').value=todayISO();
+render();initApp();
 </script>
 </body>
 </html>
