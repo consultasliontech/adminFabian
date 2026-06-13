@@ -504,41 +504,52 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 @media(max-width:1050px){.calendar-day{min-height:105px;padding:6px}.calendar-event{font-size:9px}.projection-summary{grid-template-columns:1fr 1fr}}@media(max-width:720px){.calendar-grid{gap:4px}.calendar-day{min-height:83px;padding:5px;border-radius:9px}.calendar-date{font-size:10px}.calendar-event{font-size:8px;padding:4px}.calendar-toolbar{align-items:flex-start;flex-direction:column}.projection-summary{grid-template-columns:1fr}}
 
 
-/* ===== Supabase sin correo: acceso por código privado ===== */
-.cloud-modal-backdrop{
-  display:none;position:fixed;inset:0;z-index:80;place-items:center;padding:18px;
+/* ===== Acceso multiusuario por telefono + PIN ===== */
+.user-modal-backdrop{
+  display:none;position:fixed;inset:0;z-index:90;place-items:center;padding:18px;
   background:
-    radial-gradient(circle at 18% 18%,rgba(212,175,55,.18),transparent 28%),
-    radial-gradient(circle at 82% 84%,rgba(79,140,255,.16),transparent 24%),
-    rgba(4,7,13,.86);
-  backdrop-filter:blur(14px)
+    radial-gradient(circle at 15% 16%,rgba(212,175,55,.22),transparent 28%),
+    radial-gradient(circle at 86% 86%,rgba(79,140,255,.17),transparent 23%),
+    rgba(4,7,13,.88);
+  backdrop-filter:blur(15px)
 }
-.cloud-modal-backdrop.show{display:grid}
-.cloud-access-card{
-  width:min(510px,100%);padding:23px;border-radius:24px;
-  border:1px solid rgba(212,175,55,.24);
-  background:linear-gradient(145deg,rgba(28,20,11,.96),rgba(10,13,20,.96));
-  box-shadow:0 28px 80px rgba(0,0,0,.48)
+.user-modal-backdrop.show{display:grid}
+.user-access-card{
+  width:min(560px,100%);padding:24px;border-radius:25px;
+  border:1px solid rgba(212,175,55,.25);
+  background:linear-gradient(145deg,rgba(29,20,11,.97),rgba(9,13,20,.97));
+  box-shadow:0 30px 90px rgba(0,0,0,.52)
 }
-.cloud-access-brand{display:flex;align-items:center;gap:13px;margin-bottom:16px}
-.cloud-access-brand .logo{width:66px;height:66px;border-radius:19px}
-.cloud-access-card h2{margin:0 0 6px;font-size:25px}
-.cloud-access-card p{margin:0;color:#cbbd9c;font-size:13px;line-height:1.65}
-.cloud-code-input{
-  width:100%;margin-top:17px;padding:14px 15px;border-radius:13px;
-  border:1px solid rgba(212,175,55,.24);background:rgba(8,10,15,.82);
-  color:#fff2c2;outline:none;font-size:17px;font-weight:800;letter-spacing:1px;text-transform:uppercase
+.user-access-brand{display:flex;align-items:center;gap:14px;margin-bottom:17px}
+.user-access-brand .logo{width:70px;height:70px;border-radius:20px}
+.user-access-card h2{margin:0 0 6px;font-size:26px}
+.user-access-card p{margin:0;color:#cbbd9c;font-size:13px;line-height:1.65}
+.user-tabs{display:flex;gap:8px;margin:18px 0 13px}
+.user-tabs button{flex:1}
+.user-tabs .selected{
+  background:linear-gradient(135deg,#b88915 0%,#d4af37 40%,#f0cf69 72%,#b7860b 100%);
+  color:#1c1408;border-color:transparent;font-weight:850
 }
-.cloud-code-input:focus{border-color:#d4af37;box-shadow:0 0 0 3px rgba(212,175,55,.11)}
-.cloud-access-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
-.cloud-access-actions button{flex:1}
-.cloud-help{margin-top:13px;padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);color:#ae9f81;font-size:11px;line-height:1.6}
-.cloud-message{min-height:19px;margin-top:10px;font-size:12px;line-height:1.5}
+.user-access-grid{display:grid;gap:12px}
+.user-access-grid label{display:block;color:#ead9aa;font-size:12px;margin-bottom:6px}
+.user-access-grid input{
+  width:100%;padding:14px 15px;border-radius:13px;
+  border:1px solid rgba(212,175,55,.22);background:rgba(8,10,15,.84);
+  color:#fff3ca;outline:none;font-size:16px
+}
+.user-access-grid input:focus{border-color:#d4af37;box-shadow:0 0 0 3px rgba(212,175,55,.11)}
+.pin-confirm-wrap{display:none}
+.remember-line{display:flex;align-items:center;gap:9px;margin-top:13px;color:#c8b994;font-size:12px}
+.remember-line input{width:16px;height:16px;accent-color:#d4af37}
+.user-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.user-actions button{flex:1}
+.user-message{min-height:20px;margin-top:12px;font-size:12px;line-height:1.55}
+.user-help{margin-top:13px;padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);color:#ab9c7e;font-size:11px;line-height:1.65}
 .cloud-controls{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
 .cloud-controls button{width:100%}
 .sync-dot.saving{background:#ffc857;box-shadow:0 0 14px rgba(255,200,87,.45)}
 .sync-dot.offline{background:#ff6b7a;box-shadow:0 0 14px rgba(255,107,122,.45)}
-@media(max-width:620px){.cloud-controls{grid-template-columns:1fr}}
+@media(max-width:620px){.cloud-controls{grid-template-columns:1fr}.user-actions{display:grid}.user-access-card{padding:19px}.user-access-brand .logo{width:61px;height:61px}}
 
 </style>
 
@@ -557,15 +568,15 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
       <button data-section="settings">⚙ Configuración</button>
     </nav>
     <div class="sync-box">
-      <div class="sync-line"><span id="cloudSyncDot" class="sync-dot saving"></span><strong id="cloudSyncText">Preparando Supabase...</strong></div>
-      <span id="cloudSyncDetail" class="user-email">Sin correo ni contraseña</span>
+      <div class="sync-line"><span id="cloudSyncDot" class="sync-dot saving"></span><strong id="cloudSyncText">Esperando acceso...</strong></div>
+      <span id="cloudUserPhone" class="user-email">Sin usuario conectado</span>
       <div class="cloud-controls">
         <button class="btn small" type="button" onclick="manualRefreshCloud()">Actualizar nube</button>
-        <button class="btn small" type="button" onclick="openCloudAccessModal()">Código privado</button>
+        <button class="btn small" type="button" onclick="logoutCloudUser()">Cambiar usuario</button>
       </div>
       <a class="btn small" style="display:block;margin-top:8px;width:100%;text-align:center;text-decoration:none" href="https://wa.me/50683843992?text=Hola%20Fabian,%20quiero%20ayuda%20con%20mi%20panel%20financiero" target="_blank" rel="noopener noreferrer">WhatsApp directo</a>
     </div>
-    <div class="side-note">Supabase mantiene el mismo panel en tu teléfono y computadora. El acceso se protege con un código privado compartido.</div>
+    <div class="side-note">Cada número tiene su propio panel sincronizado en Supabase. Al escribir el mismo número en otro dispositivo se cargan los mismos datos.</div>
   </aside>
 
   <main class="main">
@@ -793,7 +804,7 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
       </div>
     </section>
 
-    <footer>Control financiero sincronizado · FCTechSystems</footer>
+    <footer>Control financiero por número · FCTechSystems</footer>
   </main>
 </div>
 
@@ -822,24 +833,38 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 
 
 
-<div class="cloud-modal-backdrop" id="cloudAccessModal">
-  <div class="cloud-access-card">
-    <div class="cloud-access-brand">
+<div class="user-modal-backdrop show" id="userAccessModal">
+  <div class="user-access-card">
+    <div class="user-access-brand">
       <div class="logo"><img src="https://dlnwibdjdpppsookllkx.supabase.co/storage/v1/object/public/CONTROL%20DE%20DEUDASS/LOGO%20PLAY%20STORE.png" alt="Logo FCTechSystems"></div>
       <div>
-        <h2>Conectar con Supabase</h2>
-        <p>Sin correo y sin contraseña. Escribe tu código privado de 8 dígitos para abrir el mismo panel desde cualquier dispositivo.</p>
+        <h2>Entrar a tu panel financiero</h2>
+        <p>Escribe tu número de teléfono. Si ya existe, se cargarán tus datos. Si es nuevo, comenzarás con un panel en blanco.</p>
       </div>
     </div>
-    <form id="cloudAccessForm">
-      <input id="cloudAccessCode" class="cloud-code-input" autocomplete="off" inputmode="numeric" pattern="[0-9]{8}" maxlength="8" spellcheck="false" required placeholder="Código privado de 8 dígitos">
-      <div class="cloud-access-actions">
-        <button class="btn primary" type="submit">Conectar y sincronizar</button>
-        <button class="btn" type="button" onclick="continueLocalOnly()">Usar solo este dispositivo</button>
+
+    <form id="userAccessForm">
+      <div class="user-access-grid">
+        <div>
+          <label>Número de teléfono</label>
+          <input id="userPhone" inputmode="numeric" autocomplete="tel" maxlength="15" required placeholder="Ejemplo: 88731412">
+        </div>
+      </div>
+
+      <label class="remember-line">
+        <input id="rememberDevice" type="checkbox" checked>
+        Recordar este número en el dispositivo
+      </label>
+
+      <div class="user-actions">
+        <button id="userAccessSubmit" class="btn primary" type="submit">Entrar y sincronizar</button>
       </div>
     </form>
-    <div id="cloudAccessMessage" class="cloud-message"></div>
-    <div class="cloud-help">El código no está escrito dentro de esta página. Se guarda únicamente en tu navegador después de conectarte. En el teléfono y en la computadora usa exactamente los mismos 8 dígitos.</div>
+
+    <div id="userAccessMessage" class="user-message"></div>
+    <div class="user-help">
+      El acceso funciona únicamente con el número. Para mantener tu información privada, no compartas tu número de acceso con personas que no deban ver el panel.
+    </div>
   </div>
 </div>
 
@@ -848,103 +873,38 @@ footer{color:var(--muted);font-size:12px;padding:8px 0 0}
 
 
 <script>
-const STORAGE_KEY='fctech_control_financiero_local_v1';
-const CLOUD_CODE_KEY='fctech_supabase_private_code_v1';
+const LEGACY_STORAGE_KEY='fctech_control_financiero_local_v1';
+const CLOUD_SESSION_KEY='fctech_phone_session_v1';
+const USER_CACHE_PREFIX='fctech_phone_cache_';
 const SUPABASE_URL='https://dlnwibdjdpppsookllkx.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_pcnOhCB1_C7hrDTmWUsCgg_svJ12C-M';
-let state=loadState();
+let activePhone='',cloudConnected=false,cloudSaving=false,cloudPending=false,cloudTimer=null;
+let state=defaultState();
 let calendarCursor=new Date();
-let cloudConnected=false,cloudLocalOnly=false,cloudSyncTimer=null,cloudSaving=false,cloudPending=false;
 
 function defaultState(){return{settings:{weeklyIncome:0,weeklyExpenses:0,baseMainBalance:0,baseCurrentBalance:0},debts:[],payments:[],movements:[],fixedExpenses:[],obligations:[]}}
 function normalizeState(data){const base=defaultState();return{settings:{...base.settings,...(data?.settings||{})},debts:Array.isArray(data?.debts)?data.debts:[],payments:Array.isArray(data?.payments)?data.payments:[],movements:Array.isArray(data?.movements)?data.movements:[],fixedExpenses:Array.isArray(data?.fixedExpenses)?data.fixedExpenses:[],obligations:Array.isArray(data?.obligations)?data.obligations:[]}}
-function loadState(){try{return normalizeState(JSON.parse(localStorage.getItem(STORAGE_KEY)||'null'))}catch(e){return defaultState()}}
-function saveLocalState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}
+function normalizePhone(v){return String(v||'').replace(/\D/g,'').slice(0,15)}
+function userCacheKey(phone){return USER_CACHE_PREFIX+normalizePhone(phone)}
+function loadLegacyState(){try{return normalizeState(JSON.parse(localStorage.getItem(LEGACY_STORAGE_KEY)||'null'))}catch(e){return defaultState()}}
+function loadUserCache(phone){try{return normalizeState(JSON.parse(localStorage.getItem(userCacheKey(phone))||'null'))}catch(e){return defaultState()}}
+function saveLocalState(){if(activePhone)localStorage.setItem(userCacheKey(activePhone),JSON.stringify(state))}
 function saveState(){saveLocalState();render();scheduleCloudSave()}
-function cloudCode(){return(localStorage.getItem(CLOUD_CODE_KEY)||'').trim()}
-function setCloudStatus(kind,text,detail=''){
- const dot=document.getElementById('cloudSyncDot'),label=document.getElementById('cloudSyncText'),small=document.getElementById('cloudSyncDetail');
- if(!dot||!label||!small)return;
- dot.className='sync-dot '+(kind||'saving');label.textContent=text;small.textContent=detail||'Sin correo ni contraseña';
-}
-function openCloudAccessModal(message=''){
- const modal=document.getElementById('cloudAccessModal');if(!modal)return;
- document.getElementById('cloudAccessMessage').innerHTML=message;
- document.getElementById('cloudAccessCode').value=cloudCode();
- modal.classList.add('show');
- setTimeout(()=>document.getElementById('cloudAccessCode').focus(),80);
-}
-function closeCloudAccessModal(){document.getElementById('cloudAccessModal')?.classList.remove('show')}
-function continueLocalOnly(){cloudLocalOnly=true;cloudConnected=false;closeCloudAccessModal();setCloudStatus('saving','Modo local activo','No se sincroniza entre dispositivos')}
-async function rpc(name,payload={}){
- const response=await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`,{
-  method:'POST',
-  headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json'},
-  body:JSON.stringify(payload)
- });
- const text=await response.text();let data=null;
- if(text){try{data=JSON.parse(text)}catch(_e){data=text}}
- if(!response.ok){const msg=(data&&typeof data==='object'&&(data.message||data.hint||data.details))||data||`Error HTTP ${response.status}`;throw new Error(String(msg))}
- return data;
-}
-function isFinanceStateEmpty(data){
- const s=normalizeState(data);return !s.debts.length&&!s.payments.length&&!s.movements.length&&!s.fixedExpenses.length&&!s.obligations.length&&Object.values(s.settings).every(v=>!Number(v||0))
-}
-async function connectCloud({showModalOnError=true,forcePull=false}={}){
- const code=cloudCode();
- if(!code){openCloudAccessModal();setCloudStatus('saving','Código requerido','Escríbelo una vez para sincronizar');return false}
- setCloudStatus('saving','Conectando con Supabase...','Verificando código privado');
- try{
-  const remoteRaw=await rpc('fc_load_finance',{p_pin:code});
-  const remote=normalizeState(remoteRaw);
-  const local=normalizeState(state);
-  if(isFinanceStateEmpty(remote)&&!isFinanceStateEmpty(local)){
-   await rpc('fc_save_finance',{p_pin:code,p_data:local});state=local;saveLocalState();
-  }else if(forcePull||!isFinanceStateEmpty(remote)){
-   state=remote;saveLocalState();render();
-  }
-  cloudConnected=true;cloudLocalOnly=false;closeCloudAccessModal();
-  setCloudStatus('online','Supabase sincronizado','Mismo panel en teléfono y computadora');
-  return true;
- }catch(error){
-  console.error(error);cloudConnected=false;
-  setCloudStatus('offline','No conectado','Revisa el código privado o ejecuta el SQL');
-  if(showModalOnError)openCloudAccessModal(`<span class="danger-text">${escapeHtml(error.message||'No fue posible conectar.')}</span>`);
-  return false;
- }
-}
-function scheduleCloudSave(){
- if(!cloudConnected||cloudLocalOnly)return;
- clearTimeout(cloudSyncTimer);cloudSyncTimer=setTimeout(()=>syncToCloud(),420);
-}
-async function syncToCloud(){
- if(!cloudConnected||cloudLocalOnly)return;
- if(cloudSaving){cloudPending=true;return}
- cloudSaving=true;cloudPending=false;setCloudStatus('saving','Guardando en Supabase...','Sincronización automática');
- try{
-  await rpc('fc_save_finance',{p_pin:cloudCode(),p_data:state});
-  setCloudStatus('online','Supabase sincronizado','Cambios guardados en línea');
- }catch(error){
-  console.error(error);cloudConnected=false;
-  setCloudStatus('offline','No conectado','Tus cambios siguen guardados localmente');
- }finally{
-  cloudSaving=false;if(cloudPending){cloudPending=false;syncToCloud()}
- }
-}
-async function manualRefreshCloud(){
- if(!cloudCode()){openCloudAccessModal();return}
- showLoading(true,'Actualizando desde Supabase...');
- try{await connectCloud({forcePull:true})}finally{showLoading(false)}
-}
-document.getElementById('cloudAccessForm').addEventListener('submit',async e=>{
- e.preventDefault();const code=document.getElementById('cloudAccessCode').value.trim();
- localStorage.setItem(CLOUD_CODE_KEY,code);document.getElementById('cloudAccessMessage').textContent='Conectando...';
- await connectCloud({showModalOnError:true,forcePull:true});
-});
-async function initCloud(){
- if(cloudCode())await connectCloud({showModalOnError:false});
- else openCloudAccessModal();
-}
+function isStateEmpty(data){const s=normalizeState(data);return !s.debts.length&&!s.payments.length&&!s.movements.length&&!s.fixedExpenses.length&&!s.obligations.length&&Object.values(s.settings).every(v=>!Number(v||0))}
+function setCloudStatus(kind,text,detail=''){const dot=document.getElementById('cloudSyncDot'),title=document.getElementById('cloudSyncText'),phone=document.getElementById('cloudUserPhone');if(!dot||!title||!phone)return;dot.className='sync-dot '+(kind||'saving');title.textContent=text;phone.textContent=detail||(activePhone?`Número: ${activePhone}`:'Sin número conectado')}
+function showUserMessage(text,type=''){document.getElementById('userAccessMessage').innerHTML=`<span class="${type==='error'?'danger-text':type==='ok'?'good-text':''}">${escapeHtml(text)}</span>`}
+function openUserAccessModal(){document.getElementById('userAccessModal').classList.add('show');document.getElementById('userPhone').value=activePhone||'';setTimeout(()=>document.getElementById('userPhone').focus(),80)}
+function closeUserAccessModal(){document.getElementById('userAccessModal').classList.remove('show')}
+async function rpc(name,payload={}){const response=await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`,{method:'POST',headers:{'apikey':SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json'},body:JSON.stringify(payload)});const text=await response.text();let data=null;if(text){try{data=JSON.parse(text)}catch(_e){data=text}}if(!response.ok){const msg=(data&&typeof data==='object'&&(data.message||data.hint||data.details))||data||`Error HTTP ${response.status}`;throw new Error(String(msg))}return data}
+function assertRpcOk(result){if(!result||result.ok!==true)throw new Error(result?.error||'No fue posible abrir el panel.');return result}
+function persistSession(remember){if(remember)localStorage.setItem(CLOUD_SESSION_KEY,JSON.stringify({phone:activePhone}));else localStorage.removeItem(CLOUD_SESSION_KEY)}
+async function openPhoneWorkspace(phone,{remember=true,quiet=false}={}){phone=normalizePhone(phone);setCloudStatus('saving','Conectando con Supabase...',`Número: ${phone}`);try{const result=assertRpcOk(await rpc('fc_phone_open',{p_phone:phone}));activePhone=phone;cloudConnected=true;state=normalizeState(result.data);const local=loadUserCache(phone),legacy=loadLegacyState();if(isStateEmpty(state)&&!isStateEmpty(local)){state=local;await syncToCloud()}else if(isStateEmpty(state)&&!isStateEmpty(legacy)&&confirm('Encontré datos anteriores guardados en este dispositivo. ¿Deseas subirlos a este número?')){state=legacy;await syncToCloud()}saveLocalState();persistSession(remember);render();closeUserAccessModal();setCloudStatus('online','Supabase sincronizado',`Número: ${activePhone}`);return true}catch(error){console.error(error);cloudConnected=false;setCloudStatus('offline','Acceso pendiente','Escribe tu número');if(!quiet){openUserAccessModal();showUserMessage(error.message||'No fue posible abrir el panel.','error')}return false}}
+function scheduleCloudSave(){if(!cloudConnected||!activePhone)return;clearTimeout(cloudTimer);cloudTimer=setTimeout(()=>syncToCloud(),420)}
+async function syncToCloud(){if(!cloudConnected||!activePhone)return;if(cloudSaving){cloudPending=true;return}cloudSaving=true;cloudPending=false;setCloudStatus('saving','Guardando en Supabase...',`Número: ${activePhone}`);try{assertRpcOk(await rpc('fc_phone_save',{p_phone:activePhone,p_data:state}));setCloudStatus('online','Supabase sincronizado',`Número: ${activePhone}`)}catch(error){console.error(error);cloudConnected=false;setCloudStatus('offline','Sin conexión a Supabase','Los cambios siguen guardados localmente')}finally{cloudSaving=false;if(cloudPending){cloudPending=false;syncToCloud()}}}
+async function manualRefreshCloud(){if(!activePhone){openUserAccessModal();return}showLoading(true,'Actualizando desde Supabase...');try{await openPhoneWorkspace(activePhone,{remember:true})}finally{showLoading(false)}}
+function logoutCloudUser(){localStorage.removeItem(CLOUD_SESSION_KEY);activePhone='';cloudConnected=false;state=defaultState();render();setCloudStatus('saving','Esperando acceso...','Sin número conectado');openUserAccessModal()}
+async function initCloudUser(){try{const session=JSON.parse(localStorage.getItem(CLOUD_SESSION_KEY)||'null');if(session?.phone){activePhone=normalizePhone(session.phone);state=loadUserCache(activePhone);render();const ok=await openPhoneWorkspace(activePhone,{remember:true,quiet:true});if(ok)return}}catch(e){console.error(e)}activePhone='';cloudConnected=false;state=defaultState();render();setCloudStatus('saving','Esperando acceso...','Sin número conectado');openUserAccessModal()}
+document.getElementById('userAccessForm').addEventListener('submit',async e=>{e.preventDefault();const phone=normalizePhone(document.getElementById('userPhone').value),remember=document.getElementById('rememberDevice').checked;if(phone.length<8){showUserMessage('Escribe un número válido de al menos 8 dígitos.','error');return}showLoading(true,'Cargando tu panel...');try{await openPhoneWorkspace(phone,{remember})}finally{showLoading(false)}})
 function uid(){return crypto?.randomUUID?.()||('id-'+Date.now()+'-'+Math.random().toString(16).slice(2))}
 function currency(n){return new Intl.NumberFormat('es-CR',{style:'currency',currency:'CRC',maximumFractionDigits:0}).format(Number(n)||0)}
 function todayISO(){return new Date().toISOString().slice(0,10)}
@@ -1007,9 +967,9 @@ document.getElementById('obligationForm').addEventListener('submit',e=>{e.preven
 function toggleObligation(id,paid){const o=state.obligations.find(x=>x.id===id);if(o){o.paid=!paid;saveState()}}
 function deleteObligation(id){if(confirm('¿Eliminar este pago programado?')){state.obligations=state.obligations.filter(x=>x.id!==id);saveState()}}
 
-document.getElementById('settingsForm').addEventListener('submit',e=>{e.preventDefault();state.settings.weeklyIncome=Number(document.getElementById('weeklyIncome').value||0);state.settings.weeklyExpenses=Number(document.getElementById('weeklyExpenses').value||0);state.settings.baseMainBalance=Number(document.getElementById('baseMainBalance').value||0);state.settings.baseCurrentBalance=Number(document.getElementById('baseCurrentBalance').value||0);saveState();alert(cloudConnected?'Configuración guardada y enviada a Supabase.':'Configuración guardada en este dispositivo.')});
+document.getElementById('settingsForm').addEventListener('submit',e=>{e.preventDefault();state.settings.weeklyIncome=Number(document.getElementById('weeklyIncome').value||0);state.settings.weeklyExpenses=Number(document.getElementById('weeklyExpenses').value||0);state.settings.baseMainBalance=Number(document.getElementById('baseMainBalance').value||0);state.settings.baseCurrentBalance=Number(document.getElementById('baseCurrentBalance').value||0);saveState();alert(cloudConnected?'Configuración guardada y sincronizada.':'Configuración guardada localmente; se enviará al reconectar.')});
 function exportData(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='respaldo-control-financiero-fctechsystems.json';a.click();URL.revokeObjectURL(url)}
-document.getElementById('importFile').addEventListener('change',e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{state=normalizeState(JSON.parse(reader.result));saveState();alert(cloudConnected?'Respaldo importado y enviado a Supabase.':'Respaldo importado correctamente.')}catch(err){alert('El archivo no contiene un respaldo válido.')}};reader.readAsText(file);e.target.value=''});
+document.getElementById('importFile').addEventListener('change',e=>{const file=e.target.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{state=normalizeState(JSON.parse(reader.result));saveState();alert(cloudConnected?'Respaldo importado y sincronizado.':'Respaldo importado localmente.')}catch(err){alert('El archivo no contiene un respaldo válido.')}};reader.readAsText(file);e.target.value=''});
 function clearAll(){if(confirm('¿Seguro que deseas borrar toda la información guardada en este dispositivo?')){state=defaultState();saveState()}}
 
 function render(){
@@ -1042,7 +1002,7 @@ document.getElementById('paymentDate').value=todayISO();
 document.getElementById('movementDate').value=todayISO();
 document.getElementById('obligationDate').value=todayISO();
 render();
-initCloud();
+initCloudUser();
 </script>
 
 </body>
